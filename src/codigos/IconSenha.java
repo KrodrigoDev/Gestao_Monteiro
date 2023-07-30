@@ -16,7 +16,6 @@ public class IconSenha {
      * @param iconSenhaOculta O ícone associado ao campo de senha que muda para indicar a visibilidade da senha.
      * 
      */
-
     public void mostrarSenha(javax.swing.JPasswordField campoSenha, javax.swing.JLabel iconSenhaOculta) {
         try {
             if (campoSenha.getEchoChar() == '*') {

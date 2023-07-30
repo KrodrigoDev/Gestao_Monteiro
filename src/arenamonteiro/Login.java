@@ -1,6 +1,7 @@
 package arenamonteiro;
 
 import codigos.IconSenha;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Kauã Rodrigo
@@ -187,6 +188,11 @@ public class Login extends javax.swing.JFrame {
         textCriarConta.setForeground(new java.awt.Color(255, 255, 255));
         textCriarConta.setText("Crie agora");
         textCriarConta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        textCriarConta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textCriarContaMouseClicked(evt);
+            }
+        });
         painelVerde.add(textCriarConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 513, -1, -1));
 
         campoNome.setBackground(new java.awt.Color(31, 115, 52));
@@ -251,6 +257,14 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_bntFecharActionPerformed
+
+    private void textCriarContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textCriarContaMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        
+        CriarAdmin janelaAdmin = new CriarAdmin();
+        janelaAdmin.setVisible(true);
+    }//GEN-LAST:event_textCriarContaMouseClicked
 
     /**
      * @param args the command line arguments
