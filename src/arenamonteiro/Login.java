@@ -6,18 +6,18 @@ import javax.swing.JOptionPane;
  *
  * @author Kauã Rodrigo
  * @version 0.1
- * @date 30/07/2023
- * 
+ * @since 30/07/2023
+ *
  */
 public class Login extends javax.swing.JFrame {
-    /**
-     * Creates new form Login
-     */
+
+    // construtor
     public Login() {
         initComponents();
     }
 
-     @SuppressWarnings("unchecked")
+    // código padrão do java
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -175,13 +175,13 @@ public class Login extends javax.swing.JFrame {
         bntAcessar.setText("ACESSAR");
         bntAcessar.setBorder(null);
         bntAcessar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        painelVerde.add(bntAcessar, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 463, 347, 32));
+        painelVerde.add(bntAcessar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 347, 33));
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Não tem uma conta ?");
-        painelVerde.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(125, 513, -1, -1));
+        painelVerde.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 520, -1, -1));
 
         textCriarConta.setBackground(new java.awt.Color(255, 255, 255));
         textCriarConta.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -193,7 +193,7 @@ public class Login extends javax.swing.JFrame {
                 textCriarContaMouseClicked(evt);
             }
         });
-        painelVerde.add(textCriarConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 513, -1, -1));
+        painelVerde.add(textCriarConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 520, -1, -1));
 
         campoNome.setBackground(new java.awt.Color(31, 115, 52));
         campoNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -242,33 +242,27 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void checkLembrarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkLembrarSenhaActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_checkLembrarSenhaActionPerformed
 
     // mostrar e ocultar a senha
     private void iconSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconSenhaMouseClicked
-        // TODO add your handling code here:
         IconSenha mostrarOcultar = new IconSenha();
-        mostrarOcultar.mostrarSenha(campoSenha,iconSenha);
+        mostrarOcultar.mostrarSenha(campoSenha, iconSenha);
     }//GEN-LAST:event_iconSenhaMouseClicked
 
     // bnt que vai fechar a janela
     private void bntFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntFecharActionPerformed
-        // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_bntFecharActionPerformed
 
+    // vai fechar a janela de login e abrir a janela Criar Admin
     private void textCriarContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textCriarContaMouseClicked
-        // TODO add your handling code here:
         this.dispose();
-        
         CriarAdmin janelaAdmin = new CriarAdmin();
         janelaAdmin.setVisible(true);
     }//GEN-LAST:event_textCriarContaMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+    // código padrão do java
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -294,13 +288,15 @@ public class Login extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
             public void run() {
                 new Login().setVisible(true);
             }
         });
     }
-  
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton bntAcessar;
