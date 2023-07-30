@@ -1,7 +1,6 @@
 package arenamonteiro;
 
 import codigos.IconSenha;
-import javax.swing.JOptionPane;
 /**
  *
  * @author Kauã Rodrigo
@@ -154,6 +153,7 @@ public class Login extends javax.swing.JFrame {
         checkLembrarSenha.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         checkLembrarSenha.setForeground(new java.awt.Color(255, 255, 255));
         checkLembrarSenha.setText("Lembrar Senha");
+        checkLembrarSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         checkLembrarSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkLembrarSenhaActionPerformed(evt);
@@ -173,6 +173,7 @@ public class Login extends javax.swing.JFrame {
         bntAcessar.setForeground(new java.awt.Color(31, 115, 52));
         bntAcessar.setText("ACESSAR");
         bntAcessar.setBorder(null);
+        bntAcessar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         painelVerde.add(bntAcessar, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 463, 347, 32));
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
@@ -205,7 +206,9 @@ public class Login extends javax.swing.JFrame {
         bntFechar.setForeground(new java.awt.Color(255, 255, 255));
         bntFechar.setText("X");
         bntFechar.setBorder(null);
+        bntFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bntFechar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        bntFechar.setRequestFocusEnabled(false);
         bntFechar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bntFecharActionPerformed(evt);
