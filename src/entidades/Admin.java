@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 /**
  * @author Kauã Rodrigo
- * @since 30/07/2023
+ * @since 31/07/2023
  * @version 0.1
  */
 public class Admin {
@@ -13,6 +13,14 @@ public class Admin {
     // atributos
     private String nome, sobrenome, senha, sexo;
     private LocalDate nascimento;
+    
+    // método
+    
+    public String infoAdmin(){
+        return "<html><strong>Administrador criado com sucesso!</strong><br><br>" +
+           "Seu nome: " + getNome() + "<br>" +
+           "Sua senha: " + getSenha() + "<br><br></html>";
+    }
     
     // gets e sets
 
