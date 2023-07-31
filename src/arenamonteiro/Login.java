@@ -1,7 +1,6 @@
 package arenamonteiro;
 
 import codigos.IconSenha;
-import javax.swing.JOptionPane;
 /**
  *
  * @author Kauã Rodrigo
