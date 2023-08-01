@@ -6,12 +6,9 @@ import dao.AdminDao;
 import entidades.Admin;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
-
 /**
  * Tela para criar um novo administrador (admin). Permite inserir informações
  * como nome, sobrenome, senha, data de nascimento e sexo.
- * 
- * @Observação: tratar cada caso separadamente, faça isso o quanto antes. OS CAMPOS
  *
  * @author Kauã Rodrigo
  * @version 0.1
@@ -30,15 +27,9 @@ public class CriarAdmin extends javax.swing.JFrame {
     // Construtor
     public CriarAdmin() {
         initComponents();
-
         // Adiciona os checkboxes de gênero ao grupo, para permitir seleção única
         grupoGenero.add(checkMasculino);
         grupoGenero.add(checkFeminino);
-
-        // Ocultando os ícones quando a janela for aberta
-        iconCampo1.setVisible(false);
-        iconCampo2.setVisible(false);
-
     }
 
     // código padrão do java
@@ -328,9 +319,6 @@ public class CriarAdmin extends javax.swing.JFrame {
     // Método que vai criar um novo admin
     private void bntCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCriarContaActionPerformed
 
-        iconCampo1.setVisible(true);
-        iconCampo2.setVisible(true);
-
         // Validação das senhas e obtenção da senha validada
         String senhaValidada = iconSenha.validarSenhas(campoSenha, campoConfirmarSenha, iconCampo1, iconCampo2);
 
@@ -347,28 +335,26 @@ public class CriarAdmin extends javax.swing.JFrame {
             admin.setSexo("Feminino");
         }
 
-        // OBS FAZER UMA VALIDAÇÃO SEOPARADAMENTE PARA CADA CASO
         // Validação de campos obrigatórios e criação do admin 
-        if (campoNome.getText().isEmpty() || campoSobrenome.getText().isEmpty() || campoSenha.getPassword().length == 0
-                || campoConfirmarSenha.getPassword().length == 0 || campoNascimento.getText().isEmpty()
-                || !checkMasculino.isSelected() || senhaValidada == null) {
-
-            JOptionPane.showMessageDialog(this, "Por favor, verifique se todos os campos foram preenchidos corretamente.");
-
-        } else {
-            adminDao.cadastrarAdmin(admin);
-            limparCampos();
-
-            // exibir uma mensagem personalizada quando o usuário for criado
-            JOptionPane.showMessageDialog(this, admin.infoAdmin(), "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-
-            // Fechar a janela atual (CriarAdmin)
-            this.dispose();
-
-            // Voltar para a tela de login
-            Login janelaLogin = new Login();
-            janelaLogin.setVisible(true);
+        if (admin.validacaoDasInfo(this)) {
+            return; // Se a validação falhar, retorne e não prossiga com o cadastro
         }
+        
+        limparCampos();
+        
+        adminDao.cadastrarAdmin(admin); // método da classe AdminDao
+        
+
+        // exibir uma mensagem personalizada quando o usuário for criado
+        JOptionPane.showMessageDialog(this, admin.infoAdmin(), "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+        // Fechar a janela atual (CriarAdmin)
+        this.dispose();
+
+        // Voltar para a tela de login
+        Login janelaLogin = new Login();
+        janelaLogin.setVisible(true);
+
     }//GEN-LAST:event_bntCriarContaActionPerformed
 
     // Método para formatar a data enquanto o usuário digita
@@ -395,7 +381,7 @@ public class CriarAdmin extends javax.swing.JFrame {
                 campoNascimento.setText(dadosAtuais.substring(0, tamanho - 1));
             }
         }
-        
+
     }//GEN-LAST:event_campoNascimentoKeyTyped
 
     // código padrão do java
@@ -412,19 +398,26 @@ public class CriarAdmin extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(CriarAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(CriarAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(CriarAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CriarAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
-        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new CriarAdmin().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new CriarAdmin().setVisible(true);
+            }
         });
     }
 
+    // Método para limpar os campos após cada criação de conta
     public void limparCampos() {
         campoNome.setText("");
         campoSobrenome.setText("");
