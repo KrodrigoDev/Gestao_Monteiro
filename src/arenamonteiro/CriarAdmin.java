@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
 public class CriarAdmin extends javax.swing.JFrame {
 
     // Objetos da classes Admin e IconSenha
-    Admin admin = new Admin();
     AdminDao adminDao = new AdminDao();
     IconSenha iconSenha = new IconSenha();
 
@@ -37,12 +36,12 @@ public class CriarAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        painelBranco = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        painelVerde = new javax.swing.JPanel();
         bntFechar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -75,7 +74,7 @@ public class CriarAdmin extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        painelBranco.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logoEscudo.png"))); // NOI18N
 
@@ -91,33 +90,33 @@ public class CriarAdmin extends javax.swing.JFrame {
         jLabel18.setForeground(new java.awt.Color(128, 203, 79));
         jLabel18.setText("MONTEIRO");
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout painelBrancoLayout = new javax.swing.GroupLayout(painelBranco);
+        painelBranco.setLayout(painelBrancoLayout);
+        painelBrancoLayout.setHorizontalGroup(
+            painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelBrancoLayout.createSequentialGroup()
+                .addGroup(painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBrancoLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(painelBrancoLayout.createSequentialGroup()
+                        .addGroup(painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelBrancoLayout.createSequentialGroup()
                                 .addGap(119, 119, 119)
                                 .addComponent(jLabel17))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(painelBrancoLayout.createSequentialGroup()
                                 .addGap(79, 79, 79)
                                 .addComponent(jLabel16)))
                         .addGap(0, 84, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBrancoLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel18)
                 .addGap(100, 100, 100))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        painelBrancoLayout.setVerticalGroup(
+            painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBrancoLayout.createSequentialGroup()
                 .addGap(159, 159, 159)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -129,9 +128,9 @@ public class CriarAdmin extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel2.setBackground(new java.awt.Color(31, 115, 52));
-        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        painelVerde.setBackground(new java.awt.Color(31, 115, 52));
+        painelVerde.setForeground(new java.awt.Color(255, 255, 255));
+        painelVerde.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         bntFechar.setBackground(new java.awt.Color(31, 115, 52));
         bntFechar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -144,79 +143,80 @@ public class CriarAdmin extends javax.swing.JFrame {
                 bntFecharActionPerformed(evt);
             }
         });
-        jPanel2.add(bntFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, 30, 32));
+        painelVerde.add(bntFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 0, 30, 32));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nome");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
+        painelVerde.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
 
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("________________________________________");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 330, -1, -1));
+        painelVerde.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 330, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Sobrenome");
-        jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, -1, -1));
+        painelVerde.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, -1, -1));
 
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("________________________________________");
-        jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 330, -1, -1));
+        painelVerde.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 330, -1, -1));
 
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("________________________________________");
-        jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 410, -1, -1));
+        painelVerde.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 410, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Confirmar senha");
-        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, -1, -1));
+        painelVerde.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, -1, -1));
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("________________________________________");
-        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 410, -1, -1));
+        painelVerde.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 410, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Senha");
-        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, -1));
+        painelVerde.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, -1));
 
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("________________________________________");
-        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 490, -1, -1));
+        painelVerde.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 490, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Data nascimento");
-        jPanel2.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, -1, -1));
+        painelVerde.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Sexo");
-        jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, -1, -1));
+        painelVerde.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, -1, -1));
 
         checkMasculino.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         checkMasculino.setForeground(new java.awt.Color(255, 255, 255));
         checkMasculino.setText("Masculino");
-        jPanel2.add(checkMasculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 490, 85, -1));
+        painelVerde.add(checkMasculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 490, 85, -1));
 
         checkFeminino.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         checkFeminino.setForeground(new java.awt.Color(255, 255, 255));
         checkFeminino.setText("Feminino");
-        jPanel2.add(checkFeminino, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 490, 85, -1));
+        painelVerde.add(checkFeminino, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 490, 85, -1));
 
         bntCriarConta.setBackground(new java.awt.Color(255, 255, 255));
         bntCriarConta.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         bntCriarConta.setForeground(new java.awt.Color(31, 115, 52));
         bntCriarConta.setText("CRIAR MINHA CONTA ");
         bntCriarConta.setBorder(null);
+        bntCriarConta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bntCriarConta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bntCriarContaActionPerformed(evt);
             }
         });
-        jPanel2.add(bntCriarConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 549, 335, 33));
+        painelVerde.add(bntCriarConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 549, 335, 33));
 
         textTemConta.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         textTemConta.setForeground(new java.awt.Color(255, 255, 255));
@@ -227,24 +227,24 @@ public class CriarAdmin extends javax.swing.JFrame {
                 textTemContaMouseClicked(evt);
             }
         });
-        jPanel2.add(textTemConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 588, -1, -1));
+        painelVerde.add(textTemConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 588, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("GESTÃO MONTEIRO");
-        jPanel2.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, -1, -1));
+        painelVerde.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("CRIAR NOVA CONTA");
-        jPanel2.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, -1, -1));
+        painelVerde.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, -1, -1));
 
         campoSobrenome.setBackground(new java.awt.Color(31, 115, 52));
         campoSobrenome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         campoSobrenome.setForeground(new java.awt.Color(255, 255, 255));
         campoSobrenome.setBorder(null);
         campoSobrenome.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jPanel2.add(campoSobrenome, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 310, 220, 30));
+        painelVerde.add(campoSobrenome, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 310, 220, 30));
 
         campoNascimento.setBackground(new java.awt.Color(31, 115, 52));
         campoNascimento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -256,48 +256,48 @@ public class CriarAdmin extends javax.swing.JFrame {
                 campoNascimentoKeyTyped(evt);
             }
         });
-        jPanel2.add(campoNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 230, 30));
+        painelVerde.add(campoNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 230, 30));
 
         campoNome.setBackground(new java.awt.Color(31, 115, 52));
         campoNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         campoNome.setForeground(new java.awt.Color(255, 255, 255));
         campoNome.setBorder(null);
         campoNome.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jPanel2.add(campoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 230, 30));
+        painelVerde.add(campoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 230, 30));
 
         iconCampo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/senhasIguais.png"))); // NOI18N
-        jPanel2.add(iconCampo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 390, -1, 30));
+        painelVerde.add(iconCampo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 390, -1, 30));
 
         campoConfirmarSenha.setBackground(new java.awt.Color(31, 115, 52));
         campoConfirmarSenha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         campoConfirmarSenha.setForeground(new java.awt.Color(255, 255, 255));
         campoConfirmarSenha.setBorder(null);
         campoConfirmarSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jPanel2.add(campoConfirmarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, 230, 30));
+        painelVerde.add(campoConfirmarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 390, 230, 30));
 
         iconCampo1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/senhasIguais.png"))); // NOI18N
-        jPanel2.add(iconCampo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, -1, 30));
+        painelVerde.add(iconCampo1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 390, -1, 30));
 
         campoSenha.setBackground(new java.awt.Color(31, 115, 52));
         campoSenha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         campoSenha.setForeground(new java.awt.Color(255, 255, 255));
         campoSenha.setBorder(null);
         campoSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jPanel2.add(campoSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 230, 30));
+        painelVerde.add(campoSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 230, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(painelBranco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(painelVerde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
+            .addComponent(painelBranco, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelVerde, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(1039, 686));
@@ -322,28 +322,25 @@ public class CriarAdmin extends javax.swing.JFrame {
         // Validação das senhas e obtenção da senha validada
         String senhaValidada = iconSenha.validarSenhas(campoSenha, campoConfirmarSenha, iconCampo1, iconCampo2);
 
-        // Atribuição dos valores do admin com base nos campos preenchidos
-        admin.setNome(campoNome.getText());
-        admin.setSobrenome(campoSobrenome.getText());
-        admin.setSenha(senhaValidada);
-        admin.setNascimento(campoNascimento.getText());
-
         // Atribuição do valor do sexo (masculino ou feminino)
+        String genero = null;
         if (checkMasculino.isSelected()) {
-            admin.setSexo("Masculino");
+            genero = "Masculino";
         } else if (checkFeminino.isSelected()) {
-            admin.setSexo("Feminino");
+            genero = "Feminino";
         }
+
+        // Atribuição dos valores do admin com base nos campos preenchidos
+        Admin admin = new Admin(campoNome.getText(), campoSobrenome.getText(),  genero,campoNascimento.getText(), senhaValidada);
 
         // Validação de campos obrigatórios e criação do admin 
         if (admin.validacaoDasInfo(this)) {
             return; // Se a validação falhar, retorne e não prossiga com o cadastro
         }
-        
-        limparCampos();
-        
+
+        limparCampos(); // vai limpar os campos após a criação
+
         adminDao.cadastrarAdmin(admin); // método da classe AdminDao
-        
 
         // exibir uma mensagem personalizada quando o usuário for criado
         JOptionPane.showMessageDialog(this, admin.infoAdmin(), "Sucesso", JOptionPane.INFORMATION_MESSAGE);
@@ -457,8 +454,8 @@ public class CriarAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel painelBranco;
+    private javax.swing.JPanel painelVerde;
     private javax.swing.JLabel textTemConta;
     // End of variables declaration//GEN-END:variables
 }
