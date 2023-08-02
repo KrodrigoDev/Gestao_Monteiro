@@ -16,11 +16,13 @@ public class Admin extends Pessoa {
     // Construtor
     public Admin(String nome, String sobrenome, String sexo, String nascimento, String senha, String confirmarSenha) {
         super(nome, sobrenome, sexo, nascimento);
+        
         if (validarSenha(senha, confirmarSenha)) {
             setSenha(senha);
         } else {
-            JOptionPane.showMessageDialog(null, "<html><strong>As senhas não são iguais!</strong></html>");
+            JOptionPane.showMessageDialog(null, "<html><strong>As senhas não são iguais!</strong></html>", "Aviso",JOptionPane.INFORMATION_MESSAGE);
         }
+        
     }
 
     // método para informar que o usuário foi criado com sucesso
@@ -32,8 +34,8 @@ public class Admin extends Pessoa {
 
     // Método para verificar se os campos foram preenchidos
     public boolean validacaoDasInfo(CriarAdmin criarAdmin) {
-        if (getNome().isEmpty() || getSobrenome().isEmpty() || getSenha().isEmpty() || getSexo().isEmpty() || getNascimento() == null) {
-            JOptionPane.showMessageDialog(criarAdmin, "<html><strong>Por favor, verifique se todos os campos foram preenchidos corretamente!</strong></html>");
+        if (getNome().isEmpty() || getSobrenome().isEmpty() || getSenha().isEmpty() || getSexo() == null || getNascimento() == null) {
+            JOptionPane.showMessageDialog(criarAdmin, "<html><strong>Por favor, verifique se todos os campos foram preenchidos corretamente!</strong></html>","Aviso",JOptionPane.INFORMATION_MESSAGE);
             return true;
         }
         return false;

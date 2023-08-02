@@ -151,10 +151,12 @@ public class Login extends javax.swing.JFrame {
         iconUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconUsuario.png"))); // NOI18N
         painelVerde.add(iconUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(404, 278, -1, 37));
 
+        checkLembrarSenha.setBackground(new java.awt.Color(31, 115, 52));
         checkLembrarSenha.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         checkLembrarSenha.setForeground(new java.awt.Color(255, 255, 255));
         checkLembrarSenha.setText("Lembrar Senha");
         checkLembrarSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        checkLembrarSenha.setFocusPainted(false);
         checkLembrarSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 checkLembrarSenhaActionPerformed(evt);
@@ -175,6 +177,7 @@ public class Login extends javax.swing.JFrame {
         bntAcessar.setText("ACESSAR");
         bntAcessar.setBorder(null);
         bntAcessar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bntAcessar.setFocusPainted(false);
         painelVerde.add(bntAcessar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 347, 33));
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
@@ -199,12 +202,14 @@ public class Login extends javax.swing.JFrame {
         campoNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         campoNome.setForeground(new java.awt.Color(255, 255, 255));
         campoNome.setBorder(null);
+        campoNome.setCaretColor(new java.awt.Color(255, 255, 255));
         painelVerde.add(campoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 282, 280, 30));
 
         campoSenha.setBackground(new java.awt.Color(31, 115, 52));
         campoSenha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         campoSenha.setForeground(new java.awt.Color(255, 255, 255));
         campoSenha.setBorder(null);
+        campoSenha.setCaretColor(new java.awt.Color(255, 255, 255));
         painelVerde.add(campoSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, 280, 30));
 
         bntFechar.setBackground(new java.awt.Color(31, 115, 52));
@@ -213,6 +218,7 @@ public class Login extends javax.swing.JFrame {
         bntFechar.setText("X");
         bntFechar.setBorder(null);
         bntFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        bntFechar.setFocusPainted(false);
         bntFechar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         bntFechar.setRequestFocusEnabled(false);
         bntFechar.addActionListener(new java.awt.event.ActionListener() {
@@ -220,7 +226,7 @@ public class Login extends javax.swing.JFrame {
                 bntFecharActionPerformed(evt);
             }
         });
-        painelVerde.add(bntFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 36, 32));
+        painelVerde.add(bntFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 36, 32));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -271,7 +277,7 @@ public class Login extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

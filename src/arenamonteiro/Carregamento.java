@@ -36,6 +36,12 @@ public class Carregamento extends javax.swing.JFrame {
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(31, 115, 52));
+        jPanel1.setForeground(new java.awt.Color(31, 115, 52));
+
+        barraCarregamento.setBackground(new java.awt.Color(31, 115, 52));
+        barraCarregamento.setForeground(new java.awt.Color(255, 255, 255));
+        barraCarregamento.setBorder(null);
+        barraCarregamento.setBorderPainted(false);
 
         nPorcentagem.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         nPorcentagem.setForeground(new java.awt.Color(255, 255, 255));
@@ -96,7 +102,7 @@ public class Carregamento extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Metal".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -128,16 +134,16 @@ public class Carregamento extends javax.swing.JFrame {
         carregamento.setVisible(true); // deixando vísivel 
 
         try {
-            
+
             // for para alterar os números do nPorcentagem
             for (int progresso = 0; progresso <= 100; progresso += 3) {
                 Thread.sleep(70); // vai deixar o for mais lento
                 carregamento.barraCarregamento.setValue(progresso); // alterando o valor da barraProgresso
                 carregamento.nPorcentagem.setText(Integer.toString(progresso) + "%"); // colocando o valor da progresso no nPorcentagem
             }
-            
+
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(carregamento,"<html><strong>Ocorreu um erro durante o carregamento ! </strong> <br> Informe o código de erro #5</html>" + erro.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(carregamento, "<html><strong>Ocorreu um erro durante o carregamento ! </strong> <br> Informe o código de erro #5</html>" + erro.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
 
         // Fechando a janela após o loop ser concluído
@@ -149,8 +155,8 @@ public class Carregamento extends javax.swing.JFrame {
             // A conexão foi bem-sucedida e a próxima janela tela vai ser aberta
             Login login = new Login();
             login.setVisible(true);
-        } 
-        
+        }
+
     }
 
 
