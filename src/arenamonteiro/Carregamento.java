@@ -24,10 +24,10 @@ public class Carregamento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        painelVerde = new javax.swing.JPanel();
         barraCarregamento = new javax.swing.JProgressBar();
         nPorcentagem = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        iconCarregamento = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -35,8 +35,8 @@ public class Carregamento extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(31, 115, 52));
-        jPanel1.setForeground(new java.awt.Color(31, 115, 52));
+        painelVerde.setBackground(new java.awt.Color(31, 115, 52));
+        painelVerde.setForeground(new java.awt.Color(31, 115, 52));
 
         barraCarregamento.setBackground(new java.awt.Color(31, 115, 52));
         barraCarregamento.setForeground(new java.awt.Color(255, 255, 255));
@@ -47,30 +47,30 @@ public class Carregamento extends javax.swing.JFrame {
         nPorcentagem.setForeground(new java.awt.Color(255, 255, 255));
         nPorcentagem.setText("99");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/gifCarregamento.gif"))); // NOI18N
+        iconCarregamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/gifCarregamento.gif"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout painelVerdeLayout = new javax.swing.GroupLayout(painelVerde);
+        painelVerde.setLayout(painelVerdeLayout);
+        painelVerdeLayout.setHorizontalGroup(
+            painelVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelVerdeLayout.createSequentialGroup()
+                .addGroup(painelVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelVerdeLayout.createSequentialGroup()
                         .addGap(230, 230, 230)
                         .addComponent(nPorcentagem))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(painelVerdeLayout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(barraCarregamento, javax.swing.GroupLayout.PREFERRED_SIZE, 423, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(painelVerdeLayout.createSequentialGroup()
                         .addGap(220, 220, 220)
-                        .addComponent(jLabel1)))
+                        .addComponent(iconCarregamento)))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        painelVerdeLayout.setVerticalGroup(
+            painelVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelVerdeLayout.createSequentialGroup()
                 .addContainerGap(111, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(iconCarregamento)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(barraCarregamento, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -82,11 +82,11 @@ public class Carregamento extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelVerde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelVerde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(473, 303));
@@ -120,7 +120,6 @@ public class Carregamento extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        
         // chamando o método gerenciamentoCarregamento
         gerenciamentoCarregamento();
 
@@ -136,10 +135,10 @@ public class Carregamento extends javax.swing.JFrame {
         try {
 
             // for para alterar os números do nPorcentagem
-            for (int progresso = 0; progresso <= 100; progresso += 3) {
+            for (int contador = 0; contador <= 100; contador += 3) {
                 Thread.sleep(70); // vai deixar o for mais lento
-                carregamento.barraCarregamento.setValue(progresso); // alterando o valor da barraProgresso
-                carregamento.nPorcentagem.setText(Integer.toString(progresso) + "%"); // colocando o valor da progresso no nPorcentagem
+                carregamento.barraCarregamento.setValue(contador); // alterando o valor da barraProgresso
+                carregamento.nPorcentagem.setText(Integer.toString(contador) + "%"); // colocando o valor da progresso no nPorcentagem
             }
 
         } catch (Exception erro) {
@@ -162,8 +161,8 @@ public class Carregamento extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JProgressBar barraCarregamento;
-    protected javax.swing.JLabel jLabel1;
-    protected javax.swing.JPanel jPanel1;
+    protected javax.swing.JLabel iconCarregamento;
     protected javax.swing.JLabel nPorcentagem;
+    protected javax.swing.JPanel painelVerde;
     // End of variables declaration//GEN-END:variables
 }

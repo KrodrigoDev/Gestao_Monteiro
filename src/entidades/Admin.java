@@ -36,7 +36,7 @@ public class Admin extends Pessoa {
     public boolean validacaoDasInfo(CriarAdmin criarAdmin) {
         if (getNome().isEmpty() || getSobrenome().isEmpty() || getSenha().isEmpty() || getSexo() == null || getNascimento() == null) {
             JOptionPane.showMessageDialog(criarAdmin, "<html><strong>Por favor, verifique se todos os campos foram preenchidos corretamente!</strong></html>","Aviso",JOptionPane.INFORMATION_MESSAGE);
-            return true;
+            return true; // vai fazer com que a criação do admin não prossiga
         }
         return false;
     }
