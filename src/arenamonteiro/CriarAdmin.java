@@ -312,7 +312,7 @@ public class CriarAdmin extends javax.swing.JFrame {
     // vai a fechar janela atual e voltar para de login
     private void textTemContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textTemContaMouseClicked
         this.dispose(); // vai fechar a janela
-        Login janelaLogin = new Login(); // criando um objeto da classe Login
+        Login janelaLogin = new Login(); // criando um objeto da classe Carregamento
         janelaLogin.setVisible(true);
     }//GEN-LAST:event_textTemContaMouseClicked
 
@@ -349,7 +349,7 @@ public class CriarAdmin extends javax.swing.JFrame {
         this.dispose();
 
         // Voltar para a tela de login
-        Login janelaLogin = new Login();
+        Carregamento janelaLogin = new Carregamento();
         janelaLogin.setVisible(true);
 
     }//GEN-LAST:event_bntCriarContaActionPerformed

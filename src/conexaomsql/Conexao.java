@@ -3,6 +3,7 @@ package conexaomsql;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * @since 30/07/2023
@@ -40,9 +41,9 @@ public class Conexao {
                 // Se a conexão já existe, simplesmente retorna a conexão existente
                 return conexao;
             }
-        } catch (Exception erro) {
+        } catch (SQLException erro) {
             // Em caso de erro na conexão, exibe uma mensagem de erro em uma caixa de diálogo
-            JOptionPane.showMessageDialog(null, "<html> <strong> Ocorreu um erro inesperado! </strong> Detalhes: " + erro.getMessage() + "<br> Informe o código de erro <strong>#2</strong></html>", "Erro de conexão", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "<html><strong>Ocorreu um erro durante o carregamento ! </strong> <br> Informe o código de erro #2</html>", "Erro de conexão", JOptionPane.ERROR_MESSAGE);
             // Retorna null para indicar que a conexão falhou
             return null;
         }
