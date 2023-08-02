@@ -4,8 +4,8 @@ package arenamonteiro;
 import codigos.IconSenha;
 import dao.AdminDao;
 import entidades.Admin;
-import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
+
 /**
  * Tela para criar um novo administrador (admin). Permite inserir informações
  * como nome, sobrenome, senha, data de nascimento e sexo.
@@ -16,16 +16,13 @@ import javax.swing.JOptionPane;
  */
 public class CriarAdmin extends javax.swing.JFrame {
 
-    // Objetos da classes Admin e IconSenha
+    // Objetos da classes Admin 
     AdminDao adminDao = new AdminDao();
-    IconSenha iconSenha = new IconSenha();
-
-    // Criação do ButtonGroup para os checkboxes de gênero
-    ButtonGroup grupoGenero = new ButtonGroup();
 
     // Construtor
     public CriarAdmin() {
         initComponents();
+
         // Adiciona os checkboxes de gênero ao grupo, para permitir seleção única
         grupoGenero.add(checkMasculino);
         grupoGenero.add(checkFeminino);
@@ -36,6 +33,7 @@ public class CriarAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        grupoGenero = new javax.swing.ButtonGroup();
         painelBranco = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -319,9 +317,6 @@ public class CriarAdmin extends javax.swing.JFrame {
     // Método que vai criar um novo admin
     private void bntCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCriarContaActionPerformed
 
-        // Validação das senhas e obtenção da senha validada
-        String senhaValidada = iconSenha.validarSenhas(campoSenha, campoConfirmarSenha, iconCampo1, iconCampo2);
-
         // Atribuição do valor do sexo (masculino ou feminino)
         String genero = null;
         if (checkMasculino.isSelected()) {
@@ -331,27 +326,33 @@ public class CriarAdmin extends javax.swing.JFrame {
         }
 
         // Atribuição dos valores do admin com base nos campos preenchidos
-        Admin admin = new Admin(campoNome.getText(), campoSobrenome.getText(),  genero,campoNascimento.getText(), senhaValidada);
+        Admin admin = new Admin(
+                campoNome.getText(),
+                campoSobrenome.getText(),
+                genero,
+                campoNascimento.getText(),
+                new String(campoSenha.getPassword()),
+                new String(campoConfirmarSenha.getPassword())
+        );
 
         // Validação de campos obrigatórios e criação do admin 
         if (admin.validacaoDasInfo(this)) {
             return; // Se a validação falhar, retorne e não prossiga com o cadastro
+        } else {
+            limparCampos(); // vai limpar os campos após a criação
+
+            adminDao.cadastrarAdmin(admin); // método da classe AdminDao
+
+            // exibir uma mensagem personalizada quando o usuário for criado
+            JOptionPane.showMessageDialog(this, admin.infoAdmin(), "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+
+            // Fechar a janela atual (CriarAdmin)
+            this.dispose();
+
+            // Voltar para a tela de login
+            Login janelaLogin = new Login();
+            janelaLogin.setVisible(true);
         }
-
-        limparCampos(); // vai limpar os campos após a criação
-
-        adminDao.cadastrarAdmin(admin); // método da classe AdminDao
-
-        // exibir uma mensagem personalizada quando o usuário for criado
-        JOptionPane.showMessageDialog(this, admin.infoAdmin(), "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-
-        // Fechar a janela atual (CriarAdmin)
-        this.dispose();
-
-        // Voltar para a tela de login
-        Carregamento janelaLogin = new Carregamento();
-        janelaLogin.setVisible(true);
-
     }//GEN-LAST:event_bntCriarContaActionPerformed
 
     // Método para formatar a data enquanto o usuário digita
@@ -435,6 +436,7 @@ public class CriarAdmin extends javax.swing.JFrame {
     private javax.swing.JTextField campoSobrenome;
     private javax.swing.JCheckBox checkFeminino;
     private javax.swing.JCheckBox checkMasculino;
+    private javax.swing.ButtonGroup grupoGenero;
     private javax.swing.JLabel iconCampo1;
     private javax.swing.JLabel iconCampo2;
     private javax.swing.JLabel jLabel1;
