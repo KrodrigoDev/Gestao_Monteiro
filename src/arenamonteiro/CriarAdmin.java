@@ -34,10 +34,7 @@ public class CriarAdmin extends javax.swing.JFrame {
 
         grupoGenero = new javax.swing.ButtonGroup();
         painelBranco = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        imgEscudo = new javax.swing.JLabel();
         painelVerde = new javax.swing.JPanel();
         bntFechar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -71,56 +68,23 @@ public class CriarAdmin extends javax.swing.JFrame {
 
         painelBranco.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logoEscudo.png"))); // NOI18N
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(128, 203, 79));
-        jLabel16.setText("© Kauã Rodrigo - 2023");
-
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(128, 203, 79));
-        jLabel17.setText("ARENA");
-
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(128, 203, 79));
-        jLabel18.setText("MONTEIRO");
+        imgEscudo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logoEscudo03.png"))); // NOI18N
 
         javax.swing.GroupLayout painelBrancoLayout = new javax.swing.GroupLayout(painelBranco);
         painelBranco.setLayout(painelBrancoLayout);
         painelBrancoLayout.setHorizontalGroup(
             painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelBrancoLayout.createSequentialGroup()
-                .addGroup(painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBrancoLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(painelBrancoLayout.createSequentialGroup()
-                        .addGroup(painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelBrancoLayout.createSequentialGroup()
-                                .addGap(119, 119, 119)
-                                .addComponent(jLabel17))
-                            .addGroup(painelBrancoLayout.createSequentialGroup()
-                                .addGap(79, 79, 79)
-                                .addComponent(jLabel16)))
-                        .addGap(0, 84, Short.MAX_VALUE)))
+                .addContainerGap()
+                .addComponent(imgEscudo, javax.swing.GroupLayout.PREFERRED_SIZE, 287, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBrancoLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel18)
-                .addGap(100, 100, 100))
         );
         painelBrancoLayout.setVerticalGroup(
             painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBrancoLayout.createSequentialGroup()
-                .addGap(159, 159, 159)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel17)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel18)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel16)
-                .addContainerGap())
+            .addGroup(painelBrancoLayout.createSequentialGroup()
+                .addGap(176, 176, 176)
+                .addComponent(imgEscudo, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         painelVerde.setBackground(new java.awt.Color(31, 115, 52));
@@ -439,15 +403,12 @@ public class CriarAdmin extends javax.swing.JFrame {
     private javax.swing.JCheckBox checkFeminino;
     private javax.swing.JCheckBox checkMasculino;
     private javax.swing.ButtonGroup grupoGenero;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel imgEscudo;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
