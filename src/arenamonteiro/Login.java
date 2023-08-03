@@ -1,7 +1,5 @@
 package arenamonteiro;
 
-import codigos.IconSenha;
-
 /**
  *
  * @author Kauã Rodrigo
@@ -106,8 +104,8 @@ public class Login extends javax.swing.JFrame {
         iconSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconOcultar.png"))); // NOI18N
         iconSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         iconSenha.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                iconSenhaMouseClicked(evt);
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                iconSenhaMousePressed(evt);
             }
         });
         painelVerde.add(iconSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(404, 355, -1, 37));
@@ -214,12 +212,6 @@ public class Login extends javax.swing.JFrame {
     private void checkLembrarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkLembrarSenhaActionPerformed
     }//GEN-LAST:event_checkLembrarSenhaActionPerformed
 
-    // mostrar e ocultar a senha
-    private void iconSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconSenhaMouseClicked
-        IconSenha mostrarOcultar = new IconSenha();
-        mostrarOcultar.mostrarSenha(campoSenha, iconSenha);
-    }//GEN-LAST:event_iconSenhaMouseClicked
-
     // bnt que vai fechar a janela
     private void bntFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntFecharActionPerformed
         this.dispose();
@@ -231,6 +223,20 @@ public class Login extends javax.swing.JFrame {
         CriarAdmin janelaAdmin = new CriarAdmin();
         janelaAdmin.setVisible(true);
     }//GEN-LAST:event_textCriarContaMouseClicked
+
+    private void iconSenhaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconSenhaMousePressed
+        char echoChar = campoSenha.getEchoChar();
+
+        if (echoChar == '*') {
+            // Se a senha está oculta, torna visível
+            campoSenha.setEchoChar((char) 0);
+            iconSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconVisivel.png")));
+        } else {
+            // Se a senha está visível, torna oculta
+            campoSenha.setEchoChar('*');
+            iconSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconOcultar.png")));
+        }
+    }//GEN-LAST:event_iconSenhaMousePressed
 
     // código padrão do java
     public static void main(String args[]) {
