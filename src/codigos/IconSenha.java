@@ -1,6 +1,5 @@
 package codigos;
 
-import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,26 +29,6 @@ public class IconSenha {
             // Se a senha está visível, torna-a oculta novamente
             campoSenha.setEchoChar('*');
             iconSenhaOculta.setIcon(ICON_OCULTAR);
-        }
-    }
-
-    // Validar senhas ( na janela de criar Admin )
-    public static String validarSenhas(JPasswordField campoSenha1, JPasswordField campoSenha2) {
-        try {
-            String senha1 = new String(campoSenha1.getPassword());
-            String senha2 = new String(campoSenha2.getPassword());
-
-            if (senha1.equals(senha2)) {
-                // Senhas coincidem, não há problemas
-                return senha1;
-            } else {
-                // Retorna null se as senhas não forem iguais
-                return null;
-            }
-
-        } catch (Exception erro) {
-            JOptionPane.showMessageDialog(null, "<html><strong>Ocorreu um erro durante o carregamento ! </strong> <br> Informe o código de erro #1</html>", "Erro", JOptionPane.ERROR_MESSAGE);
-            return null; // Retorna null em caso de erro
         }
     }
 

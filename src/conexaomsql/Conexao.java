@@ -42,10 +42,12 @@ public class Conexao {
                 return conexao;
             }
         } catch (SQLException erro) {
-            // Em caso de erro na conexão, exibe uma mensagem de erro em uma caixa de diálogo
-            JOptionPane.showMessageDialog(null, "<html><strong>Ocorreu um erro durante o carregamento ! </strong> <br> Informe o código de erro #2</html>", "Erro de conexão", JOptionPane.ERROR_MESSAGE);
-            // Retorna null para indicar que a conexão falhou
-            return null;
+            JOptionPane.showMessageDialog(null,
+                    "<html><strong>Ocorreu um erro durante o carregamento ! </strong> <br> Informe o código de erro #2</html>", 
+                    "Erro de conexão", 
+                    JOptionPane.ERROR_MESSAGE);
+            
+            return null; // Retorna null para indicar que a conexão falhou
         }
     }
 }

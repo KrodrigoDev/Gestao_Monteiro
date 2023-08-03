@@ -3,6 +3,7 @@ package dao;
 import conexaomsql.Conexao;
 import entidades.Admin;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,7 +29,7 @@ public class AdminDao {
      * operações.
      */
     
-    public void cadastrarAdmin(Admin admin) {
+    public boolean cadastrarAdmin(Admin admin) {
 
         // Query SQL para inserir os dados na tabela "ADMIN".
         String sql = "INSERT INTO ADMIN (NOME, SOBRENOME,SENHA,SEXO,NASCIMENTO) VALUES (?,?,?,?,?)";
@@ -51,13 +52,15 @@ public class AdminDao {
 
             // Fecha o PreparedStatement após a execução da consulta.
             ps.close();
+            
+            return true;
 
-        } catch (Exception erro) {
+        } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null,
                     "<html> <strong> Ocorreu um erro inesperado! </strong> Detalhes: " + erro.getMessage() + "<br> Informe o código de erro <strong>#3</strong></html>",
                     "Admin Dao", JOptionPane.ERROR_MESSAGE);
+             return false;
         }
-
     }
 
 }

@@ -1,7 +1,6 @@
 package entidades;
 
 import javax.swing.JOptionPane;
-import arenamonteiro.CriarAdmin;
 
 /**
  * @author Kauã Rodrigo
@@ -33,12 +32,18 @@ public class Admin extends Pessoa {
     }
 
     // Método para verificar se os campos foram preenchidos
-    public boolean validacaoDasInfo(CriarAdmin criarAdmin) {
-        if (getNome().isEmpty() || getSobrenome().isEmpty() || getSenha().isEmpty() || getSexo() == null || getNascimento() == null) {
-            JOptionPane.showMessageDialog(criarAdmin, "<html><strong>Por favor, verifique se todos os campos foram preenchidos corretamente!</strong></html>","Aviso",JOptionPane.INFORMATION_MESSAGE);
-            return true; // vai fazer com que a criação do admin não prossiga
+    public boolean validacaoDasInfo() {
+        if (getNome().isEmpty() || getSobrenome().isEmpty() || (getSenha().isEmpty()|| getSenha() == null) || getSexo() == null || getNascimento() == null) {
+            
+            JOptionPane.showMessageDialog(null, 
+                    "<html><strong>Por favor, verifique se todos os campos foram preenchidos corretamente!</strong></html>",
+                    "Aviso",
+                    JOptionPane.INFORMATION_MESSAGE);
+            
+            return false; // vai fazer com que a criação do admin não prossiga
+            
         }
-        return false;
+        return true; // faz a criação do usuário
     }
 
     // Método para validar a senha

@@ -6,12 +6,11 @@ import entidades.Admin;
 import javax.swing.JOptionPane;
 
 /**
- * Tela para criar um novo administrador (admin). Permite inserir informações
- * como nome, sobrenome, senha, data de nascimento e sexo.
  *
  * @author Kauã Rodrigo
  * @version 0.1
  * @since 31/07/2023
+ *
  */
 public class CriarAdmin extends javax.swing.JFrame {
 
@@ -276,7 +275,7 @@ public class CriarAdmin extends javax.swing.JFrame {
     // vai a fechar janela atual e voltar para de login
     private void textTemContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textTemContaMouseClicked
         this.dispose(); // vai fechar a janela
-        Login janelaLogin = new Login(); // criando um objeto da classe Carregamento
+        Login janelaLogin = new Login(); // criando um objeto da classe Login
         janelaLogin.setVisible(true);
     }//GEN-LAST:event_textTemContaMouseClicked
 
@@ -297,28 +296,26 @@ public class CriarAdmin extends javax.swing.JFrame {
                 campoSobrenome.getText().trim(),
                 genero,
                 campoNascimento.getText(),
-                new String(campoSenha.getPassword()).trim(),
-                new String(campoConfirmarSenha.getPassword()).trim()
+                new String(campoSenha.getPassword()),
+                new String(campoConfirmarSenha.getPassword())
         );
 
-        // Validação de campos obrigatórios e criação do admin 
-        if (admin.validacaoDasInfo(this)) {
-            return; // Se a validação falhar, retorne e não prossiga com o cadastro
-        } else {
-            limparCampos(); // vai limpar os campos após a criação
+        // Validações e criação do admin 
+        if (admin.validacaoDasInfo()) {
 
-            adminDao.cadastrarAdmin(admin); // método da classe AdminDao
+            if (adminDao.cadastrarAdmin(admin)) {
+                limparCampos();
 
-            // exibir uma mensagem personalizada quando o usuário for criado
-            JOptionPane.showMessageDialog(this, admin.infoAdmin(), "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, admin.infoAdmin(), "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
-            // Fechar a janela atual (CriarAdmin)
-            this.dispose();
+                this.dispose();
 
-            // Voltar para a tela de login
-            Login janelaLogin = new Login();
-            janelaLogin.setVisible(true);
+                Login janelaLogin = new Login();
+                janelaLogin.setVisible(true);
+            }
+            
         }
+        
     }//GEN-LAST:event_bntCriarContaActionPerformed
 
     // Método para formatar a data enquanto o usuário digita
