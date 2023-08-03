@@ -81,10 +81,10 @@ public class CriarAdmin extends javax.swing.JFrame {
         );
         painelBrancoLayout.setVerticalGroup(
             painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelBrancoLayout.createSequentialGroup()
-                .addGap(176, 176, 176)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBrancoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(imgEscudo, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(158, 158, 158))
         );
 
         painelVerde.setBackground(new java.awt.Color(31, 115, 52));
@@ -293,12 +293,12 @@ public class CriarAdmin extends javax.swing.JFrame {
 
         // Atribuição dos valores do admin com base nos campos preenchidos
         Admin admin = new Admin(
-                campoNome.getText(),
-                campoSobrenome.getText(),
+                campoNome.getText().trim(),
+                campoSobrenome.getText().trim(),
                 genero,
                 campoNascimento.getText(),
-                new String(campoSenha.getPassword()),
-                new String(campoConfirmarSenha.getPassword())
+                new String(campoSenha.getPassword()).trim(),
+                new String(campoConfirmarSenha.getPassword()).trim()
         );
 
         // Validação de campos obrigatórios e criação do admin 
@@ -324,17 +324,14 @@ public class CriarAdmin extends javax.swing.JFrame {
     // Método para formatar a data enquanto o usuário digita
     private void campoNascimentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoNascimentoKeyTyped
 
-        // Vou pegar os dados digitados no campo de nascimento
         String dadosAtuais = campoNascimento.getText();
 
-        // Obtém o tamanho da string atual
         int tamanho = dadosAtuais.length();
 
         // Verifica se o caractere digitado pelo usuário é um dígito numérico (0 a 9)
         if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
             // Se o tamanho atual for 2 ou 5 (posições onde precisamos adicionar "/")
             if (tamanho == 2 || tamanho == 5) {
-                // Adiciona a barra "/" aos dados atuais digitados no campo de nascimento
                 campoNascimento.setText(dadosAtuais + '/');
             }
         } else {
