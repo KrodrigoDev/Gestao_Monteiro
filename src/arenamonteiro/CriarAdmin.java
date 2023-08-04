@@ -20,10 +20,6 @@ public class CriarAdmin extends javax.swing.JFrame {
     // Construtor
     public CriarAdmin() {
         initComponents();
-
-        // Adiciona os checkboxes de gênero ao grupo, para permitir seleção única
-        grupoGenero.add(checkMasculino);
-        grupoGenero.add(checkFeminino);
     }
 
     // código padrão do java
@@ -47,17 +43,17 @@ public class CriarAdmin extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        checkMasculino = new javax.swing.JCheckBox();
-        checkFeminino = new javax.swing.JCheckBox();
         bntCriarConta = new javax.swing.JButton();
         textTemConta = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         campoSobrenome = new javax.swing.JTextField();
-        campoNascimento = new javax.swing.JTextField();
+        campoEmail = new javax.swing.JTextField();
         campoNome = new javax.swing.JTextField();
         campoConfirmarSenha = new javax.swing.JPasswordField();
         campoSenha = new javax.swing.JPasswordField();
+        jLabel13 = new javax.swing.JLabel();
+        campoNascimento = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Criar conta");
@@ -128,7 +124,7 @@ public class CriarAdmin extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Confirmar senha");
+        jLabel7.setText("Confirmar Senha");
         painelVerde.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, -1, -1));
 
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -146,27 +142,13 @@ public class CriarAdmin extends javax.swing.JFrame {
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Data nascimento");
+        jLabel11.setText("E-mail");
         painelVerde.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 440, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel12.setText("Sexo");
+        jLabel12.setText("Data Nascimento");
         painelVerde.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, -1, -1));
-
-        checkMasculino.setBackground(new java.awt.Color(31, 115, 52));
-        checkMasculino.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        checkMasculino.setForeground(new java.awt.Color(255, 255, 255));
-        checkMasculino.setText("Masculino");
-        checkMasculino.setFocusable(false);
-        painelVerde.add(checkMasculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(427, 490, 85, -1));
-
-        checkFeminino.setBackground(new java.awt.Color(31, 115, 52));
-        checkFeminino.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        checkFeminino.setForeground(new java.awt.Color(255, 255, 255));
-        checkFeminino.setText("Feminino");
-        checkFeminino.setFocusable(false);
-        painelVerde.add(checkFeminino, new org.netbeans.lib.awtextra.AbsoluteConstraints(545, 490, 85, -1));
 
         bntCriarConta.setBackground(new java.awt.Color(255, 255, 255));
         bntCriarConta.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -211,18 +193,13 @@ public class CriarAdmin extends javax.swing.JFrame {
         campoSobrenome.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         painelVerde.add(campoSobrenome, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 310, 220, 30));
 
-        campoNascimento.setBackground(new java.awt.Color(31, 115, 52));
-        campoNascimento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        campoNascimento.setForeground(new java.awt.Color(255, 255, 255));
-        campoNascimento.setBorder(null);
-        campoNascimento.setCaretColor(new java.awt.Color(255, 255, 255));
-        campoNascimento.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        campoNascimento.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                campoNascimentoKeyTyped(evt);
-            }
-        });
-        painelVerde.add(campoNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 230, 30));
+        campoEmail.setBackground(new java.awt.Color(31, 115, 52));
+        campoEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        campoEmail.setForeground(new java.awt.Color(255, 255, 255));
+        campoEmail.setBorder(null);
+        campoEmail.setCaretColor(new java.awt.Color(255, 255, 255));
+        campoEmail.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        painelVerde.add(campoEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 230, 30));
 
         campoNome.setBackground(new java.awt.Color(31, 115, 52));
         campoNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -247,6 +224,23 @@ public class CriarAdmin extends javax.swing.JFrame {
         campoSenha.setCaretColor(new java.awt.Color(255, 255, 255));
         campoSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         painelVerde.add(campoSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 230, 30));
+
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("________________________________________");
+        painelVerde.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 490, -1, -1));
+
+        campoNascimento.setBackground(new java.awt.Color(31, 115, 52));
+        campoNascimento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        campoNascimento.setForeground(new java.awt.Color(255, 255, 255));
+        campoNascimento.setBorder(null);
+        campoNascimento.setCaretColor(new java.awt.Color(255, 255, 255));
+        campoNascimento.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        campoNascimento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                campoNascimentoKeyTyped(evt);
+            }
+        });
+        painelVerde.add(campoNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 470, 230, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -282,26 +276,18 @@ public class CriarAdmin extends javax.swing.JFrame {
     // Método que vai criar um novo admin
     private void bntCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCriarContaActionPerformed
 
-        // Atribuição do valor do sexo (masculino ou feminino)
-        String genero = null;
-        if (checkMasculino.isSelected()) {
-            genero = "Masculino";
-        } else if (checkFeminino.isSelected()) {
-            genero = "Feminino";
-        }
-
         // Atribuição dos valores do admin com base nos campos preenchidos
         Admin admin = new Admin(
                 campoNome.getText().trim(),
                 campoSobrenome.getText().trim(),
-                genero,
-                campoNascimento.getText(),
-                new String(campoSenha.getPassword()),
-                new String(campoConfirmarSenha.getPassword())
+                campoEmail.getText().trim(),
+                campoNascimento.getText().trim(),
+                new String(campoSenha.getPassword()).trim(),
+                new String(campoConfirmarSenha.getPassword()).trim()
         );
 
         // Validações e criação do admin 
-        if (admin.validacaoDasInfo()) {
+        if (admin.validacaoDasInfo() && admin.validacaoDasInfo()) {
 
             if (adminDao.cadastrarAdmin(admin)) {
                 limparCampos();
@@ -318,9 +304,8 @@ public class CriarAdmin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_bntCriarContaActionPerformed
 
-    // Método para formatar a data enquanto o usuário digita
+        // Método para formatar a data enquanto o usuário digita
     private void campoNascimentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoNascimentoKeyTyped
-
         String dadosAtuais = campoNascimento.getText();
 
         int tamanho = dadosAtuais.length();
@@ -339,7 +324,6 @@ public class CriarAdmin extends javax.swing.JFrame {
                 campoNascimento.setText(dadosAtuais.substring(0, tamanho - 1));
             }
         }
-
     }//GEN-LAST:event_campoNascimentoKeyTyped
 
     // código padrão do java
@@ -381,8 +365,8 @@ public class CriarAdmin extends javax.swing.JFrame {
         campoSobrenome.setText("");
         campoSenha.setText("");
         campoConfirmarSenha.setText("");
+        campoEmail.setText("");
         campoNascimento.setText("");
-        grupoGenero.clearSelection();
     }
 
 
@@ -390,17 +374,17 @@ public class CriarAdmin extends javax.swing.JFrame {
     private javax.swing.JButton bntCriarConta;
     private javax.swing.JButton bntFechar;
     private javax.swing.JPasswordField campoConfirmarSenha;
+    private javax.swing.JTextField campoEmail;
     private javax.swing.JTextField campoNascimento;
     private javax.swing.JTextField campoNome;
     private javax.swing.JPasswordField campoSenha;
     private javax.swing.JTextField campoSobrenome;
-    private javax.swing.JCheckBox checkFeminino;
-    private javax.swing.JCheckBox checkMasculino;
     private javax.swing.ButtonGroup grupoGenero;
     private javax.swing.JLabel imgEscudo;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;

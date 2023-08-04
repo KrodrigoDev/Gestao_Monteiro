@@ -1,7 +1,10 @@
 package entidades;
 
 import java.time.LocalDate;
+import java.time.Month;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,28 +19,17 @@ import java.time.format.DateTimeFormatter;
 public abstract class Pessoa {
 
     // atributos
-    private String nome, sobrenome, sexo;
-    private int idade;
+    private String nome, sobrenome;
     private LocalDate nascimento;
 
     // objeto com a formação brasileira 
     DateTimeFormatter formatoBr = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     // Construtor
-    public Pessoa(String nome, String sobrenome, String sexo, String nascimento) {
+    public Pessoa(String nome, String sobrenome, String nascimento) {
         setNome(nome);
         setSobrenome(sobrenome);
         setNascimento(nascimento);
-        setSexo(sexo);
-    }
-
-    // métodos 
-    public void fazerAniver() {
-        LocalDate anoAtual = LocalDate.now();
-        if (anoAtual.getMonthValue() >= getNascimento().getMonthValue()
-                && anoAtual.getDayOfMonth() >= getNascimento().getDayOfMonth()) {
-            setIdade(getIdade() + 1);
-        }
     }
 
     // gets e sets
@@ -57,33 +49,54 @@ public abstract class Pessoa {
         this.sobrenome = sobrenome;
     }
 
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
-    }
-
     public LocalDate getNascimento() {
         return nascimento;
     }
 
     public void setNascimento(String nascimento) {
-        if (nascimento.isEmpty()) {
-            this.nascimento = null; // Definir a data de nascimento como null se estiver vazia
-        } else {
-            this.nascimento = LocalDate.parse(nascimento, formatoBr);
+        LocalDate anoInicial = LocalDate.of(1950, Month.JANUARY, 1);
+        LocalDate anoLimite = LocalDate.now();
+
+        try {
+            LocalDate dataNascimento = LocalDate.parse(nascimento, formatoBr);
+            int ano = dataNascimento.getYear();
+
+            if (ano >= anoInicial.getYear() && ano < anoLimite.getYear()) {
+                
+                this.nascimento = dataNascimento;
+                
+            } else if (ano < anoInicial.getYear() || ano > anoLimite.getYear()) {
+                
+                this.nascimento = null;
+                
+                JOptionPane.showMessageDialog(null,
+                        "<html><strong>Data de nascimento inválida!</strong><br>"
+                        + "O ano deve ser estar entre " + anoInicial.getYear() + " e " + anoLimite + ".</html>",
+                        "Aviso", JOptionPane.ERROR_MESSAGE);
+                
+            }
+
+        } catch (DateTimeParseException erro) {
+            this.nascimento = null;
+            JOptionPane.showMessageDialog(null,
+                    "<html><strong>Data de nascimento inválida!</strong><br>"
+                    + "A data deve estar no formato dd/MM/yyyy.</html>",
+                    "Aviso", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
     public int getIdade() {
         LocalDate anoAtual = LocalDate.now();
-        return anoAtual.getYear() - getNascimento().getYear();
-    }
+        int idadeAtual = anoAtual.getYear() - getNascimento().getYear();
 
-    public void setIdade(int idade) {
-        this.idade = idade;
+        // Verificar se já fez aniversário este ano
+        if (anoAtual.getMonthValue() < getNascimento().getMonthValue()
+                || (anoAtual.getMonthValue() == getNascimento().getMonthValue()
+                && anoAtual.getDayOfMonth() < getNascimento().getDayOfMonth())) {
+            idadeAtual--;
+        }
+
+        return idadeAtual;
     }
 
 }

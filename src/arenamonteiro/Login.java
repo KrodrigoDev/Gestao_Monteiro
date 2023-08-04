@@ -35,7 +35,7 @@ public class Login extends javax.swing.JFrame {
         bntAcessar = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         textCriarConta = new javax.swing.JLabel();
-        campoNome = new javax.swing.JTextField();
+        campoEmail = new javax.swing.JTextField();
         campoSenha = new javax.swing.JPasswordField();
         bntFechar = new javax.swing.JButton();
 
@@ -81,7 +81,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Nome");
+        jLabel7.setText("E-mail");
         painelVerde.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 256, -1, -1));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
@@ -160,12 +160,12 @@ public class Login extends javax.swing.JFrame {
         });
         painelVerde.add(textCriarConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 520, -1, -1));
 
-        campoNome.setBackground(new java.awt.Color(31, 115, 52));
-        campoNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        campoNome.setForeground(new java.awt.Color(255, 255, 255));
-        campoNome.setBorder(null);
-        campoNome.setCaretColor(new java.awt.Color(255, 255, 255));
-        painelVerde.add(campoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 282, 280, 30));
+        campoEmail.setBackground(new java.awt.Color(31, 115, 52));
+        campoEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        campoEmail.setForeground(new java.awt.Color(255, 255, 255));
+        campoEmail.setBorder(null);
+        campoEmail.setCaretColor(new java.awt.Color(255, 255, 255));
+        painelVerde.add(campoEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 282, 280, 30));
 
         campoSenha.setBackground(new java.awt.Color(31, 115, 52));
         campoSenha.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -279,7 +279,7 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton bntAcessar;
     protected javax.swing.JButton bntFechar;
-    protected javax.swing.JTextField campoNome;
+    protected javax.swing.JTextField campoEmail;
     protected javax.swing.JPasswordField campoSenha;
     protected javax.swing.JCheckBox checkLembrarSenha;
     protected javax.swing.JLabel iconSenha;
