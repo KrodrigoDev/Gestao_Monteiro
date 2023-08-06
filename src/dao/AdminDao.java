@@ -76,7 +76,7 @@ public class AdminDao {
                         "<html><strong>Ocorreu um erro inesperado!</strong><br>"
                         + "Detalhes: " + erro.getMessage() + "<br>"
                         + "Informe o código de erro #3</html>",
-                        "Erro", JOptionPane.ERROR_MESSAGE);
+                        "Erro #3", JOptionPane.ERROR_MESSAGE);
             }
             return false;
         } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {

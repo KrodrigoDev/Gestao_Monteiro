@@ -62,25 +62,25 @@ public abstract class Pessoa {
             int ano = dataNascimento.getYear();
 
             if (ano >= anoInicial.getYear() && ano < anoLimite.getYear()) {
-                
+
                 this.nascimento = dataNascimento;
-                
-            } else if (ano < anoInicial.getYear() || ano > anoLimite.getYear()) {
-                
+
+            } else if (ano < anoInicial.getYear() || ano >= anoLimite.getYear()) {
+
                 this.nascimento = null;
-                
+
                 JOptionPane.showMessageDialog(null,
                         "<html><strong>Data de nascimento inválida!</strong><br>"
-                        + "O ano deve ser estar entre " + anoInicial.getYear() + " e " + anoLimite + ".</html>",
-                        "Aviso", JOptionPane.ERROR_MESSAGE);
-                
+                        + "O ano deve ser estar entre " + anoInicial.getYear() + " e " + anoLimite.getYear() + ".</html>",
+                        "Aviso", JOptionPane.INFORMATION_MESSAGE);
+
             }
 
         } catch (DateTimeParseException erro) {
             this.nascimento = null;
             JOptionPane.showMessageDialog(null,
                     "<html><strong>Data de nascimento inválida!</strong><br>"
-                    + "A data deve estar no formato dd/MM/yyyy.</html>",
+                    + "A data deve estar no formato dd/MM/yyyy</html>",
                     "Aviso", JOptionPane.INFORMATION_MESSAGE);
         }
     }

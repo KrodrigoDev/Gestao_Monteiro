@@ -20,8 +20,6 @@ public class Admin extends Pessoa {
         
         if (validarSenha(senha, confirmarSenha)) {
             setSenha(senha);
-        } else {
-            JOptionPane.showMessageDialog(null, "<html><strong>As senhas não são iguais!</strong></html>", "Aviso",JOptionPane.INFORMATION_MESSAGE);
         }
 
     }

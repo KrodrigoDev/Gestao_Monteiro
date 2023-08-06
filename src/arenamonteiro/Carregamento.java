@@ -143,7 +143,7 @@ public class Carregamento extends javax.swing.JFrame {
             }
 
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(carregamento, "<html><strong>Ocorreu um erro durante o carregamento ! </strong> <br> Informe o código de erro #5</html>" + erro.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(carregamento, "<html><strong>Ocorreu um erro durante o carregamento ! </strong> <br> Informe o código de erro #5</html>" + erro.getMessage(), "Erro  #5", JOptionPane.ERROR_MESSAGE);
         }
 
         // Fechando a janela após o loop ser concluído

@@ -23,7 +23,7 @@ public class Conexao {
     // atributos para realizar a conexão 
     private static final String url = "jdbc:mysql://localhost:3306/arena_monteiro2023";
     private static final String usuario = "root";
-    private static final String senha = "";
+    private static final String senha = "123456789";
 
     // Variável para armazenar a conexão com o banco de dados
     private static Connection conexao;
@@ -43,8 +43,8 @@ public class Conexao {
             }
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null,
-                    "<html><strong>Ocorreu um erro durante o carregamento ! </strong> <br> Informe o código de erro #2</html>", 
-                    "Erro de conexão", 
+                    "<html><strong>Ocorreu um erro durante o carregamento ! </strong> <br> Certifique-se que o banco de dados esteja ligado</html>", 
+                    "Erro de conexão #2", 
                     JOptionPane.ERROR_MESSAGE);
             
             return null; // Retorna null para indicar que a conexão falhou
