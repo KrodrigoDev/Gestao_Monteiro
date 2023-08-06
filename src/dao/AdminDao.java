@@ -3,9 +3,9 @@ package dao;
 import conexaomsql.Conexao;
 import entidades.Admin;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import java.sql.ResultSet;
 
 /**
  * @since 06/08/2023
@@ -17,7 +17,7 @@ import java.sql.ResultSet;
  */
 public class AdminDao {
 
-    // atributo para lidar com
+    // atributo para lidar com a inserção e consultas
     PreparedStatement ps = null;
 
     // método para realizar o cadastro do administrador
@@ -26,10 +26,9 @@ public class AdminDao {
         // Query SQL para inserir os dados na tabela "ADMIN".
         String sql = "INSERT INTO ADMIN (NOME,SOBRENOME,SENHA,NASCIMENTO,EMAIL) VALUES (?,?,?,?,?)";
 
-        // Obtém a senha do administrador em formato de bytes
         try {
 
-            // Obtém a conexão com o banco de dados através da classe Conexao
+            // Obtém a conexão com o banco e insere os registros
             ps = Conexao.getConexao().prepareStatement(sql);
 
             // Preenche os valores dos parâmetros da consulta SQL com os dados do objeto Admin
@@ -42,8 +41,7 @@ public class AdminDao {
             // Executa a atualização no banco de dados.
             ps.executeUpdate();
 
-            // Fecha o PreparedStatement após a execução da consulta.
-            ps.close();
+            ps.close(); // vai encerrar a conexão
 
             return true;
 
@@ -54,16 +52,16 @@ public class AdminDao {
                         + "Por favor, cadastre um e-mail diferente para evitar duplicidade</html>",
                         "Aviso", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                // Em caso de outros erros SQL, exibe uma mensagem de erro genérica
+                // Em caso de outros erros SQL
                 JOptionPane.showMessageDialog(null,
-                        "<html><strong>Ocorreu um erro inesperado!</strong><br>"
+                        "<html><strong>Ocorreu um erro inesperado durante o cadastro!</strong><br>"
                         + "Detalhes: " + erro.getMessage() + "<br>"
                         + "Informe o código de erro #3</html>",
                         "Erro #3", JOptionPane.ERROR_MESSAGE);
             }
             return false;
-            
         }
+
     }
 
     // método para fazer login
@@ -73,20 +71,22 @@ public class AdminDao {
         String sql = "SELECT EMAIL,SENHA FROM ADMIN WHERE EMAIL = ? AND SENHA = ? ";
 
         try {
-            
-            // Obtém a conexão com o banco de dados e resgatar a query 
+
             ps = Conexao.getConexao().prepareStatement(sql);
 
+            // preenchendo os valores
             ps.setString(1, admin.getEmail());
-            ps.setString(2,admin.getSenha());
-            
-            ResultSet rs = ps.executeQuery();
-            return rs;
+            ps.setString(2, admin.getSenha());
+
+            // executando a query no banco de dados
+            ResultSet resultadoConsulta = ps.executeQuery();
+
+            return resultadoConsulta;
 
         } catch (SQLException erro) {
-            // Em caso de outros erros SQL, exibe uma mensagem de erro genérica
+            // Em caso de outros erros SQL
             JOptionPane.showMessageDialog(null,
-                    "<html><strong>Ocorreu um erro inesperado!</strong><br>"
+                    "<html><strong>Ocorreu um erro inesperado durante o login!</strong><br>"
                     + "Detalhes: " + erro.getMessage() + "<br>"
                     + "Informe o código de erro #3</html>",
                     "Erro #3", JOptionPane.ERROR_MESSAGE);

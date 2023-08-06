@@ -11,11 +11,13 @@ import javax.swing.JOptionPane;
  * @author Kauã Rodrigo
  * @version 0.1
  * @since 30/07/2023
+ * @erro #3 tem relação com o erro #2 ! pode ser algo na conexão do banco ou até
+ * um dado errado no momento da inserção. ( Verificar 0 AdminDao e o banco de dados 
  *
  */
 public class Login extends javax.swing.JFrame {
 
-    // Objetos da classes Admin 
+    // Objetos da classes AdminDao
     AdminDao adminDao = new AdminDao();
 
     // construtor
@@ -128,11 +130,6 @@ public class Login extends javax.swing.JFrame {
         checkLembrarSenha.setText("Lembrar Senha");
         checkLembrarSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         checkLembrarSenha.setFocusPainted(false);
-        checkLembrarSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkLembrarSenhaActionPerformed(evt);
-            }
-        });
         painelVerde.add(checkLembrarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 420, -1, -1));
 
         textEsqueceuSenha.setBackground(new java.awt.Color(255, 255, 255));
@@ -223,21 +220,19 @@ public class Login extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void checkLembrarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkLembrarSenhaActionPerformed
-    }//GEN-LAST:event_checkLembrarSenhaActionPerformed
-
     // bnt que vai fechar a janela
     private void bntFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntFecharActionPerformed
         this.dispose();
     }//GEN-LAST:event_bntFecharActionPerformed
 
-    // vai fechar a janela de login e abrir a janela Criar Admin
+    // vai ocultar a janela de login e abrir a janela Criar Admin
     private void textCriarContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textCriarContaMouseClicked
-        this.dispose();
-        CriarAdmin janelaAdmin = new CriarAdmin();
-        janelaAdmin.setVisible(true);
+        this.setVisible(false);
+        CriarAdmin criarAdmin = new CriarAdmin(this);
+        criarAdmin.setVisible(true);
     }//GEN-LAST:event_textCriarContaMouseClicked
 
+    // método para ocultar e remover a senha, além de trocar a imagem do icon
     private void iconSenhaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconSenhaMousePressed
         char echoChar = campoSenha.getEchoChar();
 
@@ -250,30 +245,41 @@ public class Login extends javax.swing.JFrame {
             campoSenha.setEchoChar('*');
             iconSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconOcultar.png")));
         }
+
     }//GEN-LAST:event_iconSenhaMousePressed
 
+    // método para acessar a janela principal 
     private void bntAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAcessarActionPerformed
-        // TODO add your handling code here:
-        try{
-          Admin admin = new Admin(
+
+        try {
+            Admin admin = new Admin(
                     campoEmail.getText(),
                     new String(campoSenha.getPassword())
             );
 
-           
+            // Instância do ResultSet pra lidar com o retorno da query sql
             ResultSet rs = adminDao.entrarAdmin(admin);
-            
-            if(rs.next()){
+
+            if (rs.next()) { // caso a query tenha um retorno vai cair aqui
+
                 Principal principal = new Principal();
                 principal.setVisible(true);
                 this.dispose();
-            }else {
-                JOptionPane.showMessageDialog(null, "E-mail ou Senha Inválidos");
-            }  
-        }catch(SQLException erro){
-            
-        }
 
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Verififique o e-mail ou senha informados e tente novamente.",
+                        "Aviso - Login", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null,
+                    "<html><strong>Ocorreu um erro inesperado durante o login!</strong><br>"
+                    + "Detalhes: " + erro.getMessage() + "<br>"
+                    + "Informe o código de erro #3</html>",
+                    "Erro #3", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_bntAcessarActionPerformed
 
     // código padrão do java
@@ -312,7 +318,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton bntAcessar;

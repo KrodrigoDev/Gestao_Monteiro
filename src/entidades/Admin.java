@@ -3,14 +3,13 @@ package entidades;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level; 
-import java.util.logging.Logger; 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-
 
 /**
  * @author Kauã Rodrigo
- * @since 01/08/2023
+ * @since 06/08/2023
  * @version 0.1
  */
 public class Admin extends Pessoa {
@@ -23,24 +22,24 @@ public class Admin extends Pessoa {
         super(nome, sobrenome, nascimento);
 
         setEmail(email);
-        
+
         if (validarSenha(senha, confirmarSenha)) {
             setSenha(senha);
         }
 
     }
 
-    // Construtor para realizar um login
-    public Admin(String email, String senha){
+    // Construtor com sobrecarga para realizar login
+    public Admin(String email, String senha) {
         setEmail(email);
         setSenha(senha);
     }
-    
+
     // método para informar que o usuário foi criado com sucesso
-    public String infoAdmin() {
-        return "<html><strong>Administrador criado com sucesso!</strong><br><br>"
-                + "E-mail : " + getEmail() + "<br>"
-                + "Senha : " + getSenha() + "<br><br></html>";
+    public void infoAdmin() {
+        JOptionPane.showMessageDialog(null,
+            "<html><strong>Conta criada com sucesso!</strong>",
+            "Sucesso", JOptionPane.INFORMATION_MESSAGE);
     }
 
     // Método para verificar se os campos foram preenchidos corretamente
@@ -49,7 +48,7 @@ public class Admin extends Pessoa {
 
             JOptionPane.showMessageDialog(null,
                     "<html><strong>Por favor, verifique se todos os campos foram preenchidos corretamente!</strong></html>",
-                    "Aviso",
+                    "Aviso - Preencha todos os campos",
                     JOptionPane.INFORMATION_MESSAGE);
 
             return false; // impede a criação do admin
@@ -60,7 +59,7 @@ public class Admin extends Pessoa {
     // Método para validar a senha
     public boolean validarSenha(String senha, String confirmarSenha) {
         if (senha.isEmpty() || confirmarSenha.isEmpty() || !senha.equals(confirmarSenha)) {
-             JOptionPane.showMessageDialog(null, "<html><strong>As senhas não são iguais!</strong></html>", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "<html><strong>As senhas não são iguais!</strong></html>", "Aviso", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
         return true;
@@ -72,7 +71,7 @@ public class Admin extends Pessoa {
     }
 
     public void setSenha(String senha) {
-         try {
+        try {
             // Aplica a função de hash SHA-256 para criar um hash seguro da senha
             MessageDigest tipoHash = MessageDigest.getInstance("SHA-256");
             byte arrayBytesSenha[] = tipoHash.digest(senha.getBytes("UTF-8"));

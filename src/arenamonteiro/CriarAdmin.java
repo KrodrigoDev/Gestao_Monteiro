@@ -3,7 +3,6 @@ package arenamonteiro;
 // Importações necessárias
 import dao.AdminDao;
 import entidades.Admin;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,10 +15,14 @@ public class CriarAdmin extends javax.swing.JFrame {
 
     // Objetos da classes AdminDao 
     AdminDao adminDao = new AdminDao();
-
+    
+    // Objeto da classe login ( vai ser usado para deixar a tela anterior vísivel )
+    private Login login;
+    
     // Construtor
-    public CriarAdmin() {
+    public CriarAdmin(Login login) {
         initComponents();
+        this.login = login;
     }
 
     // código padrão do java
@@ -27,7 +30,6 @@ public class CriarAdmin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        grupoGenero = new javax.swing.ButtonGroup();
         painelBranco = new javax.swing.JPanel();
         imgEscudo = new javax.swing.JLabel();
         painelVerde = new javax.swing.JPanel();
@@ -269,8 +271,7 @@ public class CriarAdmin extends javax.swing.JFrame {
     // vai a fechar janela atual e voltar para de login
     private void textTemContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textTemContaMouseClicked
         this.dispose(); // vai fechar a janela
-        Login janelaLogin = new Login(); // criando um objeto da classe Login
-        janelaLogin.setVisible(true);
+        login.setVisible(true);
     }//GEN-LAST:event_textTemContaMouseClicked
 
     // Método que vai criar um novo admin
@@ -292,19 +293,18 @@ public class CriarAdmin extends javax.swing.JFrame {
             if (adminDao.cadastrarAdmin(admin)) {
                 limparCampos();
 
-                JOptionPane.showMessageDialog(this, admin.infoAdmin(), "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                admin.infoAdmin();
 
                 this.dispose();
 
-                Login janelaLogin = new Login();
-                janelaLogin.setVisible(true);
+                login.setVisible(true);
             }
-            
+
         }
-        
+
     }//GEN-LAST:event_bntCriarContaActionPerformed
 
-        // Método para formatar a data enquanto o usuário digita
+    // Método para formatar a data enquanto o usuário digita
     private void campoNascimentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoNascimentoKeyTyped
         String dadosAtuais = campoNascimento.getText();
 
@@ -354,7 +354,6 @@ public class CriarAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CriarAdmin().setVisible(true);
             }
         });
     }
@@ -379,7 +378,6 @@ public class CriarAdmin extends javax.swing.JFrame {
     private javax.swing.JTextField campoNome;
     private javax.swing.JPasswordField campoSenha;
     private javax.swing.JTextField campoSobrenome;
-    private javax.swing.ButtonGroup grupoGenero;
     private javax.swing.JLabel imgEscudo;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
