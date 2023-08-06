@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class CriarAdmin extends javax.swing.JFrame {
 
-    // Objetos da classes Admin 
+    // Objetos da classes AdminDao 
     AdminDao adminDao = new AdminDao();
 
     // Construtor
@@ -287,7 +287,7 @@ public class CriarAdmin extends javax.swing.JFrame {
         );
 
         // Validações e criação do admin 
-        if (admin.validacaoDasInfo() && admin.validacaoDasInfo()) {
+        if (admin.validacaoDasInfo()) {
 
             if (adminDao.cadastrarAdmin(admin)) {
                 limparCampos();

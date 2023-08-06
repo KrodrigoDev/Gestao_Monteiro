@@ -1,5 +1,11 @@
 package arenamonteiro;
 
+import dao.AdminDao;
+import entidades.Admin;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Kauã Rodrigo
@@ -8,6 +14,9 @@ package arenamonteiro;
  *
  */
 public class Login extends javax.swing.JFrame {
+
+    // Objetos da classes Admin 
+    AdminDao adminDao = new AdminDao();
 
     // construtor
     public Login() {
@@ -140,6 +149,11 @@ public class Login extends javax.swing.JFrame {
         bntAcessar.setBorder(null);
         bntAcessar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         bntAcessar.setFocusPainted(false);
+        bntAcessar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntAcessarActionPerformed(evt);
+            }
+        });
         painelVerde.add(bntAcessar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 347, 33));
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
@@ -237,6 +251,30 @@ public class Login extends javax.swing.JFrame {
             iconSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconOcultar.png")));
         }
     }//GEN-LAST:event_iconSenhaMousePressed
+
+    private void bntAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAcessarActionPerformed
+        // TODO add your handling code here:
+        try{
+          Admin admin = new Admin(
+                    campoEmail.getText(),
+                    new String(campoSenha.getPassword())
+            );
+
+           
+            ResultSet rs = adminDao.entrarAdmin(admin);
+            
+            if(rs.next()){
+                Principal principal = new Principal();
+                principal.setVisible(true);
+                this.dispose();
+            }else {
+                JOptionPane.showMessageDialog(null, "E-mail ou Senha Inválidos");
+            }  
+        }catch(SQLException erro){
+            
+        }
+
+    }//GEN-LAST:event_bntAcessarActionPerformed
 
     // código padrão do java
     public static void main(String args[]) {

@@ -1,6 +1,12 @@
 package entidades;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level; 
+import java.util.logging.Logger; 
 import javax.swing.JOptionPane;
+
 
 /**
  * @author Kauã Rodrigo
@@ -12,7 +18,7 @@ public class Admin extends Pessoa {
     // atributos
     private String senha, email;
 
-    // Construtor
+    // Construtor para criar um admin
     public Admin(String nome, String sobrenome, String email, String nascimento, String senha, String confirmarSenha) {
         super(nome, sobrenome, nascimento);
 
@@ -24,6 +30,12 @@ public class Admin extends Pessoa {
 
     }
 
+    // Construtor para realizar um login
+    public Admin(String email, String senha){
+        setEmail(email);
+        setSenha(senha);
+    }
+    
     // método para informar que o usuário foi criado com sucesso
     public String infoAdmin() {
         return "<html><strong>Administrador criado com sucesso!</strong><br><br>"
@@ -60,7 +72,22 @@ public class Admin extends Pessoa {
     }
 
     public void setSenha(String senha) {
-        this.senha = senha;
+         try {
+            // Aplica a função de hash SHA-256 para criar um hash seguro da senha
+            MessageDigest tipoHash = MessageDigest.getInstance("SHA-256");
+            byte arrayBytesSenha[] = tipoHash.digest(senha.getBytes("UTF-8"));
+
+            // Converte o array de bytes para uma representação em hexadecimal
+            StringBuilder sb = new StringBuilder();
+            for (byte lerArray : arrayBytesSenha) {
+                sb.append(String.format("%02X", 0xFF & lerArray));
+            }
+
+            this.senha = sb.toString();
+        } catch (NoSuchAlgorithmException | UnsupportedEncodingException ex) {
+            // Em caso de algoritmo de hash não encontrado, registra o erro
+            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public String getEmail() {

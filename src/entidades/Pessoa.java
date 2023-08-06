@@ -31,6 +31,11 @@ public abstract class Pessoa {
         setSobrenome(sobrenome);
         setNascimento(nascimento);
     }
+    
+    // Construtor com sobrecarga ( Feito para realizar login) 
+    public Pessoa(){
+        
+    }
 
     // gets e sets
     public String getNome() {
