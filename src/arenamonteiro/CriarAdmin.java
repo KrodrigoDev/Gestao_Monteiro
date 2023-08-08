@@ -3,6 +3,8 @@ package arenamonteiro;
 // Importações necessárias
 import dao.AdminDao;
 import entidades.Admin;
+import java.awt.Color;
+import javax.swing.JPanel;
 
 /**
  *
@@ -15,10 +17,10 @@ public class CriarAdmin extends javax.swing.JFrame {
 
     // Objetos da classes AdminDao 
     AdminDao adminDao = new AdminDao();
-    
+
     // Objeto da classe login ( vai ser usado para deixar a tela anterior vísivel )
     private Login login;
-    
+
     // Construtor
     public CriarAdmin(Login login) {
         initComponents();
@@ -33,7 +35,6 @@ public class CriarAdmin extends javax.swing.JFrame {
         painelBranco = new javax.swing.JPanel();
         imgEscudo = new javax.swing.JLabel();
         painelVerde = new javax.swing.JPanel();
-        bntFechar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -56,6 +57,8 @@ public class CriarAdmin extends javax.swing.JFrame {
         campoSenha = new javax.swing.JPasswordField();
         jLabel13 = new javax.swing.JLabel();
         campoNascimento = new javax.swing.JTextField();
+        painelBntFechar = new javax.swing.JPanel();
+        iconFechar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Criar conta");
@@ -87,20 +90,6 @@ public class CriarAdmin extends javax.swing.JFrame {
         painelVerde.setBackground(new java.awt.Color(31, 115, 52));
         painelVerde.setForeground(new java.awt.Color(255, 255, 255));
         painelVerde.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        bntFechar.setBackground(new java.awt.Color(31, 115, 52));
-        bntFechar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        bntFechar.setForeground(new java.awt.Color(255, 255, 255));
-        bntFechar.setText("X");
-        bntFechar.setBorder(null);
-        bntFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bntFechar.setFocusPainted(false);
-        bntFechar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntFecharActionPerformed(evt);
-            }
-        });
-        painelVerde.add(bntFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 0, 40, 32));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -244,6 +233,35 @@ public class CriarAdmin extends javax.swing.JFrame {
         });
         painelVerde.add(campoNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 470, 230, 30));
 
+        painelBntFechar.setBackground(new java.awt.Color(31, 115, 52));
+        painelBntFechar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                painelBntFecharMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                painelBntFecharMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                painelBntFecharMouseExited(evt);
+            }
+        });
+
+        iconFechar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        iconFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconFechar.png"))); // NOI18N
+
+        javax.swing.GroupLayout painelBntFecharLayout = new javax.swing.GroupLayout(painelBntFechar);
+        painelBntFechar.setLayout(painelBntFecharLayout);
+        painelBntFecharLayout.setHorizontalGroup(
+            painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(iconFechar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+        );
+        painelBntFecharLayout.setVerticalGroup(
+            painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(iconFechar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        painelVerde.add(painelBntFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, 40, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -251,7 +269,7 @@ public class CriarAdmin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelBranco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(painelVerde, javax.swing.GroupLayout.DEFAULT_SIZE, 745, Short.MAX_VALUE))
+                .addComponent(painelVerde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -259,14 +277,9 @@ public class CriarAdmin extends javax.swing.JFrame {
             .addComponent(painelVerde, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(1044, 686));
+        setSize(new java.awt.Dimension(1040, 686));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    // bnt que vai fechar a janela
-    private void bntFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntFecharActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_bntFecharActionPerformed
 
     // vai a fechar janela atual e voltar para de login
     private void textTemContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textTemContaMouseClicked
@@ -274,34 +287,9 @@ public class CriarAdmin extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_textTemContaMouseClicked
 
-    // Método que vai criar um novo admin
+    // botão que vai chamar o método criarAdmin
     private void bntCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCriarContaActionPerformed
-
-        // Atribuição dos valores do admin com base nos campos preenchidos
-        Admin admin = new Admin(
-                campoNome.getText().trim(),
-                campoSobrenome.getText().trim(),
-                campoEmail.getText().trim(),
-                campoNascimento.getText().trim(),
-                new String(campoSenha.getPassword()).trim(),
-                new String(campoConfirmarSenha.getPassword()).trim()
-        );
-
-        // Validações e criação do admin 
-        if (admin.validacaoDasInfo()) {
-
-            if (adminDao.cadastrarAdmin(admin)) {
-                limparCampos();
-
-                admin.infoAdmin();
-
-                this.dispose();
-
-                login.setVisible(true);
-            }
-
-        }
-
+        criarAdmin();
     }//GEN-LAST:event_bntCriarContaActionPerformed
 
     // Método para formatar a data enquanto o usuário digita
@@ -326,11 +314,26 @@ public class CriarAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_campoNascimentoKeyTyped
 
+    // ao passar o mouse por cima do campo a cor será alterada
+    private void painelBntFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseEntered
+        mudarCor(painelBntFechar, new Color(21, 80, 36));
+    }//GEN-LAST:event_painelBntFecharMouseEntered
+
+    // quando o mouse sair de cima a cor vai voltar ao normal
+    private void painelBntFecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseExited
+        mudarCor(painelBntFechar, new Color(31, 115, 52));
+    }//GEN-LAST:event_painelBntFecharMouseExited
+
+    // ao ser clicado via fechar a janela e encerrar o programa
+    private void painelBntFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_painelBntFecharMouseClicked
+
     // código padrão do java
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        /* Set the Metal look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+        /* If Metal (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
@@ -368,16 +371,47 @@ public class CriarAdmin extends javax.swing.JFrame {
         campoNascimento.setText("");
     }
 
+    // Método para realizar a criação da conta
+    public void criarAdmin() {
+        Admin admin = new Admin(
+                campoNome.getText().trim(),
+                campoSobrenome.getText().trim(),
+                campoEmail.getText().trim(),
+                campoNascimento.getText().trim(),
+                new String(campoSenha.getPassword()).trim(),
+                new String(campoConfirmarSenha.getPassword()).trim()
+        );
+
+        // Validações e criação do admin 
+        if (admin.validacaoDasInfo()) {
+            if (adminDao.cadastrarAdmin(admin)) {
+                limparCampos();
+
+                admin.infoAdmin();
+
+                this.dispose();
+
+                login.setVisible(true);
+            }
+        }
+
+    }
+
+    // método para alternar as cores dos bntFechar
+    public void mudarCor(JPanel campo, Color cor) {
+        campo.setBackground(cor);
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntCriarConta;
-    private javax.swing.JButton bntFechar;
     private javax.swing.JPasswordField campoConfirmarSenha;
     private javax.swing.JTextField campoEmail;
     private javax.swing.JTextField campoNascimento;
     private javax.swing.JTextField campoNome;
     private javax.swing.JPasswordField campoSenha;
     private javax.swing.JTextField campoSobrenome;
+    private javax.swing.JLabel iconFechar;
     private javax.swing.JLabel imgEscudo;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -393,6 +427,7 @@ public class CriarAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel painelBntFechar;
     private javax.swing.JPanel painelBranco;
     private javax.swing.JPanel painelVerde;
     private javax.swing.JLabel textTemConta;

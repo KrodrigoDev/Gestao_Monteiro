@@ -2,9 +2,11 @@ package arenamonteiro;
 
 import dao.AdminDao;
 import entidades.Admin;
+import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -12,7 +14,7 @@ import javax.swing.JOptionPane;
  * @version 0.1
  * @since 30/07/2023
  * @erro #3 tem relação com o erro #2 ! pode ser algo na conexão do banco ou até
- * um dado errado no momento da inserção. ( Verificar 0 AdminDao e o banco de dados 
+ * um dado errado no momento da inserção. ( Verificar o AdminDao e o banco de dados
  *
  */
 public class Login extends javax.swing.JFrame {
@@ -48,7 +50,8 @@ public class Login extends javax.swing.JFrame {
         textCriarConta = new javax.swing.JLabel();
         campoEmail = new javax.swing.JTextField();
         campoSenha = new javax.swing.JPasswordField();
-        bntFechar = new javax.swing.JButton();
+        painelBntFechar = new javax.swing.JPanel();
+        iconFechar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -128,7 +131,7 @@ public class Login extends javax.swing.JFrame {
         checkLembrarSenha.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         checkLembrarSenha.setForeground(new java.awt.Color(255, 255, 255));
         checkLembrarSenha.setText("Lembrar Senha");
-        checkLembrarSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        checkLembrarSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         checkLembrarSenha.setFocusPainted(false);
         painelVerde.add(checkLembrarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(87, 420, -1, -1));
 
@@ -185,21 +188,44 @@ public class Login extends javax.swing.JFrame {
         campoSenha.setCaretColor(new java.awt.Color(255, 255, 255));
         painelVerde.add(campoSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, 280, 30));
 
-        bntFechar.setBackground(new java.awt.Color(31, 115, 52));
-        bntFechar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        bntFechar.setForeground(new java.awt.Color(255, 255, 255));
-        bntFechar.setText("X");
-        bntFechar.setBorder(null);
-        bntFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bntFechar.setFocusPainted(false);
-        bntFechar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        bntFechar.setRequestFocusEnabled(false);
-        bntFechar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntFecharActionPerformed(evt);
+        painelBntFechar.setBackground(new java.awt.Color(31, 115, 52));
+        painelBntFechar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                painelBntFecharMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                painelBntFecharMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                painelBntFecharMouseExited(evt);
             }
         });
-        painelVerde.add(bntFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 36, 32));
+
+        iconFechar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        iconFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconFechar.png"))); // NOI18N
+
+        javax.swing.GroupLayout painelBntFecharLayout = new javax.swing.GroupLayout(painelBntFechar);
+        painelBntFechar.setLayout(painelBntFecharLayout);
+        painelBntFecharLayout.setHorizontalGroup(
+            painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+            .addGroup(painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(painelBntFecharLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(iconFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        painelBntFecharLayout.setVerticalGroup(
+            painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+            .addGroup(painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(painelBntFecharLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(iconFechar)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        painelVerde.add(painelBntFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 40, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -208,7 +234,7 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelBranco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(painelVerde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(painelVerde, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,14 +242,9 @@ public class Login extends javax.swing.JFrame {
             .addComponent(painelVerde, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 686, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(888, 686));
+        setSize(new java.awt.Dimension(892, 686));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    // bnt que vai fechar a janela
-    private void bntFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntFecharActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_bntFecharActionPerformed
 
     // vai ocultar a janela de login e abrir a janela Criar Admin
     private void textCriarContaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textCriarContaMouseClicked
@@ -232,61 +253,36 @@ public class Login extends javax.swing.JFrame {
         criarAdmin.setVisible(true);
     }//GEN-LAST:event_textCriarContaMouseClicked
 
-    // método para ocultar e remover a senha, além de trocar a imagem do icon
+    // vai chamar o método trocarImagensICon
     private void iconSenhaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconSenhaMousePressed
-        char echoChar = campoSenha.getEchoChar();
-
-        if (echoChar == '*') {
-            // Se a senha está oculta, torna visível
-            campoSenha.setEchoChar((char) 0);
-            iconSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconVisivel.png")));
-        } else {
-            // Se a senha está visível, torna oculta
-            campoSenha.setEchoChar('*');
-            iconSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconOcultar.png")));
-        }
-
+        trocarImagensIcon();
     }//GEN-LAST:event_iconSenhaMousePressed
 
-    // método para acessar a janela principal 
+    // bnt que vai chamar o método fazerLogin 
     private void bntAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAcessarActionPerformed
-
-        try {
-            Admin admin = new Admin(
-                    campoEmail.getText(),
-                    new String(campoSenha.getPassword())
-            );
-
-            // Instância do ResultSet pra lidar com o retorno da query sql
-            ResultSet rs = adminDao.entrarAdmin(admin);
-
-            if (rs.next()) { // caso a query tenha um retorno vai cair aqui
-
-                Principal principal = new Principal();
-                principal.setVisible(true);
-                this.dispose();
-
-            } else {
-                JOptionPane.showMessageDialog(null,
-                        "Verififique o e-mail ou senha informados e tente novamente.",
-                        "Aviso - Login", JOptionPane.ERROR_MESSAGE);
-            }
-
-        } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null,
-                    "<html><strong>Ocorreu um erro inesperado durante o login!</strong><br>"
-                    + "Detalhes: " + erro.getMessage() + "<br>"
-                    + "Informe o código de erro #3</html>",
-                    "Erro #3", JOptionPane.ERROR_MESSAGE);
-        }
-        
+        fazerLogin();
     }//GEN-LAST:event_bntAcessarActionPerformed
+
+    // ao passar o mouse por cima do campo a cor será alterada
+    private void painelBntFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseEntered
+        mudarCor(painelBntFechar, new Color(21, 80, 36));
+    }//GEN-LAST:event_painelBntFecharMouseEntered
+
+    // quando o mouse sair de cima a cor vai voltar ao normal
+    private void painelBntFecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseExited
+        mudarCor(painelBntFechar, new Color(31, 115, 52));
+    }//GEN-LAST:event_painelBntFecharMouseExited
+
+    // ao ser clicado via fechar a janela e encerrar o programa
+    private void painelBntFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseClicked
+        this.dispose();
+    }//GEN-LAST:event_painelBntFecharMouseClicked
 
     // código padrão do java
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
+        /* Set the Metal look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+        /* If Metal (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
@@ -319,12 +315,64 @@ public class Login extends javax.swing.JFrame {
         });
     }
 
+    // Método para logar 
+    public void fazerLogin() {
+        try {
+            Admin admin = new Admin(
+                    campoEmail.getText(),
+                    new String(campoSenha.getPassword())
+            );
+
+            // Instância do ResultSet pra lidar com o retorno da query sql
+            ResultSet rs = adminDao.entrarAdmin(admin);
+
+            if (rs.next()) { // caso a query tenha um retorno vai cair aqui
+
+                Principal principal = new Principal();
+                principal.setVisible(true);
+                this.dispose();
+
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Verififique o e-mail ou senha informados e tente novamente.",
+                        "Aviso - Login", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null,
+                    "<html><strong>Ocorreu um erro inesperado durante o login!</strong><br>"
+                    + "Detalhes: " + erro.getMessage() + "<br>"
+                    + "Informe o código de erro #3</html>",
+                    "Erro #3", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
+    // Método para exibir e ocultar a senha, além de trocar a imagem 
+    public void trocarImagensIcon(){
+        char echoChar = campoSenha.getEchoChar();
+
+        if (echoChar == '*') {
+            // Se a senha está oculta, torna visível
+            campoSenha.setEchoChar((char) 0);
+            iconSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconVisivel.png")));
+        } else {
+            // Se a senha está visível, torna oculta
+            campoSenha.setEchoChar('*');
+            iconSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconOcultar.png")));
+        }
+    }
+    
+    // método para alternar as cores dos bntFechar
+    public void mudarCor(JPanel campo, Color cor) {
+        campo.setBackground(cor);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton bntAcessar;
-    protected javax.swing.JButton bntFechar;
     protected javax.swing.JTextField campoEmail;
     protected javax.swing.JPasswordField campoSenha;
     protected javax.swing.JCheckBox checkLembrarSenha;
+    protected javax.swing.JLabel iconFechar;
     protected javax.swing.JLabel iconSenha;
     protected javax.swing.JLabel iconUsuario;
     protected javax.swing.JLabel imgEscudo;
@@ -335,6 +383,7 @@ public class Login extends javax.swing.JFrame {
     protected javax.swing.JLabel jLabel7;
     protected javax.swing.JLabel jLabel8;
     protected javax.swing.JLabel jLabel9;
+    protected javax.swing.JPanel painelBntFechar;
     protected javax.swing.JPanel painelBranco;
     protected javax.swing.JPanel painelVerde;
     protected javax.swing.JLabel textCriarConta;

@@ -1,12 +1,12 @@
 package arenamonteiro;
 
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import javax.swing.Timer;
+import javax.swing.JPanel;
 
 /**
- *
  * @author Kauã Rodrigo
+ * @since 07/08/2023
+ * @version 0.1
  */
 public class Principal extends javax.swing.JFrame {
 
@@ -34,10 +34,7 @@ public class Principal extends javax.swing.JFrame {
         campoMenuAjustes = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel25 = new javax.swing.JLabel();
         painelBranco = new javax.swing.JPanel();
-        bntFechar = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
         textNomeAdmin = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
@@ -59,6 +56,10 @@ public class Principal extends javax.swing.JFrame {
         textNumAtletas = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        painelBntFechar = new javax.swing.JPanel();
+        iconFechar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -67,12 +68,6 @@ public class Principal extends javax.swing.JFrame {
         painelMenuVerde.setBackground(new java.awt.Color(31, 115, 52));
 
         campoMenuPrincipal.setBackground(new java.awt.Color(31, 115, 52));
-        campoMenuPrincipal.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        campoMenuPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                campoMenuPrincipalMouseClicked(evt);
-            }
-        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconMenuCasa.png"))); // NOI18N
 
@@ -89,7 +84,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         campoMenuPrincipalLayout.setVerticalGroup(
             campoMenuPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,7 +96,6 @@ public class Principal extends javax.swing.JFrame {
         );
 
         campoMenuAtletas.setBackground(new java.awt.Color(31, 115, 52));
-        campoMenuAtletas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconMenuJogadores.png"))); // NOI18N
 
@@ -130,7 +124,6 @@ public class Principal extends javax.swing.JFrame {
         );
 
         campoMenuJogos.setBackground(new java.awt.Color(31, 115, 52));
-        campoMenuJogos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconMenuCalendario.png"))); // NOI18N
 
@@ -159,7 +152,6 @@ public class Principal extends javax.swing.JFrame {
         );
 
         campoMenuAjustes.setBackground(new java.awt.Color(31, 115, 52));
-        campoMenuAjustes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconMenuConfiguracoes.png"))); // NOI18N
 
@@ -187,28 +179,6 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(10, 10, 10))
         );
 
-        jPanel4.setBackground(new java.awt.Color(21, 80, 36));
-
-        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imgLogoM.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout painelMenuVerdeLayout = new javax.swing.GroupLayout(painelMenuVerde);
         painelMenuVerde.setLayout(painelMenuVerdeLayout);
         painelMenuVerdeLayout.setHorizontalGroup(
@@ -217,13 +187,11 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(campoMenuAtletas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(campoMenuJogos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(campoMenuAjustes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         painelMenuVerdeLayout.setVerticalGroup(
             painelMenuVerdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelMenuVerdeLayout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addGap(21, 21, 21)
                 .addComponent(campoMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(campoMenuAtletas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -235,20 +203,6 @@ public class Principal extends javax.swing.JFrame {
         );
 
         painelBranco.setBackground(new java.awt.Color(255, 255, 255));
-
-        bntFechar.setBackground(new java.awt.Color(255, 255, 255));
-        bntFechar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        bntFechar.setForeground(new java.awt.Color(0, 0, 0));
-        bntFechar.setText("X");
-        bntFechar.setBorder(null);
-        bntFechar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bntFechar.setFocusPainted(false);
-        bntFechar.setFocusable(false);
-        bntFechar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntFecharActionPerformed(evt);
-            }
-        });
 
         jPanel12.setBackground(new java.awt.Color(0, 0, 0));
 
@@ -408,15 +362,11 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBrancoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(bntFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         painelBrancoLayout.setVerticalGroup(
             painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelBrancoLayout.createSequentialGroup()
-                .addComponent(bntFechar)
-                .addGap(53, 53, 53)
+                .addGap(50, 50, 50)
                 .addGroup(painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelBrancoLayout.createSequentialGroup()
                         .addGroup(painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -426,18 +376,67 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(jLabel14)
                         .addGap(0, 0, 0)
                         .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43)
+                        .addGap(48, 48, 48)
                         .addComponent(jLabel19)
                         .addGap(8, 8, 8)
-                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(20, 20, 20)
-                        .addComponent(jLabel21)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel22)
-                        .addGap(0, 0, 0)
-                        .addComponent(jLabel23))
+                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel21)
+                .addGap(0, 0, 0)
+                .addComponent(jLabel22)
+                .addGap(0, 0, 0)
+                .addComponent(jLabel23)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        jPanel1.setBackground(new java.awt.Color(31, 115, 52));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Gestão Monteiro");
+
+        painelBntFechar.setBackground(new java.awt.Color(31, 115, 52));
+
+        iconFechar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        iconFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconFechar.png"))); // NOI18N
+        iconFechar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                iconFecharMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                iconFecharMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                iconFecharMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout painelBntFecharLayout = new javax.swing.GroupLayout(painelBntFechar);
+        painelBntFechar.setLayout(painelBntFecharLayout);
+        painelBntFecharLayout.setHorizontalGroup(
+            painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(iconFechar, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE)
+        );
+        painelBntFecharLayout.setVerticalGroup(
+            painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(iconFechar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(painelBntFechar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+            .addComponent(painelBntFechar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -448,36 +447,36 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(painelMenuVerde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(painelBranco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelMenuVerde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(painelBranco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(painelBranco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(painelMenuVerde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
-        setSize(new java.awt.Dimension(996, 662));
+        setSize(new java.awt.Dimension(996, 670));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    // método para fechar a janela
-    private void bntFecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntFecharActionPerformed
+    // ao passar o mouse por cima do campo a cor será alterada
+    private void iconFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconFecharMouseEntered
+        mudarCor(painelBntFechar, new Color(21, 80, 36));
+    }//GEN-LAST:event_iconFecharMouseEntered
+
+    // quando o mouse sair de cima a cor vai voltar ao normal
+    private void iconFecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconFecharMouseExited
+        mudarCor(painelBntFechar, new Color(31, 115, 52));
+    }//GEN-LAST:event_iconFecharMouseExited
+
+    // ao ser clicado via fechar a janela e encerrar o programa
+    private void iconFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconFecharMouseClicked
         this.dispose();
-    }//GEN-LAST:event_bntFecharActionPerformed
-
-    private void campoMenuPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuPrincipalMouseClicked
-        // TODO add your handling code here:
-
-        campoMenuPrincipal.setBackground(new Color(44,97,57));
-
-        Timer timer = new Timer(300, (ActionEvent e) -> {
-            campoMenuPrincipal.setBackground(new Color(31, 115, 52)); // Cor verde
-             login();
-        });
-
-        timer.setRepeats(false); // O timer não se repete, apenas executará uma vez
-        timer.start();
-       
-    }//GEN-LAST:event_campoMenuPrincipalMouseClicked
+    }//GEN-LAST:event_iconFecharMouseClicked
 
     // código padrão do java
     public static void main(String args[]) {
@@ -511,22 +510,19 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
-    
-    // método para alternar entre as janelas
-    public void login(){
-        Login login = new Login();
-        this.dispose();
-        login.setVisible(true);
+
+    // método para alternar as cores dos campos
+    public void mudarCor(JPanel campo, Color cor) {
+        campo.setBackground(cor);
     }
-    
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bntFechar;
     private javax.swing.JPanel campoMenuAjustes;
     private javax.swing.JPanel campoMenuAtletas;
     private javax.swing.JPanel campoMenuJogos;
     private javax.swing.JPanel campoMenuPrincipal;
+    private javax.swing.JLabel iconFechar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
@@ -541,19 +537,20 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel painelBntFechar;
     private javax.swing.JPanel painelBranco;
     private javax.swing.JPanel painelMenuVerde;
     private javax.swing.JLabel textNomeAdmin;
