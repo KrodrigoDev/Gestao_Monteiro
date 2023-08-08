@@ -10,4 +10,17 @@ Clique [aqui](https://www.figma.com/file/Mu1LGR9cZThZe7wpjWipOx/Arena-Monteiro?t
 - [ ] Documentação para os erros
 - [ ] Finalizar  janelas
 - [ ] Diagrama UML sobre as classes
-- [ ] Projeto lógico e conceitual 
+- [ ] Projeto lógico, conceitual e físico 
+
+
+## Projeto Físico 
+```sql da tabela admin
+create table admin(
+id int primary key auto_increment,
+nome varchar(30) not null,
+sobrenome varchar(40) not null,
+senha char(64) not null, -- O hash sempre vai gerar 64 caracteres
+nascimento date not null,
+email varchar(60) not null unique
+);
+```
