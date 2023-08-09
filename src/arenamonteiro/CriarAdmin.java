@@ -10,7 +10,7 @@ import javax.swing.JPanel;
  *
  * @author Kauã Rodrigo
  * @version 0.1
- * @since 31/07/2023
+ * @since 07/08/2023
  *
  */
 public class CriarAdmin extends javax.swing.JFrame {

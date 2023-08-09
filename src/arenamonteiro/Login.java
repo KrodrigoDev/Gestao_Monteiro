@@ -208,16 +208,16 @@ public class Login extends javax.swing.JFrame {
         painelBntFechar.setLayout(painelBntFecharLayout);
         painelBntFecharLayout.setHorizontalGroup(
             painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(painelBntFecharLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(iconFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(iconFechar)
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
         painelBntFecharLayout.setVerticalGroup(
             painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
             .addGroup(painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(painelBntFecharLayout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
