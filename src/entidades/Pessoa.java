@@ -90,14 +90,14 @@ public abstract class Pessoa {
         }
     }
 
-    public int getIdade() {
+    public int calcularIdade(LocalDate nascimento) {
         LocalDate anoAtual = LocalDate.now();
-        int idadeAtual = anoAtual.getYear() - getNascimento().getYear();
+        int idadeAtual = anoAtual.getYear() - nascimento.getYear();
 
         // Verificar se já fez aniversário este ano
-        if (anoAtual.getMonthValue() < getNascimento().getMonthValue()
-                || (anoAtual.getMonthValue() == getNascimento().getMonthValue()
-                && anoAtual.getDayOfMonth() < getNascimento().getDayOfMonth())) {
+        if (anoAtual.getMonthValue() < nascimento.getMonthValue()
+                || (anoAtual.getMonthValue() == nascimento.getMonthValue()
+                && anoAtual.getDayOfMonth() < nascimento.getDayOfMonth())) {
             idadeAtual--;
         }
 

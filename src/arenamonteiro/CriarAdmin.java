@@ -246,18 +246,22 @@ public class CriarAdmin extends javax.swing.JFrame {
             }
         });
 
+        iconFechar.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
+        iconFechar.setForeground(new java.awt.Color(255, 255, 255));
         iconFechar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        iconFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconFechar.png"))); // NOI18N
+        iconFechar.setText("X");
 
         javax.swing.GroupLayout painelBntFecharLayout = new javax.swing.GroupLayout(painelBntFechar);
         painelBntFechar.setLayout(painelBntFecharLayout);
         painelBntFecharLayout.setHorizontalGroup(
             painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(iconFechar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+            .addComponent(iconFechar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
         );
         painelBntFecharLayout.setVerticalGroup(
             painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(iconFechar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBntFecharLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(iconFechar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         painelVerde.add(painelBntFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, 40, 40));
@@ -314,20 +318,17 @@ public class CriarAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_campoNascimentoKeyTyped
 
-    // ao passar o mouse por cima do campo a cor será alterada
+    private void painelBntFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_painelBntFecharMouseClicked
+
     private void painelBntFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseEntered
         mudarCor(painelBntFechar, new Color(21, 80, 36));
     }//GEN-LAST:event_painelBntFecharMouseEntered
 
-    // quando o mouse sair de cima a cor vai voltar ao normal
     private void painelBntFecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseExited
         mudarCor(painelBntFechar, new Color(31, 115, 52));
     }//GEN-LAST:event_painelBntFecharMouseExited
-
-    // ao ser clicado via fechar a janela e encerrar o programa
-    private void painelBntFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_painelBntFecharMouseClicked
 
     // código padrão do java
     public static void main(String args[]) {

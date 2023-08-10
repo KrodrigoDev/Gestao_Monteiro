@@ -68,7 +68,7 @@ public class AdminDao {
     public ResultSet entrarAdmin(Admin admin) {
 
         // Query SQL para resgatar os dados na tabela "ADMIN".
-        String sql = "SELECT EMAIL,SENHA FROM ADMIN WHERE EMAIL = ? AND SENHA = ? ";
+        String sql = "SELECT NOME, SOBRENOME,NASCIMENTO,EMAIL,SENHA FROM ADMIN WHERE EMAIL = ? AND SENHA = ? ";
 
         try {
 
@@ -77,6 +77,8 @@ public class AdminDao {
             // preenchendo os valores
             ps.setString(1, admin.getEmail());
             ps.setString(2, admin.getSenha());
+            
+            
 
             // executando a query no banco de dados
             ResultSet resultadoConsulta = ps.executeQuery();
@@ -94,5 +96,7 @@ public class AdminDao {
         }
 
     }
+    
+   
 
 }

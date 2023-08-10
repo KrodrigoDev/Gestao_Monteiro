@@ -5,6 +5,7 @@ import entidades.Admin;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -14,7 +15,8 @@ import javax.swing.JPanel;
  * @version 0.1
  * @since 30/07/2023
  * @erro #3 tem relação com o erro #2 ! pode ser algo na conexão do banco ou até
- * um dado errado no momento da inserção. ( Verificar o AdminDao e o banco de dados
+ * um dado errado no momento da inserção. ( Verificar o AdminDao e o banco de
+ * dados
  *
  */
 public class Login extends javax.swing.JFrame {
@@ -201,28 +203,24 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        iconFechar.setFont(new java.awt.Font("Segoe UI", 1, 19)); // NOI18N
+        iconFechar.setForeground(new java.awt.Color(255, 255, 255));
         iconFechar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        iconFechar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconFechar.png"))); // NOI18N
+        iconFechar.setText("X");
 
         javax.swing.GroupLayout painelBntFecharLayout = new javax.swing.GroupLayout(painelBntFechar);
         painelBntFechar.setLayout(painelBntFecharLayout);
         painelBntFecharLayout.setHorizontalGroup(
             painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 40, Short.MAX_VALUE)
             .addGroup(painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(painelBntFecharLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(iconFechar)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(iconFechar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
         );
         painelBntFecharLayout.setVerticalGroup(
             painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 40, Short.MAX_VALUE)
             .addGroup(painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(painelBntFecharLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(iconFechar)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(iconFechar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
         );
 
         painelVerde.add(painelBntFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 40, 40));
@@ -327,8 +325,14 @@ public class Login extends javax.swing.JFrame {
             ResultSet rs = adminDao.entrarAdmin(admin);
 
             if (rs.next()) { // caso a query tenha um retorno vai cair aqui
+                String nomeAdmin = rs.getString("nome");
+                String sobrenomeAdmin = rs.getString("sobrenome");
+                LocalDate nascimentoAdmin = rs.getDate("nascimento").toLocalDate();
 
                 Principal principal = new Principal();
+                principal.setNomeAdmin(nomeAdmin + " " + sobrenomeAdmin);
+                principal.setIdadeAdmin(admin.calcularIdade(nascimentoAdmin));
+                
                 principal.setVisible(true);
                 this.dispose();
 
@@ -346,9 +350,9 @@ public class Login extends javax.swing.JFrame {
                     "Erro #3", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     // Método para exibir e ocultar a senha, além de trocar a imagem 
-    public void trocarImagensIcon(){
+    public void trocarImagensIcon() {
         char echoChar = campoSenha.getEchoChar();
 
         if (echoChar == '*') {
@@ -361,7 +365,7 @@ public class Login extends javax.swing.JFrame {
             iconSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconOcultar.png")));
         }
     }
-    
+
     // método para alternar as cores dos bntFechar
     public void mudarCor(JPanel campo, Color cor) {
         campo.setBackground(cor);
