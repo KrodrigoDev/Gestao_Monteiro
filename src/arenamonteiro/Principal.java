@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 
 /**
  * @author Kauã Rodrigo
- * @since 07/08/2023
+ * @since 11/08/2023
  * @version 0.1
  */
 public class Principal extends javax.swing.JFrame {
@@ -13,7 +13,6 @@ public class Principal extends javax.swing.JFrame {
     // construtor
     public Principal() {
         initComponents();
-
     }
 
     // código padrão do java
@@ -158,11 +157,11 @@ public class Principal extends javax.swing.JFrame {
         campoMenuJogosLayout.setHorizontalGroup(
             campoMenuJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(campoMenuJogosLayout.createSequentialGroup()
-                .addGap(7, 7, 7)
+                .addContainerGap()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel8)
-                .addContainerGap(140, Short.MAX_VALUE))
+                .addContainerGap(141, Short.MAX_VALUE))
         );
         campoMenuJogosLayout.setVerticalGroup(
             campoMenuJogosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,7 +191,7 @@ public class Principal extends javax.swing.JFrame {
         campoMenuAjustesLayout.setHorizontalGroup(
             campoMenuAjustesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(campoMenuAjustesLayout.createSequentialGroup()
-                .addGap(7, 7, 7)
+                .addContainerGap()
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
@@ -303,7 +302,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setText("Diretoria");
+        jLabel14.setText("Usuário Atual");
 
         painelLogoClube.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -350,7 +349,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(143, 143, 143));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel20.setText("<html>     A Arena Monteiro ganha vida, como símbolo de determinação e persistência.<br>     Onde antes encontrávamos apenas promessas entre amigos em um campinho de terra, hoje<br>     ergue-se em um espaço para a paixão do futebol.<br>     Aqui é onde os sonhos se tornam reais, onde histórias são escritas e onde a emoção do jogo pulsa intensamente. Essa é a Arena Monteiro, onde o sonho ganha vida! </html> ");
+        jLabel20.setText("<html>A Arena Monteiro ganha vida, como símbolo de determinação e persistência.<br>   Onde antes encontrávamos apenas promessas entre amigos em um campinho de terra, hoje ergue-se em um espaço para a paixão do futebol.<br>     Aqui é onde os sonhos se tornam reais, onde histórias são escritas e onde a emoção do jogo pulsa intensamente. Essa é a Arena Monteiro, onde o sonho ganha vida! </html> ");
         jLabel20.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -427,7 +426,7 @@ public class Principal extends javax.swing.JFrame {
                         .addGap(48, 48, 48)
                         .addComponent(jLabel19)
                         .addGap(8, 8, 8)
-                        .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))
                     .addComponent(painelAtletas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel21)
@@ -435,7 +434,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jLabel22)
                 .addGap(0, 0, 0)
                 .addComponent(jLabel23)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         painelVerdeCurto.setBackground(new java.awt.Color(31, 115, 52));
@@ -554,7 +553,7 @@ public class Principal extends javax.swing.JFrame {
         mudarCor(campoMenuAjustes, new Color(31, 115, 52));
     }//GEN-LAST:event_campoMenuAjustesMouseExited
 
-    // código padrão do java
+    // código padrão do java com alterações
     public static void main(String args[]) {
         /* Set the Metal look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -568,23 +567,10 @@ public class Principal extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Principal().setVisible(true);
-            }
-        });
     }
     
     // método para alternar as cores dos campos
@@ -597,12 +583,11 @@ public class Principal extends javax.swing.JFrame {
         textNomeAdmin.setText(nomeSobrenome);
     }
     
+    // método para recuperar a idade do admin
     public void setIdadeAdmin(int idadeAdmin){
         textNumIdade.setText(Integer.toString(idadeAdmin));
     }
     
-    
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel campoMenuAjustes;

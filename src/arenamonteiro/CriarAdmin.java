@@ -318,6 +318,7 @@ public class CriarAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_campoNascimentoKeyTyped
 
+    // método para fechar o programa completamente (Essa outra forma de se fechar é pq tem a janela de login oculta)
     private void painelBntFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseClicked
         System.exit(0);
     }//GEN-LAST:event_painelBntFecharMouseClicked
@@ -330,7 +331,7 @@ public class CriarAdmin extends javax.swing.JFrame {
         mudarCor(painelBntFechar, new Color(31, 115, 52));
     }//GEN-LAST:event_painelBntFecharMouseExited
 
-    // código padrão do java
+    // código padrão do java com alterações
     public static void main(String args[]) {
         /* Set the Metal look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -344,22 +345,10 @@ public class CriarAdmin extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CriarAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CriarAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CriarAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CriarAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-            }
-        });
+        
     }
 
     // Método para limpar os campos após cada criação de conta

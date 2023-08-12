@@ -276,7 +276,7 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_painelBntFecharMouseClicked
 
-    // código padrão do java
+    // código padrão do java com alterações
     public static void main(String args[]) {
         /* Set the Metal look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -290,32 +290,16 @@ public class Login extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-
-            public void run() {
-                new Login().setVisible(true);
-            }
-        });
+        
     }
 
     // Método para logar 
     public void fazerLogin() {
         try {
+            // passando os dados para o construtor com sobrecarga
             Admin admin = new Admin(
                     campoEmail.getText(),
                     new String(campoSenha.getPassword())
@@ -327,7 +311,7 @@ public class Login extends javax.swing.JFrame {
             if (rs.next()) { // caso a query tenha um retorno vai cair aqui
                 String nomeAdmin = rs.getString("nome");
                 String sobrenomeAdmin = rs.getString("sobrenome");
-                LocalDate nascimentoAdmin = rs.getDate("nascimento").toLocalDate();
+                LocalDate nascimentoAdmin = rs.getDate("nascimento").toLocalDate(); // toLocalDate faz a formatação da data que vem do banco de dados
 
                 Principal principal = new Principal();
                 principal.setNomeAdmin(nomeAdmin + " " + sobrenomeAdmin);

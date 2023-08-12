@@ -213,11 +213,11 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel7" min="-2" pref="24" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel8" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="140" max="32767" attributes="0"/>
+                      <EmptySpace pref="141" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -265,7 +265,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
@@ -385,7 +385,7 @@
                           <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                           <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                          <Component id="jLabel20" min="-2" pref="131" max="-2" attributes="0"/>
+                          <Component id="jLabel20" pref="139" max="32767" attributes="0"/>
                       </Group>
                       <Component id="painelAtletas" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -395,7 +395,7 @@
                   <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                   <Component id="jLabel23" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -501,7 +501,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Diretoria"/>
+            <Property name="text" type="java.lang.String" value="Usu&#xe1;rio Atual"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="painelLogoClube">
@@ -623,7 +623,7 @@
               <Color blue="8f" green="8f" red="8f" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="2"/>
-            <Property name="text" type="java.lang.String" value="&lt;html&gt;     A Arena Monteiro ganha vida, como s&#xed;mbolo de determina&#xe7;&#xe3;o e persist&#xea;ncia.&lt;br&gt;     Onde antes encontr&#xe1;vamos apenas promessas entre amigos em um campinho de terra, hoje&lt;br&gt;     ergue-se em um espa&#xe7;o para a paix&#xe3;o do futebol.&lt;br&gt;     Aqui &#xe9; onde os sonhos se tornam reais, onde hist&#xf3;rias s&#xe3;o escritas e onde a emo&#xe7;&#xe3;o do jogo pulsa intensamente. Essa &#xe9; a Arena Monteiro, onde o sonho ganha vida! &lt;/html&gt; "/>
+            <Property name="text" type="java.lang.String" value="&lt;html&gt;A Arena Monteiro ganha vida, como s&#xed;mbolo de determina&#xe7;&#xe3;o e persist&#xea;ncia.&lt;br&gt;   Onde antes encontr&#xe1;vamos apenas promessas entre amigos em um campinho de terra, hoje ergue-se em um espa&#xe7;o para a paix&#xe3;o do futebol.&lt;br&gt;     Aqui &#xe9; onde os sonhos se tornam reais, onde hist&#xf3;rias s&#xe3;o escritas e onde a emo&#xe7;&#xe3;o do jogo pulsa intensamente. Essa &#xe9; a Arena Monteiro, onde o sonho ganha vida! &lt;/html&gt; "/>
             <Property name="verticalAlignment" type="int" value="1"/>
           </Properties>
         </Component>
