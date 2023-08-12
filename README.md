@@ -7,9 +7,9 @@ Clique [aqui](https://www.figma.com/file/Mu1LGR9cZThZe7wpjWipOx/Arena-Monteiro?t
 
 ## Lista de tarefas
 - [X] Conexão com mysql
-- [ ] Documentação para os erros
-- [ ] Finalizar  janelas
-- [ ] Diagrama UML sobre as classes
+- [ ] Documentação para lidar com os erros
+- [ ] Finalizar janelas
+- [ ] Diagrama UML com todas as classes
 - [ ] Projeto lógico e físico 
 
 
