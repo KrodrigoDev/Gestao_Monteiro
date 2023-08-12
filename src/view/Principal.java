@@ -1,13 +1,14 @@
 package view;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 /**
  * @author Kauã Rodrigo
  * @since 11/08/2023
  * @version 0.1
+ * @erro #8 tem relação com Thread que está congelando a tela
  */
 public class Principal extends javax.swing.JFrame {
 
@@ -530,7 +531,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_campoMenuPrincipalMouseEntered
 
     private void campoMenuPrincipalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuPrincipalMouseExited
-         mudarCor(campoMenuPrincipal, new Color(31, 115, 52));
+        mudarCor(campoMenuPrincipal, new Color(31, 115, 52));
     }//GEN-LAST:event_campoMenuPrincipalMouseExited
 
     private void campoMenuAtletasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuAtletasMouseEntered
@@ -542,7 +543,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_campoMenuAtletasMouseExited
 
     private void campoMenuJogosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuJogosMouseEntered
-         mudarCor(campoMenuJogos, new Color(21, 80, 36));
+        mudarCor(campoMenuJogos, new Color(21, 80, 36));
     }//GEN-LAST:event_campoMenuJogosMouseEntered
 
     private void campoMenuJogosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuJogosMouseExited
@@ -550,7 +551,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_campoMenuJogosMouseExited
 
     private void campoMenuAjustesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuAjustesMouseEntered
-         mudarCor(campoMenuAjustes, new Color(21, 80, 36));
+        mudarCor(campoMenuAjustes, new Color(21, 80, 36));
     }//GEN-LAST:event_campoMenuAjustesMouseEntered
 
     private void campoMenuAjustesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuAjustesMouseExited
@@ -560,14 +561,18 @@ public class Principal extends javax.swing.JFrame {
     // ao ser clicado vai redirecionar o usuário para a tela com uma lista de atletas
     private void campoMenuAtletasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuAtletasMouseClicked
         ListaAtletas listaAtletas = new ListaAtletas(this);
-        
-        Timer timer = new Timer(1000, tempo ->{ // vai esperar um segundo para trocar a tela
-            listaAtletas.setVisible(true);
-        });
-        
-        timer.setRepeats(false); // O temporizador só dispara uma vez
-        timer.start();
-        
+
+        // Adicionar um atraso de 100 milissegundos (0,1 segundos) antes de mostrar a nova tela
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException erro) {
+            JOptionPane.showMessageDialog(null,
+                    "<html><strong>Ocorreu um erro inesperado durante o login!</strong><br>"
+                    + "Detalhes: " + erro.getMessage() + "<br>",
+                    "Erro #8", JOptionPane.ERROR_MESSAGE);
+        }
+
+        listaAtletas.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_campoMenuAtletasMouseClicked
 
@@ -590,22 +595,22 @@ public class Principal extends javax.swing.JFrame {
         }
 
     }
-    
+
     // método para alternar as cores dos campos
     public void mudarCor(JPanel campo, Color cor) {
         campo.setBackground(cor);
     }
-    
+
     // método Set para recuperar o nome junto com o sobrenome do admin
-    public void setNomeAdmin(String nomeSobrenome){
+    public void setNomeAdmin(String nomeSobrenome) {
         textNomeAdmin.setText(nomeSobrenome);
     }
-    
+
     // método para recuperar a idade do admin
-    public void setIdadeAdmin(int idadeAdmin){
+    public void setIdadeAdmin(int idadeAdmin) {
         textNumIdade.setText(Integer.toString(idadeAdmin));
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel campoMenuAjustes;

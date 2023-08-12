@@ -1,8 +1,8 @@
 package view;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -11,24 +11,24 @@ import javax.swing.table.DefaultTableModel;
  * @version 0.1
  */
 public class ListaAtletas extends javax.swing.JFrame {
-    
+
     // Objeto da classe principal
     private Principal principal;
 
     // construtor
     public ListaAtletas(Principal principal) {
         initComponents();
-        
+
         this.principal = principal;
-        
+
         tabelaAtletas.rolamentoDaTabela(jScrollPane1);
-        
-        DefaultTableModel mode = (DefaultTableModel)tabelaAtletas.getModel(); // lembrar de pagar
-        
-        for(int i = 1; i <= 300; i++){
-            mode.addRow(new Object[]{"Kauã Rodrigo","SUB-20","ATIVO","82991305810","EM BREVE"});  // lembrar de pagar
+
+        DefaultTableModel mode = (DefaultTableModel) tabelaAtletas.getModel(); // lembrar de pagar
+
+        for (int i = 1; i <= 300; i++) {
+            mode.addRow(new Object[]{"Kauã Rodrigo", "SUB-20", "ATIVO", "82991305810", "EM BREVE"});  // lembrar de pagar
         }
-        
+
     }
 
     // código padrão do java
@@ -520,7 +520,7 @@ public class ListaAtletas extends javax.swing.JFrame {
     }//GEN-LAST:event_campoMenuPrincipalMouseEntered
 
     private void campoMenuPrincipalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuPrincipalMouseExited
-         mudarCor(campoMenuPrincipal, new Color(31, 115, 52));
+        mudarCor(campoMenuPrincipal, new Color(31, 115, 52));
     }//GEN-LAST:event_campoMenuPrincipalMouseExited
 
     private void campoMenuAtletasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuAtletasMouseEntered
@@ -532,7 +532,7 @@ public class ListaAtletas extends javax.swing.JFrame {
     }//GEN-LAST:event_campoMenuAtletasMouseExited
 
     private void campoMenuJogosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuJogosMouseEntered
-         mudarCor(campoMenuJogos, new Color(21, 80, 36));
+        mudarCor(campoMenuJogos, new Color(21, 80, 36));
     }//GEN-LAST:event_campoMenuJogosMouseEntered
 
     private void campoMenuJogosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuJogosMouseExited
@@ -540,7 +540,7 @@ public class ListaAtletas extends javax.swing.JFrame {
     }//GEN-LAST:event_campoMenuJogosMouseExited
 
     private void campoMenuAjustesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuAjustesMouseEntered
-         mudarCor(campoMenuAjustes, new Color(21, 80, 36));
+        mudarCor(campoMenuAjustes, new Color(21, 80, 36));
     }//GEN-LAST:event_campoMenuAjustesMouseEntered
 
     private void campoMenuAjustesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuAjustesMouseExited
@@ -549,13 +549,18 @@ public class ListaAtletas extends javax.swing.JFrame {
 
     // ao ser clicado vai voltar para a tela inicial e vai fechar a tela atual
     private void campoMenuPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuPrincipalMouseClicked
-        Timer timer = new Timer(1000, tempo ->{
-             principal.setVisible(true);
-        });
-        
-        timer.setRepeats(false);
-        timer.start();
-        
+
+        // Adicionar um atraso de 100 milissegundos (0,1 segundos) antes de mostrar a nova tela
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException erro) {
+            JOptionPane.showMessageDialog(null,
+                    "<html><strong>Ocorreu um erro inesperado durante o login!</strong><br>"
+                    + "Detalhes: " + erro.getMessage() + "<br>",
+                    "Erro #8", JOptionPane.ERROR_MESSAGE);
+        }
+
+        principal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_campoMenuPrincipalMouseClicked
 
@@ -576,14 +581,14 @@ public class ListaAtletas extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(ListaAtletas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
     // método para alternar as cores dos campos
     public void mudarCor(JPanel campo, Color cor) {
         campo.setBackground(cor);
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private view.BotaoPersonalizado bntCriarAtleta;
     private javax.swing.JPanel campoMenuAjustes;

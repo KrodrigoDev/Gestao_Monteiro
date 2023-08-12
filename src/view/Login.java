@@ -10,14 +10,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
- *
  * @author Kauã Rodrigo
  * @version 0.1
  * @since 30/07/2023
  * @erro #3 tem relação com o erro #2 ! pode ser algo na conexão do banco ou até
  * um dado errado no momento da inserção. ( Verificar o AdminDao e o banco de
  * dados
- *
+ * @erro #8 tem relação com Thread que está congelando a tela
  */
 public class Login extends javax.swing.JFrame {
 
@@ -293,7 +292,7 @@ public class Login extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
     }
 
     // Método para logar 
@@ -316,7 +315,17 @@ public class Login extends javax.swing.JFrame {
                 Principal principal = new Principal();
                 principal.setNomeAdmin(nomeAdmin + " " + sobrenomeAdmin);
                 principal.setIdadeAdmin(admin.calcularIdade(nascimentoAdmin));
-                
+
+                // Adicionar um atraso de 100 milissegundos (0,1 segundos) antes de mostrar a nova tela
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException erro) {
+                    JOptionPane.showMessageDialog(null,
+                            "<html><strong>Ocorreu um erro inesperado durante o login!</strong><br>"
+                            + "Detalhes: " + erro.getMessage() + "<br>",
+                            "Erro #8", JOptionPane.ERROR_MESSAGE);
+                }
+
                 principal.setVisible(true);
                 this.dispose();
 
