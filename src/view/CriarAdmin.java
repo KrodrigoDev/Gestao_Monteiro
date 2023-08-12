@@ -1,4 +1,4 @@
-package arenamonteiro;
+package view;
 
 // Importações necessárias
 import dao.AdminDao;

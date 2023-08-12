@@ -1,4 +1,4 @@
-package arenamonteiro;
+package view;
 
 import dao.AdminDao;
 import entidades.Admin;
