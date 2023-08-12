@@ -10,7 +10,7 @@ Clique [aqui](https://www.figma.com/file/Mu1LGR9cZThZe7wpjWipOx/Arena-Monteiro?t
 - [ ] Documentação para os erros
 - [ ] Finalizar  janelas
 - [ ] Diagrama UML sobre as classes
-- [ ] Projeto lógico, conceitual e físico 
+- [ ] Projeto lógico e físico 
 
 
 ## Projeto Físico 
