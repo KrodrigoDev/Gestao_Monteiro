@@ -24,3 +24,9 @@ nascimento date not null,
 email varchar(60) not null unique
 );
 ```
+
+## Projeto Lógico
+<p align="center">
+  <img width="600px" src="https://github.com/KrodrigoDev/Gestao_Monteiro/assets/126525471/ac21b455-f070-47d6-93a1-51c9303e1b4e">
+</p>
+
