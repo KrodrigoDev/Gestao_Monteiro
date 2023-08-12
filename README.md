@@ -10,7 +10,7 @@ Clique [aqui](https://www.figma.com/file/Mu1LGR9cZThZe7wpjWipOx/Arena-Monteiro?t
 - [ ] Documentação para os erros
 - [ ] Finalizar  janelas
 - [ ] Diagrama UML sobre as classes
-- [ ] Projeto lógico, conceitual e físico 
+- [ ] Projeto lógico e físico 
 
 
 ## Projeto Físico 
@@ -24,3 +24,9 @@ nascimento date not null,
 email varchar(60) not null unique
 );
 ```
+
+## Projeto Lógico
+<p align="center">
+  <img width="600px" src="https://github.com/KrodrigoDev/Gestao_Monteiro/assets/126525471/ac21b455-f070-47d6-93a1-51c9303e1b4e">
+</p>
+
