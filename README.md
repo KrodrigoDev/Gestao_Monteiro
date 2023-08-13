@@ -10,7 +10,8 @@ Clique [aqui](https://www.figma.com/file/Mu1LGR9cZThZe7wpjWipOx/Arena-Monteiro?t
 - [ ] Documentação para lidar com os erros
 - [ ] Finalizar janelas
 - [ ] Diagrama UML com todas as classes
-- [ ] Projeto lógico e físico 
+- [ ] Projeto lógico e físico
+- [X] Criar um modelo de alta fidelidade no figma
 
 
 ## Projeto Físico 
