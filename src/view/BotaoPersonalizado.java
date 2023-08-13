@@ -1,7 +1,6 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -12,6 +11,7 @@ import javax.swing.JButton;
 /**
  * Classe que define um botão personalizado com cores configuráveis e efeitos visuais.
  * @autor Kauã Rodrigo
+ * @since 12/08/2023
  */
 public class BotaoPersonalizado extends JButton {
 
@@ -22,9 +22,7 @@ public class BotaoPersonalizado extends JButton {
     private Color borderColor;
     private int radius = 0;
 
-    /**
-     * Construtor da classe BotaoPersonalizado.
-     */
+    // construtor
     public BotaoPersonalizado() {
         // Inicializar cores
         setColor(Color.WHITE);
@@ -32,10 +30,6 @@ public class BotaoPersonalizado extends JButton {
         colorClick = new Color(152, 184, 144);
         borderColor = new Color(30, 136, 56);
         setContentAreaFilled(false);
-
-        // Definir a fonte em negrito e tamanho 15
-        Font font = new Font(Font.SANS_SERIF, Font.BOLD, 15);
-        setFont(font);
 
         // Adicionar eventos de mouse
         addMouseListener(new MouseAdapter() {
@@ -79,6 +73,8 @@ public class BotaoPersonalizado extends JButton {
         g2.fillRoundRect(2, 2, getWidth() - 4, getHeight() - 4, radius, radius);
         super.paintComponent(grphcs);
     }
+    
+    // gets e sets
 
     public boolean isOver() {
         return over;

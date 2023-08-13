@@ -1,8 +1,8 @@
 package view;
 
 import java.awt.Color;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,7 +21,7 @@ public class ListaAtletas extends javax.swing.JFrame {
 
         this.principal = principal;
 
-        tabelaAtletas.rolamentoDaTabela(jScrollPane1);
+        tabelaAtletas.rolamentoDaTabela(rolamentoTabela);
 
         DefaultTableModel mode = (DefaultTableModel) tabelaAtletas.getModel(); // lembrar de pagar
 
@@ -67,12 +67,16 @@ public class ListaAtletas extends javax.swing.JFrame {
         quantidadeAtletasAtivos = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        rolamentoTabela = new javax.swing.JScrollPane();
         tabelaAtletas = new view.TabelaPersonalizada();
-        jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
+        campoBuscarCategoria = new javax.swing.JTextField();
         bntCriarAtleta = new view.BotaoPersonalizado();
+        jSeparator5 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
+        campoBuscarNome = new javax.swing.JTextField();
+        jSeparator7 = new javax.swing.JSeparator();
+        campoBuscarStatus = new javax.swing.JTextField();
         painelVerdeCurto = new javax.swing.JPanel();
         painelBntFechar = new javax.swing.JPanel();
         iconFechar = new javax.swing.JLabel();
@@ -80,6 +84,13 @@ public class ListaAtletas extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         painelMenuVerde.setBackground(new java.awt.Color(31, 115, 52));
 
@@ -268,6 +279,8 @@ public class ListaAtletas extends javax.swing.JFrame {
         );
 
         painelBranco.setBackground(new java.awt.Color(255, 255, 255));
+        painelBranco.setForeground(new java.awt.Color(255, 255, 255));
+        painelBranco.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         painelAtletasInativos.setBackground(new java.awt.Color(255, 255, 255));
         painelAtletasInativos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -290,6 +303,8 @@ public class ListaAtletas extends javax.swing.JFrame {
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imgPreta.png"))); // NOI18N
         painelAtletasInativos.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        painelBranco.add(painelAtletasInativos, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 85, -1, 130));
+
         painelAtletas.setBackground(new java.awt.Color(255, 255, 255));
         painelAtletas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -311,12 +326,16 @@ public class ListaAtletas extends javax.swing.JFrame {
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imgPreta.png"))); // NOI18N
         painelAtletas.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        painelBranco.add(painelAtletas, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 85, -1, -1));
+
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("LISTA DE ATLETAS");
+        painelBranco.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 23, -1, 22));
 
         iconPesquisar.setBackground(new java.awt.Color(255, 255, 255));
-        iconPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconPesquisar (2).png"))); // NOI18N
+        iconPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconLupa.png"))); // NOI18N
+        painelBranco.add(iconPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
 
         painelAtletasAtivos.setBackground(new java.awt.Color(255, 255, 255));
         painelAtletasAtivos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -339,6 +358,8 @@ public class ListaAtletas extends javax.swing.JFrame {
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imgPreta.png"))); // NOI18N
         painelAtletasAtivos.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        painelBranco.add(painelAtletasAtivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 85, -1, -1));
+
         tabelaAtletas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -355,20 +376,33 @@ public class ListaAtletas extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tabelaAtletas);
+        rolamentoTabela.setViewportView(tabelaAtletas);
 
-        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
+        painelBranco.add(rolamentoTabela, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 318, 714, 334));
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+        painelBranco.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 290, 210, 10));
 
-        jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
+        campoBuscarCategoria.setBackground(new java.awt.Color(255, 255, 255));
+        campoBuscarCategoria.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        campoBuscarCategoria.setForeground(new java.awt.Color(143, 143, 143));
+        campoBuscarCategoria.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        campoBuscarCategoria.setText("Categoria");
+        campoBuscarCategoria.setBorder(null);
+        campoBuscarCategoria.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                campoBuscarCategoriaFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoBuscarCategoriaFocusLost(evt);
+            }
+        });
+        painelBranco.add(campoBuscarCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, 130, 30));
 
         bntCriarAtleta.setBackground(new java.awt.Color(0, 146, 120));
         bntCriarAtleta.setForeground(new java.awt.Color(255, 255, 255));
-        bntCriarAtleta.setText("ADD ATLETA");
+        bntCriarAtleta.setText("Novo Atleta");
         bntCriarAtleta.setBorderColor(new java.awt.Color(255, 255, 255));
         bntCriarAtleta.setBorderPainted(false);
         bntCriarAtleta.setColor(new java.awt.Color(0, 146, 120));
@@ -376,59 +410,54 @@ public class ListaAtletas extends javax.swing.JFrame {
         bntCriarAtleta.setColorOver(new java.awt.Color(0, 146, 120));
         bntCriarAtleta.setFocusPainted(false);
         bntCriarAtleta.setFocusable(false);
-        bntCriarAtleta.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        bntCriarAtleta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         bntCriarAtleta.setRadius(50);
+        painelBranco.add(bntCriarAtleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(609, 255, 138, 45));
 
-        javax.swing.GroupLayout painelBrancoLayout = new javax.swing.GroupLayout(painelBranco);
-        painelBranco.setLayout(painelBrancoLayout);
-        painelBrancoLayout.setHorizontalGroup(
-            painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelBrancoLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addGroup(painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBrancoLayout.createSequentialGroup()
-                        .addComponent(painelAtletas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(painelAtletasAtivos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(painelAtletasInativos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1)
-                    .addComponent(jSeparator2)
-                    .addComponent(jLabel11)
-                    .addGroup(painelBrancoLayout.createSequentialGroup()
-                        .addComponent(iconPesquisar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40)
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(bntCriarAtleta, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
-        painelBrancoLayout.setVerticalGroup(
-            painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelBrancoLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addGroup(painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelBrancoLayout.createSequentialGroup()
-                        .addGroup(painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(painelAtletasInativos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(painelAtletas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
-                        .addGroup(painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(iconPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bntCriarAtleta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(painelAtletasAtivos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(233, Short.MAX_VALUE))
-        );
+        jSeparator5.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
+        painelBranco.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 51, 714, 16));
+
+        jSeparator6.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator6.setForeground(new java.awt.Color(0, 0, 0));
+        painelBranco.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 290, 130, 10));
+
+        campoBuscarNome.setBackground(new java.awt.Color(255, 255, 255));
+        campoBuscarNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        campoBuscarNome.setForeground(new java.awt.Color(143, 143, 143));
+        campoBuscarNome.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        campoBuscarNome.setText("Buscar Por Nome");
+        campoBuscarNome.setBorder(null);
+        campoBuscarNome.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        campoBuscarNome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                campoBuscarNomeFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoBuscarNomeFocusLost(evt);
+            }
+        });
+        painelBranco.add(campoBuscarNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 210, 30));
+
+        jSeparator7.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator7.setForeground(new java.awt.Color(0, 0, 0));
+        painelBranco.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 290, 120, 10));
+
+        campoBuscarStatus.setBackground(new java.awt.Color(255, 255, 255));
+        campoBuscarStatus.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        campoBuscarStatus.setForeground(new java.awt.Color(143, 143, 143));
+        campoBuscarStatus.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        campoBuscarStatus.setText("Status");
+        campoBuscarStatus.setBorder(null);
+        campoBuscarStatus.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                campoBuscarStatusFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoBuscarStatusFocusLost(evt);
+            }
+        });
+        painelBranco.add(campoBuscarStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 260, 120, 30));
 
         painelVerdeCurto.setBackground(new java.awt.Color(31, 115, 52));
 
@@ -491,8 +520,8 @@ public class ListaAtletas extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelVerdeCurto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(painelBranco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(244, 244, 244))
+                .addComponent(painelBranco, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addComponent(painelMenuVerde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -510,7 +539,7 @@ public class ListaAtletas extends javax.swing.JFrame {
         mudarCor(painelBntFechar, new Color(31, 115, 52));
     }//GEN-LAST:event_iconFecharMouseExited
 
-    // ao ser clicado via fechar a janela e encerrar o programa
+    // ao ser clicado vai fechar a janela e encerrar o programa (Até as janelas ocultas)
     private void iconFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconFecharMouseClicked
         System.exit(0);
     }//GEN-LAST:event_iconFecharMouseClicked
@@ -549,28 +578,60 @@ public class ListaAtletas extends javax.swing.JFrame {
 
     // ao ser clicado vai voltar para a tela inicial e vai fechar a tela atual
     private void campoMenuPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuPrincipalMouseClicked
-
-        // Adicionar um atraso de 100 milissegundos (0,1 segundos) antes de mostrar a nova tela
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException erro) {
-            JOptionPane.showMessageDialog(null,
-                    "<html><strong>Ocorreu um erro inesperado durante o login!</strong><br>"
-                    + "Detalhes: " + erro.getMessage() + "<br>",
-                    "Erro #8", JOptionPane.ERROR_MESSAGE);
-        }
-
         principal.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_campoMenuPrincipalMouseClicked
 
+    // gambiarra que vai me ajudar a usar os métodos addCampoPlaceholder e removerCampoPlaceholder
+    // ele basicamente vai tirar o foco dos campos de texto ao inicializar a janela
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        this.requestFocusInWindow();
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    // ao ganhar o foco vai chamar o método removerCampoPlaceholder
+    private void campoBuscarNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscarNomeFocusGained
+        if (campoBuscarNome.getText().equals("Buscar Por Nome")) {
+            removerCampoPlaceholder(campoBuscarNome);
+        }
+    }//GEN-LAST:event_campoBuscarNomeFocusGained
+
+    // ao perder o foco vai verificar se tem algo no campo, caso não tenha, vai chamar voltar ao estado antigo
+    private void campoBuscarNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscarNomeFocusLost
+        if (campoBuscarNome.getText().length() == 0) {
+            campoBuscarNome.setText("Buscar Por Nome");
+            addCampoPlaceholder(campoBuscarNome);
+        }
+    }//GEN-LAST:event_campoBuscarNomeFocusLost
+
+    private void campoBuscarCategoriaFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscarCategoriaFocusGained
+        if (campoBuscarCategoria.getText().equals("Categoria")) {
+            removerCampoPlaceholder(campoBuscarCategoria);
+        }
+    }//GEN-LAST:event_campoBuscarCategoriaFocusGained
+
+    private void campoBuscarCategoriaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscarCategoriaFocusLost
+        if (campoBuscarCategoria.getText().length() == 0) {
+            campoBuscarCategoria.setText("Categoria");
+            addCampoPlaceholder(campoBuscarCategoria);
+        }
+    }//GEN-LAST:event_campoBuscarCategoriaFocusLost
+
+    private void campoBuscarStatusFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscarStatusFocusGained
+        if (campoBuscarStatus.getText().equals("Status")) {
+            removerCampoPlaceholder(campoBuscarStatus);
+        }
+    }//GEN-LAST:event_campoBuscarStatusFocusGained
+
+    private void campoBuscarStatusFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscarStatusFocusLost
+        if (campoBuscarStatus.getText().length() == 0) {
+            campoBuscarStatus.setText("Status");
+            addCampoPlaceholder(campoBuscarStatus);
+        }
+    }//GEN-LAST:event_campoBuscarStatusFocusLost
+
     // código padrão do java com alterações
     public static void main(String args[]) {
-        /* Set the Metal ou Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Metal (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Metal".equals(info.getName())) {
@@ -589,8 +650,23 @@ public class ListaAtletas extends javax.swing.JFrame {
         campo.setBackground(cor);
     }
 
+    // método que vai alterar a cor do texto para dar a impressão de placeholder
+    public void addCampoPlaceholder(JTextField campoTexto) {
+        campoTexto.setForeground(new Color(140, 140, 140));
+    }
+
+    // esse método vai remover o texto nos campos que o método acima adicionou
+    public void removerCampoPlaceholder(JTextField campoTexto) {
+        campoTexto.requestFocus();
+        campoTexto.setText(null);
+        campoTexto.setForeground(Color.BLACK);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private view.BotaoPersonalizado bntCriarAtleta;
+    private javax.swing.JTextField campoBuscarCategoria;
+    private javax.swing.JTextField campoBuscarNome;
+    private javax.swing.JTextField campoBuscarStatus;
     private javax.swing.JPanel campoMenuAjustes;
     private javax.swing.JPanel campoMenuAtletas;
     private javax.swing.JPanel campoMenuJogos;
@@ -614,11 +690,11 @@ public class ListaAtletas extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
     private javax.swing.JPanel painelAtletas;
     private javax.swing.JPanel painelAtletasAtivos;
     private javax.swing.JPanel painelAtletasInativos;
@@ -629,6 +705,7 @@ public class ListaAtletas extends javax.swing.JFrame {
     private javax.swing.JLabel quantidadeAtletasAtivos;
     private javax.swing.JLabel quantidadeAtletasInativos;
     private javax.swing.JLabel quantidadeTotalAtletas;
+    private javax.swing.JScrollPane rolamentoTabela;
     private view.TabelaPersonalizada tabelaAtletas;
     // End of variables declaration//GEN-END:variables
 }

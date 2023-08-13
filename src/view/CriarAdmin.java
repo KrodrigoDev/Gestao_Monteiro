@@ -296,26 +296,9 @@ public class CriarAdmin extends javax.swing.JFrame {
         criarAdmin();
     }//GEN-LAST:event_bntCriarContaActionPerformed
 
-    // Método para formatar a data enquanto o usuário digita
+    // chamando o método formatarCampoNascimento
     private void campoNascimentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoNascimentoKeyTyped
-        String dadosAtuais = campoNascimento.getText();
-
-        int tamanho = dadosAtuais.length();
-
-        // Verifica se o caractere digitado pelo usuário é um dígito numérico (0 a 9)
-        if (evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9') {
-            // Se o tamanho atual for 2 ou 5 (posições onde precisamos adicionar "/")
-            if (tamanho == 2 || tamanho == 5) {
-                campoNascimento.setText(dadosAtuais + '/');
-            }
-        } else {
-            // Se o caractere digitado pelo usuário não for um dígito numérico (0 a 9)
-            // Verifica se o tamanho atual é 3 ou 6 (posições onde a barra "/" precisa ser removida)
-            if (tamanho == 3 || tamanho == 6) {
-                // Remove o último caractere (a barra "/") dos dados atuais digitados no campo de nascimento
-                campoNascimento.setText(dadosAtuais.substring(0, tamanho - 1));
-            }
-        }
+        formatarCampoNascimento(campoNascimento);
     }//GEN-LAST:event_campoNascimentoKeyTyped
 
     // método para fechar o programa completamente (Essa outra forma de se fechar é pq tem a janela de login oculta)
@@ -333,11 +316,7 @@ public class CriarAdmin extends javax.swing.JFrame {
 
     // código padrão do java com alterações
     public static void main(String args[]) {
-        /* Set the Metal look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Metal (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Metal".equals(info.getName())) {
@@ -348,7 +327,30 @@ public class CriarAdmin extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(CriarAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
+
+    }
+
+    // Método para formatar a data enquanto o usuário digita
+    private void formatarCampoNascimento(javax.swing.JTextField campo) {
+        String dadosAtuais = campo.getText();
+        int tamanho = dadosAtuais.length();
+
+        if (tamanho > 0) {
+            // Verifica se o caractere digitado pelo usuário é um dígito numérico (0 a 9)
+            if (Character.isDigit(dadosAtuais.charAt(tamanho - 1))) {
+                // Se o tamanho atual for 2 ou 5 (posições onde precisamos adicionar "/")
+                if (tamanho == 2 || tamanho == 5) {
+                    campo.setText(dadosAtuais + '/');
+                }
+            } else {
+                // Se o caractere digitado pelo usuário não for um dígito numérico (0 a 9)
+                // Verifica se o tamanho atual é 3 ou 6 (posições onde a barra "/" precisa ser removida)
+                if (tamanho == 3 || tamanho == 6) {
+                    // Remove o último caractere (a barra "/") dos dados atuais digitados no campo de nascimento
+                    campo.setText(dadosAtuais.substring(0, tamanho - 1));
+                }
+            }
+        }
     }
 
     // Método para limpar os campos após cada criação de conta

@@ -12,7 +12,7 @@ public class RolarPersonalizado extends JScrollBar {
     
     
     public RolarPersonalizado(){
-        setUI(new RolarTabela());
+        setUI(new RolarTabelaUI());
         setPreferredSize(new Dimension(8,8));
         setForeground(new Color(48,144,216));
         setBackground(new Color(30,30,30));

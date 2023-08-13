@@ -15,7 +15,7 @@ import javax.swing.plaf.basic.BasicScrollBarUI;
  *
  * @author Kauã Rodrigo
  */
-public class RolarTabela extends BasicScrollBarUI {
+public class RolarTabelaUI extends BasicScrollBarUI {
 
     private final int THUMB_SIZE = 80;
 

@@ -1,14 +1,12 @@
 package view;
 
 import java.awt.Color;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  * @author Kauã Rodrigo
  * @since 11/08/2023
  * @version 0.1
- * @erro #8 tem relação com Thread que está congelando a tela
  */
 public class Principal extends javax.swing.JFrame {
 
@@ -561,28 +559,13 @@ public class Principal extends javax.swing.JFrame {
     // ao ser clicado vai redirecionar o usuário para a tela com uma lista de atletas
     private void campoMenuAtletasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuAtletasMouseClicked
         ListaAtletas listaAtletas = new ListaAtletas(this);
-
-        // Adicionar um atraso de 100 milissegundos (0,1 segundos) antes de mostrar a nova tela
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException erro) {
-            JOptionPane.showMessageDialog(null,
-                    "<html><strong>Ocorreu um erro inesperado durante o login!</strong><br>"
-                    + "Detalhes: " + erro.getMessage() + "<br>",
-                    "Erro #8", JOptionPane.ERROR_MESSAGE);
-        }
-
         listaAtletas.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_campoMenuAtletasMouseClicked
 
     // código padrão do java com alterações
     public static void main(String args[]) {
-        /* Set the Metal look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Metal (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Metal".equals(info.getName())) {
