@@ -6,12 +6,12 @@
 Clique [aqui](https://www.figma.com/file/Mu1LGR9cZThZe7wpjWipOx/Arena-Monteiro?type=design&node-id=0-1&mode=design&t=W2p3JexDMv1tQ1pC-0) para visualizar a versão Alpha do projeto no Figma.
 
 ## Lista de tarefas
-- [X] Conexão com mysql
-- [ ] Documentação para lidar com os erros
-- [ ] Finalizar janelas
+- [ ] Conexão com mysql
+- [ ] Documentação para com as execeções e erros
+- [ ] Criar todas as janelas 
 - [ ] Diagrama UML com todas as classes
 - [ ] Projeto lógico e físico
-- [X] Criar um modelo de alta fidelidade no figma
+- [ ] Criar um modelo de alta fidelidade no figma
 
 
 ## Projeto Físico 
