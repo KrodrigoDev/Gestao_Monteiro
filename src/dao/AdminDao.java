@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author Kauã Rodrigo
  * @version 0.1
  * @erro #3 tem relação com o erro #2 ! pode ser algo na conexão do banco ou até
- * um dado errado no momento da inserção
+ * um dado errado no momento da inserção, alteração ou algo na query sql
  *
  */
 public class AdminDao {
@@ -77,8 +77,6 @@ public class AdminDao {
             // preenchendo os valores
             ps.setString(1, admin.getEmail());
             ps.setString(2, admin.getSenha());
-            
-            
 
             // executando a query no banco de dados
             ResultSet resultadoConsulta = ps.executeQuery();
@@ -96,7 +94,32 @@ public class AdminDao {
         }
 
     }
-    
-   
+
+    // método para atualizar a senha do administrador
+    public boolean atualizarSenha(Admin admin) {
+        String sql = "UPDATE ADMIN SET SENHA = ? WHERE EMAIL = ? AND NASCIMENTO = ?";
+
+        try {
+            ps = Conexao.getConexao().prepareStatement(sql);
+
+            ps.setString(1, admin.getSenha());
+            ps.setString(2, admin.getEmail());
+            ps.setString(3, admin.getNascimento().toString());
+
+            int linhaAfetada = ps.executeUpdate();
+
+            ps.close(); // Fecha a conexão
+
+            return linhaAfetada > 0; // Retorna true se alguma linha foi afetada (atualização bem-sucedida)
+
+        } catch (SQLException erro) {
+            JOptionPane.showMessageDialog(null,
+                    "<html><strong>Ocorreu um erro inesperado ao atualizar a senha!</strong><br>"
+                    + "Detalhes: " + erro.getMessage() + "<br>"
+                    + "Informe o código de erro #3</html>",
+                    "Erro #3", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+    }
 
 }

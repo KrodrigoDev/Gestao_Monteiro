@@ -140,6 +140,11 @@ public class Login extends javax.swing.JFrame {
         textEsqueceuSenha.setForeground(new java.awt.Color(255, 255, 255));
         textEsqueceuSenha.setText("Esqueceu a senha ?");
         textEsqueceuSenha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        textEsqueceuSenha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                textEsqueceuSenhaMouseClicked(evt);
+            }
+        });
         painelVerde.add(textEsqueceuSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 422, -1, -1));
 
         bntAcessar.setBackground(new java.awt.Color(255, 255, 255));
@@ -273,6 +278,12 @@ public class Login extends javax.swing.JFrame {
     private void painelBntFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseClicked
         this.dispose();
     }//GEN-LAST:event_painelBntFecharMouseClicked
+
+    private void textEsqueceuSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textEsqueceuSenhaMouseClicked
+        EsqueceuSenha esqueceuSenha = new EsqueceuSenha(this);
+        esqueceuSenha.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_textEsqueceuSenhaMouseClicked
 
     // código padrão do java com alterações
     public static void main(String args[]) {

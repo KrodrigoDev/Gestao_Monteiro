@@ -365,26 +365,32 @@ public class CriarAdmin extends javax.swing.JFrame {
 
     // Método para realizar a criação da conta
     public void criarAdmin() {
-        Admin admin = new Admin(
-                campoNome.getText().trim(),
-                campoSobrenome.getText().trim(),
-                campoEmail.getText().trim(),
-                campoNascimento.getText().trim(),
-                new String(campoSenha.getPassword()).trim(),
-                new String(campoConfirmarSenha.getPassword()).trim()
-        );
+        try {
 
-        // Validações e criação do admin 
-        if (admin.validacaoDasInfo()) {
-            if (adminDao.cadastrarAdmin(admin)) {
-                limparCampos();
+            String nome = campoNome.getText().trim();
+            String sobrenome = campoSobrenome.getText().trim();
+            String email = campoEmail.getText().trim();
+            String nascimento = campoNascimento.getText().trim();
+            String senha = new String(campoSenha.getPassword()).trim();
+            String confirmarSenha = new String(campoConfirmarSenha.getPassword()).trim();
 
-                admin.infoAdmin();
+            Admin admin = new Admin(nome, sobrenome, email, nascimento, senha, confirmarSenha);
 
-                this.dispose();
+            // Validações, criação e envio de email para o admin 
+            if (admin.validacaoDasInfo()) {
+                if (adminDao.cadastrarAdmin(admin)) {
+                    limparCampos();
 
-                login.setVisible(true);
+                    admin.infoAdmin();
+
+                    this.dispose();
+
+                    login.setVisible(true);
+                }
             }
+
+        } catch (Exception erro) {
+            // implementar algo aqui
         }
 
     }

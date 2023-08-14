@@ -35,11 +35,18 @@ public class Admin extends Pessoa {
         setSenha(senha);
     }
 
+    // Construtor com sobrecarga para alterar a senha do admin
+    public Admin(String email, String nascimento, String senha) {
+        setEmail(email);
+        setNascimento(nascimento);
+        setSenha(senha);
+    }
+
     // método para informar que o usuário foi criado com sucesso
     public void infoAdmin() {
         JOptionPane.showMessageDialog(null,
-            "<html><strong>Conta criada com sucesso!</strong>",
-            "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                "<html><strong>Conta criada com sucesso!</strong>",
+                "Sucesso", JOptionPane.INFORMATION_MESSAGE);
     }
 
     // Método para verificar se os campos foram preenchidos corretamente
