@@ -377,7 +377,7 @@ public class CriarAdmin extends javax.swing.JFrame {
             Admin admin = new Admin(nome, sobrenome, email, nascimento, senha, confirmarSenha);
 
             // Validações, criação e envio de email para o admin 
-            if (admin.validacaoDasInfo()) {
+            if (admin.validarCamposPreenchidos(nome, sobrenome, email, nascimento,senha, confirmarSenha)) {
                 if (adminDao.cadastrarAdmin(admin)) {
                     limparCampos();
 

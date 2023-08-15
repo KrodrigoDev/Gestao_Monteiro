@@ -50,19 +50,20 @@ public class Admin extends Pessoa {
     }
 
     // Método para verificar se os campos foram preenchidos corretamente
-    public boolean validacaoDasInfo() {
-        if (getNome().isEmpty() || getSobrenome().isEmpty() || (getSenha() == null || getSenha().isEmpty()) || getEmail().isEmpty() || getNascimento() == null) {
+    public boolean validarCamposPreenchidos(String... campos) {
+        for (String campo : campos) {
+            if (campo == null || campo.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null,
+                        "<html><strong>Por favor, verifique se todos os campos foram preenchidos corretamente!</strong></html>",
+                        "Aviso - Preencha todos os campos",
+                        JOptionPane.INFORMATION_MESSAGE);
 
-            JOptionPane.showMessageDialog(null,
-                    "<html><strong>Por favor, verifique se todos os campos foram preenchidos corretamente!</strong></html>",
-                    "Aviso - Preencha todos os campos",
-                    JOptionPane.INFORMATION_MESSAGE);
-
-            return false; // impede a criação do admin
+                return false; // impede a criação
+            }
         }
-        return true; // faz a criação do admin
+        return true; // faz a criação
     }
-
+    
     // Método para validar a senha
     public boolean validarSenha(String senha, String confirmarSenha) {
         if (senha.isEmpty() || confirmarSenha.isEmpty() || !senha.equals(confirmarSenha)) {

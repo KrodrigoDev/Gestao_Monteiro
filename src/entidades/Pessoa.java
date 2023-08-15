@@ -31,10 +31,10 @@ public abstract class Pessoa {
         setSobrenome(sobrenome);
         setNascimento(nascimento);
     }
-    
+
     // Construtor com sobrecarga ( Feito para realizar login) 
-    public Pessoa(){
-        
+    public Pessoa() {
+
     }
 
     // gets e sets
@@ -58,7 +58,7 @@ public abstract class Pessoa {
         return nascimento;
     }
 
-    public void setNascimento(String nascimento) {
+    public boolean setNascimento(String nascimento) {
         LocalDate anoInicial = LocalDate.of(1950, Month.JANUARY, 1);
         LocalDate anoLimite = LocalDate.now();
 
@@ -67,26 +67,23 @@ public abstract class Pessoa {
             int ano = dataNascimento.getYear();
 
             if (ano >= anoInicial.getYear() && ano < anoLimite.getYear()) {
-
                 this.nascimento = dataNascimento;
-
-            } else if (ano < anoInicial.getYear() || ano >= anoLimite.getYear()) {
-
+                return true;
+            } else {
                 this.nascimento = null;
-
                 JOptionPane.showMessageDialog(null,
-                        "<html><strong>Data de nascimento inválida!</strong><br>"
-                        + "O ano deve ser estar entre " + anoInicial.getYear() + " e " + anoLimite.getYear() + ".</html>",
-                        "Aviso", JOptionPane.INFORMATION_MESSAGE);
-
+                        "<html>O ano deve estar entre " + anoInicial.getYear() + " e " + anoLimite.getYear() + "</html>",
+                        "Aviso - Data", JOptionPane.INFORMATION_MESSAGE);
+                return false;
             }
-
+            
         } catch (DateTimeParseException erro) {
             this.nascimento = null;
             JOptionPane.showMessageDialog(null,
-                    "<html><strong>Data de nascimento inválida!</strong><br>"
-                    + "A data deve estar no formato dd/MM/yyyy</html>",
-                    "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                    "<html><strong>Data inválida!</strong><br>"
+                    + "Prencha o campo no formato dd/MM/yyyy</html>",
+                    "Aviso - Data", JOptionPane.INFORMATION_MESSAGE);
+            return false;
         }
     }
 

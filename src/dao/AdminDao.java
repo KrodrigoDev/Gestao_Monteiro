@@ -104,6 +104,7 @@ public class AdminDao {
 
             ps.setString(1, admin.getSenha());
             ps.setString(2, admin.getEmail());
+            
             ps.setString(3, admin.getNascimento().toString());
 
             int linhaAfetada = ps.executeUpdate();
@@ -113,6 +114,7 @@ public class AdminDao {
             return linhaAfetada > 0; // Retorna true se alguma linha foi afetada (atualização bem-sucedida)
 
         } catch (SQLException erro) {
+            
             JOptionPane.showMessageDialog(null,
                     "<html><strong>Ocorreu um erro inesperado ao atualizar a senha!</strong><br>"
                     + "Detalhes: " + erro.getMessage() + "<br>"

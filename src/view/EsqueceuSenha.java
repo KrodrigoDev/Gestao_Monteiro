@@ -3,11 +3,14 @@ package view;
 import dao.AdminDao;
 import entidades.Admin;
 import entidades.Email;
+import java.awt.HeadlessException;
+import javax.mail.MessagingException;
 import javax.swing.JOptionPane;
 
 /**
  * @since 13/08/2023
  * @author Kauã Rodrigo
+ * @erro #7 pode ser algo com a entidade email
  */
 public class EsqueceuSenha extends javax.swing.JFrame {
 
@@ -134,14 +137,14 @@ public class EsqueceuSenha extends javax.swing.JFrame {
         painelVerde.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 373, -1));
 
         campoEmail.setBackground(new java.awt.Color(31, 115, 52));
-        campoEmail.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        campoEmail.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         campoEmail.setForeground(new java.awt.Color(255, 255, 255));
         campoEmail.setBorder(null);
         campoEmail.setCaretColor(new java.awt.Color(255, 255, 255));
         painelVerde.add(campoEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 84, 190, 28));
 
         campoDataNascimento.setBackground(new java.awt.Color(31, 115, 52));
-        campoDataNascimento.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        campoDataNascimento.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         campoDataNascimento.setForeground(new java.awt.Color(255, 255, 255));
         campoDataNascimento.setBorder(null);
         campoDataNascimento.setCaretColor(new java.awt.Color(255, 255, 255));
@@ -195,6 +198,7 @@ public class EsqueceuSenha extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_bntVoltarMouseClicked
 
+    // código padrão do java
     public static void main(String args[]) {
 
         try {
@@ -236,55 +240,39 @@ public class EsqueceuSenha extends javax.swing.JFrame {
     // método para atualizar a senha e envia-la no email
     public void recuperarSenha() {
         try {
-            if (campoEmail == null || campoDataNascimento == null) {
+            String email = campoEmail.getText();
+            String nascimento = campoDataNascimento.getText();
+            Admin admin = new Admin(email, nascimento, SENHA_PADRAO);
 
-                JOptionPane.showMessageDialog(null, "Preencha todos os campos", "Aviso", JOptionPane.ERROR_MESSAGE);
-                return;
-
-            } else {
-
-                String email = campoEmail.getText();
-                String nascimento = campoDataNascimento.getText();
-
-                Admin admin = new Admin(email, nascimento, SENHA_PADRAO);
-
+            if (admin.validarCamposPreenchidos(email, nascimento)) {
                 if (adminDao.atualizarSenha(admin)) {
-
-                    // fazendo a limpa 
-                    limparCampos();
-                    this.dispose();
-                   login.setVisible(true);
-
                     // Cria um novo objeto Email
                     Email emailNovaConta = new Email();
 
                     // Define os detalhes do email
                     String destinatario = campoEmail.getText().trim();
-                    String assunto = "Bem-vindo à Arena Monteiro";
+                    String assunto = "Bem-vindo à Gestão Monteiro";
                     String mensagem = "<html>Olá Administrador<br><br>"
                             + "Sua senha foi redefinida para : <strong>" + SENHA_PADRAO + "</strong><br><br>"
-                            + "Voçê poderá altera-la quando efeftuar o login</html>";
+                            + "Você poderá altera-la quando efetuar o login</html>";
 
                     // Chama o método para criar o email
                     emailNovaConta.criarEmail(destinatario, assunto, mensagem);
 
+                    // fazendo a limpa 
+                    limparCampos();
+
                     // Chama o método para enviar o email 
                     emailNovaConta.enviarEmail();
 
+                    this.dispose();
+                    login.setVisible(true);
                 } else {
-                    JOptionPane.showMessageDialog(this, "Verifique se as informações estão corretas ou se o e-mail realmente existe", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this, "O endereço de e-mail ou a data de nascimento inseridos estão incorretos", "Aviso - Recuperação", JOptionPane.INFORMATION_MESSAGE);
                 }
-
             }
-
-        } catch (Exception erro) {
-            System.out.println(erro);
-            JOptionPane.showMessageDialog(null,
-                    "<html><strong>Ocorreu um erro inesperado durante a recuperação!</strong><br>"
-                    + "Detalhes: " + erro.getMessage() + "<br>"
-                    + "Informe o código de erro #3</html>",
-                    "Erro #3",
-                    JOptionPane.ERROR_MESSAGE);
+        } catch (HeadlessException | MessagingException erro) {
+            JOptionPane.showMessageDialog(this, "Ocorreu um erro ao tentar recuperar a senha:\n" + erro.getMessage(), "Erro - Recuperação #7", JOptionPane.ERROR_MESSAGE);
         }
     }
 
