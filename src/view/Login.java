@@ -25,6 +25,7 @@ public class Login extends javax.swing.JFrame {
     // construtor
     public Login() {
         initComponents();
+        campoSenha.setEchoChar('*'); // fazendo a inicialização para evitar atrasos no click
     }
 
     // código padrão do java
