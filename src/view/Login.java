@@ -25,7 +25,7 @@ public class Login extends javax.swing.JFrame {
     // construtor
     public Login() {
         initComponents();
-        campoSenha.setEchoChar('*'); // fazendo a inicialização para evitar atrasos no click
+        campoSenha.setEchoChar('\u25cf'); // fazendo a inicialização para evitar atrasos no click
     }
 
     // código padrão do java
@@ -46,13 +46,13 @@ public class Login extends javax.swing.JFrame {
         iconUsuario = new javax.swing.JLabel();
         checkLembrarSenha = new javax.swing.JCheckBox();
         textEsqueceuSenha = new javax.swing.JLabel();
-        bntAcessar = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         textCriarConta = new javax.swing.JLabel();
         campoEmail = new javax.swing.JTextField();
         campoSenha = new javax.swing.JPasswordField();
         painelBntFechar = new javax.swing.JPanel();
         iconFechar = new javax.swing.JLabel();
+        bntAcessar = new view.BotaoPersonalizado();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Login");
@@ -148,20 +148,6 @@ public class Login extends javax.swing.JFrame {
         });
         painelVerde.add(textEsqueceuSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 422, -1, -1));
 
-        bntAcessar.setBackground(new java.awt.Color(255, 255, 255));
-        bntAcessar.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        bntAcessar.setForeground(new java.awt.Color(31, 115, 52));
-        bntAcessar.setText("ACESSAR");
-        bntAcessar.setBorder(null);
-        bntAcessar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bntAcessar.setFocusPainted(false);
-        bntAcessar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntAcessarActionPerformed(evt);
-            }
-        });
-        painelVerde.add(bntAcessar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 347, 33));
-
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -229,6 +215,24 @@ public class Login extends javax.swing.JFrame {
 
         painelVerde.add(painelBntFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 0, 40, 40));
 
+        bntAcessar.setBorder(null);
+        bntAcessar.setForeground(new java.awt.Color(31, 115, 52));
+        bntAcessar.setText("ACESSAR");
+        bntAcessar.setBorderColor(new java.awt.Color(31, 115, 52));
+        bntAcessar.setBorderPainted(false);
+        bntAcessar.setColorClick(new java.awt.Color(0, 146, 120));
+        bntAcessar.setColorOver(new java.awt.Color(255, 255, 255));
+        bntAcessar.setFocusPainted(false);
+        bntAcessar.setFocusable(false);
+        bntAcessar.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        bntAcessar.setRadius(10);
+        bntAcessar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntAcessarActionPerformed(evt);
+            }
+        });
+        painelVerde.add(bntAcessar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 470, 350, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -260,11 +264,6 @@ public class Login extends javax.swing.JFrame {
         trocarImagensIcon();
     }//GEN-LAST:event_iconSenhaMousePressed
 
-    // bnt que vai chamar o método fazerLogin 
-    private void bntAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAcessarActionPerformed
-        fazerLogin();
-    }//GEN-LAST:event_bntAcessarActionPerformed
-
     // ao passar o mouse por cima do campo a cor será alterada
     private void painelBntFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseEntered
         mudarCor(painelBntFechar, new Color(21, 80, 36));
@@ -285,6 +284,10 @@ public class Login extends javax.swing.JFrame {
         esqueceuSenha.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_textEsqueceuSenhaMouseClicked
+
+    private void bntAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAcessarActionPerformed
+        fazerLogin();
+    }//GEN-LAST:event_bntAcessarActionPerformed
 
     // código padrão do java com alterações
     public static void main(String args[]) {
@@ -345,13 +348,13 @@ public class Login extends javax.swing.JFrame {
     public void trocarImagensIcon() {
         char echoChar = campoSenha.getEchoChar();
 
-        if (echoChar == '*') {
+        if (echoChar == '\u25cf') {
             // Se a senha está oculta, torna visível
             campoSenha.setEchoChar((char) 0);
             iconSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconVisivel.png")));
         } else {
             // Se a senha está visível, torna oculta
-            campoSenha.setEchoChar('*');
+            campoSenha.setEchoChar('\u25cf');
             iconSenha.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconOcultar.png")));
         }
     }
@@ -362,7 +365,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JButton bntAcessar;
+    protected view.BotaoPersonalizado bntAcessar;
     protected javax.swing.JTextField campoEmail;
     protected javax.swing.JPasswordField campoSenha;
     protected javax.swing.JCheckBox checkLembrarSenha;

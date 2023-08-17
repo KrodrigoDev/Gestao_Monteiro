@@ -73,16 +73,15 @@ public abstract class Pessoa {
                 this.nascimento = null;
                 JOptionPane.showMessageDialog(null,
                         "<html>O ano deve estar entre " + anoInicial.getYear() + " e " + anoLimite.getYear() + "</html>",
-                        "Aviso - Data", JOptionPane.INFORMATION_MESSAGE);
+                        "Aviso - Data Inválida", JOptionPane.INFORMATION_MESSAGE);
                 return false;
             }
-            
+
         } catch (DateTimeParseException erro) {
             this.nascimento = null;
             JOptionPane.showMessageDialog(null,
-                    "<html><strong>Data inválida!</strong><br>"
-                    + "Prencha o campo no formato dd/MM/yyyy</html>",
-                    "Aviso - Data", JOptionPane.INFORMATION_MESSAGE);
+                    "<html>Prencha a data no formato <strong>dd/MM/yyyy</strong></html>",
+                    "Aviso - Data Inválida", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
     }

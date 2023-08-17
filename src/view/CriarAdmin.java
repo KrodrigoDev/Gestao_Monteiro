@@ -46,7 +46,6 @@ public class CriarAdmin extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        bntCriarConta = new javax.swing.JButton();
         textTemConta = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -59,6 +58,7 @@ public class CriarAdmin extends javax.swing.JFrame {
         campoNascimento = new javax.swing.JTextField();
         painelBntFechar = new javax.swing.JPanel();
         iconFechar = new javax.swing.JLabel();
+        bntCriarConta = new view.BotaoPersonalizado();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Criar conta");
@@ -141,20 +141,6 @@ public class CriarAdmin extends javax.swing.JFrame {
         jLabel12.setText("Data Nascimento");
         painelVerde.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 440, -1, -1));
 
-        bntCriarConta.setBackground(new java.awt.Color(255, 255, 255));
-        bntCriarConta.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        bntCriarConta.setForeground(new java.awt.Color(31, 115, 52));
-        bntCriarConta.setText("CRIAR MINHA CONTA ");
-        bntCriarConta.setBorder(null);
-        bntCriarConta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        bntCriarConta.setFocusPainted(false);
-        bntCriarConta.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bntCriarContaActionPerformed(evt);
-            }
-        });
-        painelVerde.add(bntCriarConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 549, 335, 33));
-
         textTemConta.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         textTemConta.setForeground(new java.awt.Color(255, 255, 255));
         textTemConta.setText("Já tenho uma conta !");
@@ -164,7 +150,7 @@ public class CriarAdmin extends javax.swing.JFrame {
                 textTemContaMouseClicked(evt);
             }
         });
-        painelVerde.add(textTemConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(282, 588, -1, -1));
+        painelVerde.add(textTemConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 600, -1, -1));
 
         jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
@@ -266,6 +252,24 @@ public class CriarAdmin extends javax.swing.JFrame {
 
         painelVerde.add(painelBntFechar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 0, 40, 40));
 
+        bntCriarConta.setBorder(null);
+        bntCriarConta.setForeground(new java.awt.Color(31, 115, 52));
+        bntCriarConta.setText("CRIAR MINHA CONTA");
+        bntCriarConta.setBorderColor(new java.awt.Color(31, 115, 52));
+        bntCriarConta.setBorderPainted(false);
+        bntCriarConta.setColorClick(new java.awt.Color(0, 146, 120));
+        bntCriarConta.setColorOver(new java.awt.Color(255, 255, 255));
+        bntCriarConta.setFocusPainted(false);
+        bntCriarConta.setFocusable(false);
+        bntCriarConta.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        bntCriarConta.setRadius(10);
+        bntCriarConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bntCriarContaActionPerformed(evt);
+            }
+        });
+        painelVerde.add(bntCriarConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 550, 340, 40));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -291,11 +295,6 @@ public class CriarAdmin extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_textTemContaMouseClicked
 
-    // botão que vai chamar o método criarAdmin
-    private void bntCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCriarContaActionPerformed
-        criarAdmin();
-    }//GEN-LAST:event_bntCriarContaActionPerformed
-
     // chamando o método formatarCampoNascimento
     private void campoNascimentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoNascimentoKeyTyped
         formatarCampoNascimento(campoNascimento);
@@ -313,6 +312,10 @@ public class CriarAdmin extends javax.swing.JFrame {
     private void painelBntFecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseExited
         mudarCor(painelBntFechar, new Color(31, 115, 52));
     }//GEN-LAST:event_painelBntFecharMouseExited
+
+    private void bntCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCriarContaActionPerformed
+        criarAdmin();
+    }//GEN-LAST:event_bntCriarContaActionPerformed
 
     // código padrão do java com alterações
     public static void main(String args[]) {
@@ -377,15 +380,17 @@ public class CriarAdmin extends javax.swing.JFrame {
             Admin admin = new Admin(nome, sobrenome, email, nascimento, senha, confirmarSenha);
 
             // Validações, criação e envio de email para o admin 
-            if (admin.validarCamposPreenchidos(nome, sobrenome, email, nascimento,senha, confirmarSenha)) {
-                if (adminDao.cadastrarAdmin(admin)) {
-                    limparCampos();
+            if (admin.validarCamposPreenchidos(nome, sobrenome, email, nascimento, senha, confirmarSenha)) {
+                if (admin.validarSenha(senha, confirmarSenha)) {
+                    if (adminDao.cadastrarAdmin(admin)) {
+                        limparCampos();
 
-                    admin.infoAdmin();
+                        admin.infoContaCriada();
 
-                    this.dispose();
+                        this.dispose();
 
-                    login.setVisible(true);
+                        login.setVisible(true);
+                    }
                 }
             }
 
@@ -402,7 +407,7 @@ public class CriarAdmin extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bntCriarConta;
+    private view.BotaoPersonalizado bntCriarConta;
     private javax.swing.JPasswordField campoConfirmarSenha;
     private javax.swing.JTextField campoEmail;
     private javax.swing.JTextField campoNascimento;

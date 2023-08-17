@@ -240,8 +240,8 @@ public class EsqueceuSenha extends javax.swing.JFrame {
     // método para atualizar a senha e envia-la no email
     public void recuperarSenha() {
         try {
-            String email = campoEmail.getText();
-            String nascimento = campoDataNascimento.getText();
+            String email = campoEmail.getText().trim();
+            String nascimento = campoDataNascimento.getText().trim();
             Admin admin = new Admin(email, nascimento, SENHA_PADRAO);
 
             if (admin.validarCamposPreenchidos(email, nascimento)) {
@@ -251,7 +251,7 @@ public class EsqueceuSenha extends javax.swing.JFrame {
 
                     // Define os detalhes do email
                     String destinatario = campoEmail.getText().trim();
-                    String assunto = "Bem-vindo à Gestão Monteiro";
+                    String assunto = "Gestão Monteiro";
                     String mensagem = "<html>Olá Administrador<br><br>"
                             + "Sua senha foi redefinida para : <strong>" + SENHA_PADRAO + "</strong><br><br>"
                             + "Você poderá altera-la quando efetuar o login</html>";

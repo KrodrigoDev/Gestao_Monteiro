@@ -23,9 +23,7 @@ public class Admin extends Pessoa {
 
         setEmail(email);
 
-        if (validarSenha(senha, confirmarSenha)) {
-            setSenha(senha);
-        }
+        setSenha(senha);
 
     }
 
@@ -43,7 +41,7 @@ public class Admin extends Pessoa {
     }
 
     // método para informar que o usuário foi criado com sucesso
-    public void infoAdmin() {
+    public void infoContaCriada() {
         JOptionPane.showMessageDialog(null,
                 "<html><strong>Conta criada com sucesso!</strong>",
                 "Sucesso", JOptionPane.INFORMATION_MESSAGE);
@@ -52,7 +50,7 @@ public class Admin extends Pessoa {
     // Método para verificar se os campos foram preenchidos corretamente
     public boolean validarCamposPreenchidos(String... campos) {
         for (String campo : campos) {
-            if (campo == null || campo.trim().isEmpty()) {
+            if (campo == null || campo.isEmpty()) {
                 JOptionPane.showMessageDialog(null,
                         "<html><strong>Por favor, verifique se todos os campos foram preenchidos corretamente!</strong></html>",
                         "Aviso - Preencha todos os campos",
@@ -63,7 +61,7 @@ public class Admin extends Pessoa {
         }
         return true; // faz a criação
     }
-    
+
     // Método para validar a senha
     public boolean validarSenha(String senha, String confirmarSenha) {
         if (senha.isEmpty() || confirmarSenha.isEmpty() || !senha.equals(confirmarSenha)) {

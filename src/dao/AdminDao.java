@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
  * @version 0.1
  * @erro #3 tem relação com o erro #2 ! pode ser algo na conexão do banco ou até
  * um dado errado no momento da inserção, alteração ou algo na query sql
- *
  */
 public class AdminDao {
 
@@ -50,7 +49,7 @@ public class AdminDao {
                 JOptionPane.showMessageDialog(null,
                         "<html><strong>O e-mail já existe na nossa base de dados!</strong><br>"
                         + "Por favor, cadastre um e-mail diferente para evitar duplicidade</html>",
-                        "Aviso", JOptionPane.INFORMATION_MESSAGE);
+                        "Aviso - Cadastrar Admin", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 // Em caso de outros erros SQL
                 JOptionPane.showMessageDialog(null,
@@ -107,12 +106,16 @@ public class AdminDao {
             
             ps.setString(3, admin.getNascimento().toString());
 
+            
             int linhaAfetada = ps.executeUpdate();
 
-            ps.close(); // Fecha a conexão
-
-            return linhaAfetada > 0; // Retorna true se alguma linha foi afetada (atualização bem-sucedida)
-
+            if(linhaAfetada > 0){
+                ps.close(); // Fecha a conexão
+                return true;
+            } else {
+                return false;
+            }
+            
         } catch (SQLException erro) {
             
             JOptionPane.showMessageDialog(null,

@@ -44,10 +44,11 @@ public class Conexao {
         } catch (SQLException erro) {
             JOptionPane.showMessageDialog(null,
                     "<html><strong>Ocorreu um erro durante o carregamento ! </strong> <br> Certifique-se que o banco de dados esteja ligado</html>", 
-                    "Erro de conexão #2", 
+                    "Erro ao estabelecer conexão #2", 
                     JOptionPane.ERROR_MESSAGE);
             
             return null; // Retorna null para indicar que a conexão falhou
         }
     }
+    
 }
