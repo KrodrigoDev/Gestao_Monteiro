@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
  * @since 13/08/2023
  * @author Kauã Rodrigo
  * @erro #7 pode ser algo com a entidade email
+ * @OBS : Implementar um carregamanto 
  */
 public class EsqueceuSenha extends javax.swing.JFrame {
 
@@ -242,22 +243,19 @@ public class EsqueceuSenha extends javax.swing.JFrame {
         try {
             String email = campoEmail.getText().trim();
             String nascimento = campoDataNascimento.getText().trim();
+
             Admin admin = new Admin(email, nascimento, SENHA_PADRAO);
 
-            if (admin.validarCamposPreenchidos(email, nascimento)) {
+            if (admin.validarCamposPreenchidosString(email)) {
                 if (adminDao.atualizarSenha(admin)) {
                     // Cria um novo objeto Email
                     Email emailNovaConta = new Email();
 
                     // Define os detalhes do email
                     String destinatario = campoEmail.getText().trim();
-                    String assunto = "Gestão Monteiro";
-                    String mensagem = "<html>Olá Administrador<br><br>"
-                            + "Sua senha foi redefinida para : <strong>" + SENHA_PADRAO + "</strong><br><br>"
-                            + "Você poderá altera-la quando efetuar o login</html>";
 
                     // Chama o método para criar o email
-                    emailNovaConta.criarEmail(destinatario, assunto, mensagem);
+                    emailNovaConta.criarEmail(destinatario);
 
                     // fazendo a limpa 
                     limparCampos();

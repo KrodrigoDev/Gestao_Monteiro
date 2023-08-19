@@ -412,6 +412,11 @@ public class ListaAtletas extends javax.swing.JFrame {
         bntCriarAtleta.setFocusable(false);
         bntCriarAtleta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         bntCriarAtleta.setRadius(50);
+        bntCriarAtleta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bntCriarAtletaMouseClicked(evt);
+            }
+        });
         painelBranco.add(bntCriarAtleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(609, 255, 138, 45));
 
         jSeparator5.setBackground(new java.awt.Color(0, 0, 0));
@@ -628,6 +633,13 @@ public class ListaAtletas extends javax.swing.JFrame {
             addCampoPlaceholder(campoBuscarStatus);
         }
     }//GEN-LAST:event_campoBuscarStatusFocusLost
+
+    // método para abrir a janela de criação 
+    private void bntCriarAtletaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntCriarAtletaMouseClicked
+        this.setVisible(false);
+        CriarAtleta janelaCriarAtleta = new CriarAtleta(this);
+        janelaCriarAtleta.setVisible(true);
+    }//GEN-LAST:event_bntCriarAtletaMouseClicked
 
     // código padrão do java com alterações
     public static void main(String args[]) {

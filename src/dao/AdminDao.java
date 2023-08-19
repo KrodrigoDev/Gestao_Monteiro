@@ -99,25 +99,24 @@ public class AdminDao {
         String sql = "UPDATE ADMIN SET SENHA = ? WHERE EMAIL = ? AND NASCIMENTO = ?";
 
         try {
+
+            if (admin.getNascimento() == null) {
+                return false;
+            }
+
             ps = Conexao.getConexao().prepareStatement(sql);
 
             ps.setString(1, admin.getSenha());
             ps.setString(2, admin.getEmail());
-            
+
             ps.setString(3, admin.getNascimento().toString());
 
-            
             int linhaAfetada = ps.executeUpdate();
 
-            if(linhaAfetada > 0){
-                ps.close(); // Fecha a conexão
-                return true;
-            } else {
-                return false;
-            }
-            
+            return linhaAfetada > 0;
+
         } catch (SQLException erro) {
-            
+
             JOptionPane.showMessageDialog(null,
                     "<html><strong>Ocorreu um erro inesperado ao atualizar a senha!</strong><br>"
                     + "Detalhes: " + erro.getMessage() + "<br>"

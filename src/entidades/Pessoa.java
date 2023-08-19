@@ -37,6 +37,27 @@ public abstract class Pessoa {
 
     }
 
+    // construtor com sobrecrga para lidar com a criação dos atletas
+    public Pessoa(String nome, String sobrenome) {
+        setNome(nome);
+        setSobrenome(sobrenome);
+    }
+
+    // método para calcular a idade de uma pessoa com base no seu ano de nascimento
+    public int calcularIdade(LocalDate nascimento) {
+        LocalDate anoAtual = LocalDate.now();
+        int idadeAtual = anoAtual.getYear() - nascimento.getYear();
+
+        // Verificar se já fez aniversário este ano
+        if (anoAtual.getMonthValue() < nascimento.getMonthValue()
+                || (anoAtual.getMonthValue() == nascimento.getMonthValue()
+                && anoAtual.getDayOfMonth() < nascimento.getDayOfMonth())) {
+            idadeAtual--;
+        }
+
+        return idadeAtual;
+    }
+
     // gets e sets
     public String getNome() {
         return nome;
@@ -84,20 +105,6 @@ public abstract class Pessoa {
                     "Aviso - Data Inválida", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
-    }
-
-    public int calcularIdade(LocalDate nascimento) {
-        LocalDate anoAtual = LocalDate.now();
-        int idadeAtual = anoAtual.getYear() - nascimento.getYear();
-
-        // Verificar se já fez aniversário este ano
-        if (anoAtual.getMonthValue() < nascimento.getMonthValue()
-                || (anoAtual.getMonthValue() == nascimento.getMonthValue()
-                && anoAtual.getDayOfMonth() < nascimento.getDayOfMonth())) {
-            idadeAtual--;
-        }
-
-        return idadeAtual;
     }
 
 }

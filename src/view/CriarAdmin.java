@@ -4,6 +4,7 @@ package view;
 import dao.AdminDao;
 import entidades.Admin;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -380,7 +381,7 @@ public class CriarAdmin extends javax.swing.JFrame {
             Admin admin = new Admin(nome, sobrenome, email, nascimento, senha, confirmarSenha);
 
             // Validações, criação e envio de email para o admin 
-            if (admin.validarCamposPreenchidos(nome, sobrenome, email, nascimento, senha, confirmarSenha)) {
+            if (admin.validarCamposPreenchidosString(nome, sobrenome, email)) {
                 if (admin.validarSenha(senha, confirmarSenha)) {
                     if (adminDao.cadastrarAdmin(admin)) {
                         limparCampos();
@@ -392,6 +393,11 @@ public class CriarAdmin extends javax.swing.JFrame {
                         login.setVisible(true);
                     }
                 }
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "<html><strong>Por favor, verifique se todos os campos foram preenchidos corretamente!</strong></html>",
+                        "Aviso - Preencha todos os campos",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
 
         } catch (Exception erro) {

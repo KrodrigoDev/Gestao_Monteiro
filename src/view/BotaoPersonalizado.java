@@ -9,7 +9,9 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 
 /**
- * Classe que define um botão personalizado com cores configuráveis e efeitos visuais.
+ * Classe que define um botão personalizado com cores configuráveis e efeitos
+ * visuais.
+ *
  * @autor Kauã Rodrigo
  * @since 12/08/2023
  */
@@ -73,9 +75,8 @@ public class BotaoPersonalizado extends JButton {
         g2.fillRoundRect(2, 2, getWidth() - 4, getHeight() - 4, radius, radius);
         super.paintComponent(grphcs);
     }
-    
-    // gets e sets
 
+    // gets e sets
     public boolean isOver() {
         return over;
     }

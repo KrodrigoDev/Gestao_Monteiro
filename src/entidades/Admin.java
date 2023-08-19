@@ -20,11 +20,8 @@ public class Admin extends Pessoa {
     // Construtor para criar um admin
     public Admin(String nome, String sobrenome, String email, String nascimento, String senha, String confirmarSenha) {
         super(nome, sobrenome, nascimento);
-
         setEmail(email);
-
         setSenha(senha);
-
     }
 
     // Construtor com sobrecarga para realizar login
@@ -48,14 +45,9 @@ public class Admin extends Pessoa {
     }
 
     // Método para verificar se os campos foram preenchidos corretamente
-    public boolean validarCamposPreenchidos(String... campos) {
+    public boolean validarCamposPreenchidosString(String... campos) {
         for (String campo : campos) {
             if (campo == null || campo.isEmpty()) {
-                JOptionPane.showMessageDialog(null,
-                        "<html><strong>Por favor, verifique se todos os campos foram preenchidos corretamente!</strong></html>",
-                        "Aviso - Preencha todos os campos",
-                        JOptionPane.INFORMATION_MESSAGE);
-
                 return false; // impede a criação
             }
         }
