@@ -279,31 +279,17 @@ public class Login extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_painelBntFecharMouseClicked
 
+    // método que leva para janela esqueceu a senha
     private void textEsqueceuSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_textEsqueceuSenhaMouseClicked
         EsqueceuSenha esqueceuSenha = new EsqueceuSenha(this);
         esqueceuSenha.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_textEsqueceuSenhaMouseClicked
 
+    // método que chama o fazer login
     private void bntAcessarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntAcessarActionPerformed
         fazerLogin();
     }//GEN-LAST:event_bntAcessarActionPerformed
-
-    // código padrão do java com alterações
-    public static void main(String args[]) {
-       
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Metal".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-    }
 
     // Método para logar 
     public void fazerLogin() {
@@ -321,11 +307,13 @@ public class Login extends javax.swing.JFrame {
                 String nomeAdmin = rs.getString("nome");
                 String sobrenomeAdmin = rs.getString("sobrenome");
                 LocalDate nascimentoAdmin = rs.getDate("nascimento").toLocalDate(); // toLocalDate faz a formatação da data que vem do banco de dados
-
+                int id = rs.getInt("id");
+                
                 Principal principal = new Principal();
                 principal.setNomeAdmin(nomeAdmin + " " + sobrenomeAdmin);
                 principal.setIdadeAdmin(admin.calcularIdade(nascimentoAdmin));
-
+                principal.setIdAdmin(id);
+                
                 principal.setVisible(true);
                 this.dispose();
 

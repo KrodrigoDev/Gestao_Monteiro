@@ -67,7 +67,7 @@ public class AdminDao {
     public ResultSet entrarAdmin(Admin admin) {
 
         // Query SQL para resgatar os dados na tabela "ADMIN".
-        String sql = "SELECT NOME, SOBRENOME,NASCIMENTO,EMAIL,SENHA FROM ADMIN WHERE EMAIL = ? AND SENHA = ? ";
+        String sql = "SELECT ID,NOME, SOBRENOME,NASCIMENTO,EMAIL,SENHA FROM ADMIN WHERE EMAIL = ? AND SENHA = ? ";
 
         try {
 

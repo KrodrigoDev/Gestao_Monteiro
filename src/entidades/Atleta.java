@@ -12,14 +12,21 @@ public class Atleta extends Pessoa {
 
     // atriibutos
     private String categoria, status;
-    private int contato;
+    private int idAdmin, contato;
 
     // construtor
-    public Atleta(String nome, String sobrenome, String categoria, String status, String contato) {
+    public Atleta(String nome, String sobrenome, String categoria, String contato, String idAdmin) {
         super(nome, sobrenome);
         setCategoria(categoria);
-        setStatus(status);
         setContato(contato);
+        setIdAdmin(idAdmin);
+    }
+
+    // método para informar que o usuário foi criado com sucesso
+    public void infoContaCriada() {
+        JOptionPane.showMessageDialog(null,
+                "<html><strong>Atleta criado com sucesso!</strong>",
+                "Sucesso", JOptionPane.INFORMATION_MESSAGE);
     }
 
     // gets e sets
@@ -44,12 +51,19 @@ public class Atleta extends Pessoa {
     }
 
     public void setContato(String contato) {
-        if (contato.length() > 9) {
-            this.contato = 0;
-            JOptionPane.showMessageDialog(null, "Verifique a quantidade de digitos do número fornecido");
-        } else {
+        if (contato.length() == 9) {
             this.contato = Integer.parseInt(contato);
+        } else {
+            this.contato = 0;
         }
+    }
+
+    public int getIdAdmin() {
+        return idAdmin;
+    }
+
+    public void setIdAdmin(String idAdmin) {
+        this.idAdmin = Integer.parseInt(idAdmin);
     }
 
 }

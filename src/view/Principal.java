@@ -10,6 +10,9 @@ import javax.swing.JPanel;
  */
 public class Principal extends javax.swing.JFrame {
 
+    // atributo que vai armazenar o id do admin (gambiarra que devo arrumar depois)
+    private String id;
+    
     // construtor
     public Principal() {
         initComponents();
@@ -563,22 +566,6 @@ public class Principal extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_campoMenuAtletasMouseClicked
 
-    // código padrão do java com alterações
-    public static void main(String args[]) {
-
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Metal".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-    }
-
     // método para alternar as cores dos campos
     public void mudarCor(JPanel campo, Color cor) {
         campo.setBackground(cor);
@@ -593,7 +580,15 @@ public class Principal extends javax.swing.JFrame {
     public void setIdadeAdmin(int idadeAdmin) {
         textNumIdade.setText(Integer.toString(idadeAdmin));
     }
-
+    
+    // método para mostrar o id
+    public String getIdAdmin(){
+        return id;
+    }
+    // método que vai guardar o id do admin
+    public void setIdAdmin(int id){
+        this.id = String.valueOf(id);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel campoMenuAjustes;

@@ -199,22 +199,6 @@ public class EsqueceuSenha extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_bntVoltarMouseClicked
 
-    // código padrão do java
-    public static void main(String args[]) {
-
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Metal".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EsqueceuSenha.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-    }
-
     // Método para formatar a data enquanto o usuário digita
     private void formatarCampoNascimento(javax.swing.JTextField campo) {
         String dadosAtuais = campo.getText();

@@ -44,16 +44,6 @@ public class Admin extends Pessoa {
                 "Sucesso", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    // Método para verificar se os campos foram preenchidos corretamente
-    public boolean validarCamposPreenchidosString(String... campos) {
-        for (String campo : campos) {
-            if (campo == null || campo.isEmpty()) {
-                return false; // impede a criação
-            }
-        }
-        return true; // faz a criação
-    }
-
     // Método para validar a senha
     public boolean validarSenha(String senha, String confirmarSenha) {
         if (senha.isEmpty() || confirmarSenha.isEmpty() || !senha.equals(confirmarSenha)) {

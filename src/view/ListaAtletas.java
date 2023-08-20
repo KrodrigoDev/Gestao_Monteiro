@@ -28,7 +28,7 @@ public class ListaAtletas extends javax.swing.JFrame {
         for (int i = 1; i <= 300; i++) {
             mode.addRow(new Object[]{"Kauã Rodrigo", "SUB-20", "ATIVO", "82991305810", "EM BREVE"});  // lembrar de pagar
         }
-
+        
     }
 
     // código padrão do java
@@ -641,21 +641,6 @@ public class ListaAtletas extends javax.swing.JFrame {
         janelaCriarAtleta.setVisible(true);
     }//GEN-LAST:event_bntCriarAtletaMouseClicked
 
-    // código padrão do java com alterações
-    public static void main(String args[]) {
-
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Metal".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListaAtletas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-
-    }
 
     // método para alternar as cores dos campos
     public void mudarCor(JPanel campo, Color cor) {
@@ -673,7 +658,12 @@ public class ListaAtletas extends javax.swing.JFrame {
         campoTexto.setText(null);
         campoTexto.setForeground(Color.BLACK);
     }
-
+    
+    // levando o id entre as telas ( arrumar isso por meio de uma variável global )
+    public String getTransporteId(){
+       return principal.getIdAdmin();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private view.BotaoPersonalizado bntCriarAtleta;
     private javax.swing.JTextField campoBuscarCategoria;

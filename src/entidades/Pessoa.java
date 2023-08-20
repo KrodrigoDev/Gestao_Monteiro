@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * jogadores cadastrados
  *
  * @author Kauã Rodrigo
- * @since 01/08/2023
+ * @since 20/08/2023
  * @version 0.1
  *
  */
@@ -56,6 +56,16 @@ public abstract class Pessoa {
         }
 
         return idadeAtual;
+    }
+
+    // Método para verificar se os campos foram preenchidos corretamente
+    public boolean validarCamposPreenchidosString(String... campos) {
+        for (String campo : campos) {
+            if (campo == null || campo.isEmpty() || campo.length() < 4) {
+                return false; // impede a criação
+            }
+        }
+        return true; // faz a criação
     }
 
     // gets e sets
