@@ -2,17 +2,16 @@
 
 > Status do projeto :  desenvolvimento 🏗️
 
-## Acesse a Versão Inicial do Projeto
-Clique [aqui](https://www.figma.com/file/Mu1LGR9cZThZe7wpjWipOx/Arena-Monteiro?type=design&node-id=0-1&mode=design&t=W2p3JexDMv1tQ1pC-0) para visualizar a versão Alpha do projeto no Figma.
-
 ## Lista de tarefas
-- [ ] Conexão com mysql
+- [X] Conexão com mysql
 - [ ] Documentação para com as execeções e erros
 - [ ] Criar todas as janelas 
 - [ ] Diagrama UML com todas as classes
-- [ ] Projeto lógico e físico
-- [ ] Criar um modelo de alta fidelidade no figma
+- [X] Projeto lógico e físico
+- [X] Criar um modelo de alta fidelidade no figma
 
+## Acesse a Versão Inicial do Projeto
+Clique [aqui](https://www.figma.com/file/Mu1LGR9cZThZe7wpjWipOx/Arena-Monteiro?type=design&node-id=0-1&mode=design&t=W2p3JexDMv1tQ1pC-0) para visualizar a versão Alpha do projeto no Figma.
 
 ## Projeto Físico 
 ```sql da tabela admin
@@ -32,7 +31,7 @@ nome varchar(30) not null,
 sobrenome varchar(40) not null,
 categoria enum('SUB-13','SUB-15','SUB-17', 'SUB-20') not  null,
 status enum('Ativo','Inativo') default 'Ativo',
-contato numeric(9) not null,
+contato numeric(11) unique,
 admin_id int not null,
 Foreign key(admin_id) references admin(id)
 );
