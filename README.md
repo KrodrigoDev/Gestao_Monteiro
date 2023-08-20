@@ -31,7 +31,7 @@ nome varchar(30) not null,
 sobrenome varchar(40) not null,
 categoria enum('SUB-13','SUB-15','SUB-17', 'SUB-20') not  null,
 status enum('Ativo','Inativo') default 'Ativo',
-contato numeric(9) not null,
+contato numeric(9) unique,
 admin_id int not null,
 Foreign key(admin_id) references admin(id)
 );
