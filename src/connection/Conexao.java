@@ -1,4 +1,4 @@
-package conexaomsql;
+package connection;
 
 import java.sql.Connection;
 import javax.swing.JOptionPane;

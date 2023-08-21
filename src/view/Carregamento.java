@@ -1,6 +1,6 @@
 package view;
 
-import conexaomsql.Conexao;
+import connection.Conexao;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 

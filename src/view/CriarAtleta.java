@@ -1,7 +1,7 @@
 package view;
 
-import dao.AtletaDao;
-import entidades.Atleta;
+import modeldao.AtletaDao;
+import model.Atleta;
 import java.awt.Color;
 import java.awt.HeadlessException;
 import javax.swing.JComponent;
@@ -55,8 +55,8 @@ public class CriarAtleta extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         campoNome = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        campoTelefone = new javax.swing.JTextField();
         separadorText5 = new javax.swing.JSeparator();
+        campoTelefone = new javax.swing.JFormattedTextField();
         painelBranco = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         painelBntFechar = new javax.swing.JPanel();
@@ -195,19 +195,24 @@ public class CriarAtleta extends javax.swing.JFrame {
         jLabel5.setText("Telefone");
         painelVerde.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 80, -1));
 
-        campoTelefone.setBackground(new java.awt.Color(31, 115, 52));
-        campoTelefone.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        campoTelefone.setForeground(new java.awt.Color(255, 255, 255));
-        campoTelefone.setBorder(null);
-        campoTelefone.setCaretColor(new java.awt.Color(255, 255, 255));
-        painelVerde.add(campoTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 210, 30));
-
         separadorText5.setBackground(new java.awt.Color(31, 115, 52));
         separadorText5.setForeground(new java.awt.Color(255, 255, 255));
         separadorText5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         separadorText5.setEnabled(false);
         separadorText5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         painelVerde.add(separadorText5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, 215, 12));
+
+        campoTelefone.setBackground(new java.awt.Color(31, 115, 52));
+        campoTelefone.setBorder(null);
+        campoTelefone.setForeground(new java.awt.Color(255, 255, 255));
+        try {
+            campoTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        campoTelefone.setCaretColor(new java.awt.Color(255, 255, 255));
+        campoTelefone.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        painelVerde.add(campoTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 210, 30));
 
         painelBranco.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -337,6 +342,8 @@ public class CriarAtleta extends javax.swing.JFrame {
                 if (atletaDao.cadastrarAdmin(atleta)) {
                     limparCampos();
                     atleta.infoContaCriada();
+                    listaAtleta.tabelaAtletas();
+                    listaAtleta.atualizarQuantidades();
                 }
 
             } else {
@@ -361,7 +368,7 @@ public class CriarAtleta extends javax.swing.JFrame {
     private view.BotaoPersonalizado bntCadastrar;
     private javax.swing.JTextField campoNome;
     private javax.swing.JTextField campoSobrenome;
-    private javax.swing.JTextField campoTelefone;
+    private javax.swing.JFormattedTextField campoTelefone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;

@@ -1,8 +1,8 @@
 package view;
 
-import dao.AdminDao;
-import entidades.Admin;
-import entidades.Email;
+import modeldao.AdminDao;
+import model.Admin;
+import model.Email;
 import java.awt.HeadlessException;
 import javax.mail.MessagingException;
 import javax.swing.JOptionPane;

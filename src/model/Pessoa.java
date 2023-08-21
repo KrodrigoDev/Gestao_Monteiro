@@ -1,4 +1,4 @@
-package entidades;
+package model;
 
 import java.time.LocalDate;
 import java.time.Month;
@@ -61,7 +61,7 @@ public abstract class Pessoa {
     // Método para verificar se os campos foram preenchidos corretamente
     public boolean validarCamposPreenchidosString(String... campos) {
         for (String campo : campos) {
-            if (campo == null || campo.isEmpty() || campo.length() < 4) {
+            if (campo.isEmpty() || campo == null) {
                 return false; // impede a criação
             }
         }

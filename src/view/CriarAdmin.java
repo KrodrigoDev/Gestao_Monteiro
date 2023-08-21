@@ -1,8 +1,8 @@
 package view;
 
 // Importações necessárias
-import dao.AdminDao;
-import entidades.Admin;
+import modeldao.AdminDao;
+import model.Admin;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -21,7 +21,7 @@ public class CriarAdmin extends javax.swing.JFrame {
 
     // Objeto da classe login ( vai ser usado para deixar a tela anterior vísivel )
     private Login login;
-
+    
     // Construtor
     public CriarAdmin(Login login) {
         initComponents();
@@ -56,10 +56,10 @@ public class CriarAdmin extends javax.swing.JFrame {
         campoConfirmarSenha = new javax.swing.JPasswordField();
         campoSenha = new javax.swing.JPasswordField();
         jLabel13 = new javax.swing.JLabel();
-        campoNascimento = new javax.swing.JTextField();
         painelBntFechar = new javax.swing.JPanel();
         iconFechar = new javax.swing.JLabel();
         bntCriarConta = new view.BotaoPersonalizado();
+        campoNascimento = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Criar conta");
@@ -207,19 +207,6 @@ public class CriarAdmin extends javax.swing.JFrame {
         jLabel13.setText("________________________________________");
         painelVerde.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 490, -1, -1));
 
-        campoNascimento.setBackground(new java.awt.Color(31, 115, 52));
-        campoNascimento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        campoNascimento.setForeground(new java.awt.Color(255, 255, 255));
-        campoNascimento.setBorder(null);
-        campoNascimento.setCaretColor(new java.awt.Color(255, 255, 255));
-        campoNascimento.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        campoNascimento.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                campoNascimentoKeyTyped(evt);
-            }
-        });
-        painelVerde.add(campoNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 470, 230, 30));
-
         painelBntFechar.setBackground(new java.awt.Color(31, 115, 52));
         painelBntFechar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -271,6 +258,18 @@ public class CriarAdmin extends javax.swing.JFrame {
         });
         painelVerde.add(bntCriarConta, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 550, 340, 40));
 
+        campoNascimento.setBackground(new java.awt.Color(31, 115, 52));
+        campoNascimento.setBorder(null);
+        campoNascimento.setForeground(new java.awt.Color(255, 255, 255));
+        try {
+            campoNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        campoNascimento.setCaretColor(new java.awt.Color(255, 255, 255));
+        campoNascimento.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        painelVerde.add(campoNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 470, 230, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -296,11 +295,6 @@ public class CriarAdmin extends javax.swing.JFrame {
         login.setVisible(true);
     }//GEN-LAST:event_textTemContaMouseClicked
 
-    // chamando o método formatarCampoNascimento
-    private void campoNascimentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoNascimentoKeyTyped
-        formatarCampoNascimento(campoNascimento);
-    }//GEN-LAST:event_campoNascimentoKeyTyped
-
     // método para fechar o programa completamente (Essa outra forma de se fechar é pq tem a janela de login oculta)
     private void painelBntFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseClicked
         System.exit(0);
@@ -317,29 +311,6 @@ public class CriarAdmin extends javax.swing.JFrame {
     private void bntCriarContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCriarContaActionPerformed
         criarAdmin();
     }//GEN-LAST:event_bntCriarContaActionPerformed
-
-    // Método para formatar a data enquanto o usuário digita
-    private void formatarCampoNascimento(javax.swing.JTextField campo) {
-        String dadosAtuais = campo.getText();
-        int tamanho = dadosAtuais.length();
-
-        if (tamanho > 0) {
-            // Verifica se o caractere digitado pelo usuário é um dígito numérico (0 a 9)
-            if (Character.isDigit(dadosAtuais.charAt(tamanho - 1))) {
-                // Se o tamanho atual for 2 ou 5 (posições onde precisamos adicionar "/")
-                if (tamanho == 2 || tamanho == 5) {
-                    campo.setText(dadosAtuais + '/');
-                }
-            } else {
-                // Se o caractere digitado pelo usuário não for um dígito numérico (0 a 9)
-                // Verifica se o tamanho atual é 3 ou 6 (posições onde a barra "/" precisa ser removida)
-                if (tamanho == 3 || tamanho == 6) {
-                    // Remove o último caractere (a barra "/") dos dados atuais digitados no campo de nascimento
-                    campo.setText(dadosAtuais.substring(0, tamanho - 1));
-                }
-            }
-        }
-    }
 
     // Método para limpar os campos após cada criação de conta
     public void limparCampos() {
@@ -400,7 +371,7 @@ public class CriarAdmin extends javax.swing.JFrame {
     private view.BotaoPersonalizado bntCriarConta;
     private javax.swing.JPasswordField campoConfirmarSenha;
     private javax.swing.JTextField campoEmail;
-    private javax.swing.JTextField campoNascimento;
+    private javax.swing.JFormattedTextField campoNascimento;
     private javax.swing.JTextField campoNome;
     private javax.swing.JPasswordField campoSenha;
     private javax.swing.JTextField campoSobrenome;

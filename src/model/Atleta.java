@@ -1,4 +1,4 @@
-package entidades;
+package model;
 
 import javax.swing.JOptionPane;
 
@@ -11,8 +11,8 @@ import javax.swing.JOptionPane;
 public class Atleta extends Pessoa {
 
     // atriibutos
-    private String categoria, status;
-    private int idAdmin, contato;
+    private String categoria, status, contato;
+    private int idAdmin ;
 
     // construtor
     public Atleta(String nome, String sobrenome, String categoria, String contato, String idAdmin) {
@@ -20,6 +20,11 @@ public class Atleta extends Pessoa {
         setCategoria(categoria);
         setContato(contato);
         setIdAdmin(idAdmin);
+    }
+    
+    // construtor com sobracarga 
+    public Atleta(){
+        
     }
 
     // método para informar que o usuário foi criado com sucesso
@@ -46,15 +51,16 @@ public class Atleta extends Pessoa {
         this.status = status;
     }
 
-    public int getContato() {
+    public String getContato() {
         return contato;
     }
 
     public void setContato(String contato) {
-        if (contato.length() == 9) {
-            this.contato = Integer.parseInt(contato);
+        if (contato.length() == 14) {
+            this.contato = contato;
         } else {
-            this.contato = 0;
+            this.contato = null;
+            JOptionPane.showMessageDialog(null, "<html>Certifique-se que o número de telefone tenha 9 digitos<br>Exemplo : <strong>991305810</strong></html>");
         }
     }
 

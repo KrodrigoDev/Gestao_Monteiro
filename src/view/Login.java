@@ -1,7 +1,7 @@
 package view;
 
-import dao.AdminDao;
-import entidades.Admin;
+import modeldao.AdminDao;
+import model.Admin;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;

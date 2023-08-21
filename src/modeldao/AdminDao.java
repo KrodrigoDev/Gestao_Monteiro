@@ -1,7 +1,7 @@
-package dao;
+package modeldao;
 
-import conexaomsql.Conexao;
-import entidades.Admin;
+import connection.Conexao;
+import model.Admin;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

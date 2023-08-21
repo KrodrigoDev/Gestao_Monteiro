@@ -1,9 +1,11 @@
 package view;
 
+import modeldao.AtletaDao;
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import model.Atleta;
 
 /**
  * @author Kauã Rodrigo
@@ -12,8 +14,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ListaAtletas extends javax.swing.JFrame {
 
-    // Objeto da classe principal
+    // Objeto da classe principal e do atletaDao
     private Principal principal;
+    private AtletaDao atletaDao = new AtletaDao();
 
     // construtor
     public ListaAtletas(Principal principal) {
@@ -23,12 +26,8 @@ public class ListaAtletas extends javax.swing.JFrame {
 
         tabelaAtletas.rolamentoDaTabela(rolamentoTabela);
 
-        DefaultTableModel mode = (DefaultTableModel) tabelaAtletas.getModel(); // lembrar de pagar
-
-        for (int i = 1; i <= 300; i++) {
-            mode.addRow(new Object[]{"Kauã Rodrigo", "SUB-20", "ATIVO", "82991305810", "EM BREVE"});  // lembrar de pagar
-        }
-        
+        tabelaAtletas();
+        atualizarQuantidades();
     }
 
     // código padrão do java
@@ -641,7 +640,6 @@ public class ListaAtletas extends javax.swing.JFrame {
         janelaCriarAtleta.setVisible(true);
     }//GEN-LAST:event_bntCriarAtletaMouseClicked
 
-
     // método para alternar as cores dos campos
     public void mudarCor(JPanel campo, Color cor) {
         campo.setBackground(cor);
@@ -658,12 +656,39 @@ public class ListaAtletas extends javax.swing.JFrame {
         campoTexto.setText(null);
         campoTexto.setForeground(Color.BLACK);
     }
-    
+
     // levando o id entre as telas ( arrumar isso por meio de uma variável global )
-    public String getTransporteId(){
-       return principal.getIdAdmin();
+    public String getTransporteId() {
+        return principal.getIdAdmin();
     }
-    
+
+    // Método que vai alimentar a tabela com itens do banco de dados
+    public void tabelaAtletas() {
+        DefaultTableModel modelo = (DefaultTableModel) tabelaAtletas.getModel(); // lembrar de pagar
+        modelo.setNumRows(0);
+        for (Atleta atleta : atletaDao.listaAtletas()) { // forEach para percorrer a listaDao
+
+            modelo.addRow(new Object[]{ // adicionando linha 
+                atleta.getNome() +" "+ atleta.getSobrenome(),
+                atleta.getCategoria(),
+                atleta.getStatus(),
+                atleta.getContato()
+            });
+        }
+    }
+
+    // método com todas as quantidades de atletas cadastrados 
+    public void atualizarQuantidades() {
+        int quantidadeAtivos = atletaDao.contarAtletasPorStatus("Ativo");
+        int quantidadeInativos = atletaDao.contarAtletasPorStatus("Inativo");
+        int quantidadeTotal = atletaDao.contarTotalAtletas();
+
+        quantidadeAtletasAtivos.setText(String.valueOf(quantidadeAtivos));
+        quantidadeAtletasInativos.setText(String.valueOf(quantidadeInativos));
+        quantidadeTotalAtletas.setText(String.valueOf(quantidadeTotal));
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private view.BotaoPersonalizado bntCriarAtleta;
     private javax.swing.JTextField campoBuscarCategoria;
