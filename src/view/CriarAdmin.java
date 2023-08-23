@@ -4,7 +4,7 @@ package view;
 import modeldao.AdminDao;
 import model.Admin;
 import java.awt.Color;
-import javax.swing.JOptionPane;
+import java.awt.HeadlessException;
 import javax.swing.JPanel;
 
 /**
@@ -16,8 +16,9 @@ import javax.swing.JPanel;
  */
 public class CriarAdmin extends javax.swing.JFrame {
 
-    // Objetos da classes AdminDao 
+    // Objetos de classes 
     AdminDao adminDao = new AdminDao();
+    MensagensAdmin mensagens = new MensagensAdmin();
 
     // Objeto da classe login ( vai ser usado para deixar a tela anterior vísivel )
     private Login login;
@@ -341,7 +342,7 @@ public class CriarAdmin extends javax.swing.JFrame {
                     if (adminDao.cadastrarAdmin(admin)) {
                         limparCampos();
 
-                        admin.infoContaCriada();
+                        mensagens.TipoMensagemCriarContas(3);
 
                         this.dispose();
 
@@ -349,14 +350,11 @@ public class CriarAdmin extends javax.swing.JFrame {
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(null,
-                        "<html><strong>Por favor, verifique se todos os campos foram preenchidos corretamente!</strong></html>",
-                        "Aviso - Preencha todos os campos",
-                        JOptionPane.INFORMATION_MESSAGE);
+                mensagens.TipoMensagemCriarContas(1);
             }
 
-        } catch (Exception erro) {
-            // implementar algo aqui
+        } catch (HeadlessException erro) {
+            mensagens.TipoMensagemCriarContas(2);
         }
 
     }

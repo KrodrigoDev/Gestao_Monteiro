@@ -3,20 +3,18 @@ package view;
 import modeldao.AdminDao;
 import model.Admin;
 import model.Email;
-import java.awt.HeadlessException;
 import javax.mail.MessagingException;
-import javax.swing.JOptionPane;
 
 /**
  * @since 13/08/2023
  * @author Kauã Rodrigo
- * @erro #7 pode ser algo com a entidade email
- * @OBS : Implementar um carregamanto 
+ * @OBS : Implementar um carregamanto
  */
 public class EsqueceuSenha extends javax.swing.JFrame {
 
-    // Objetos da classes AdminDao
+    // Objetos de classes
     AdminDao adminDao = new AdminDao();
+    MensagensAdmin mensagens = new MensagensAdmin();
 
     // constante que vai definir a minha senha padrão
     private final String SENHA_PADRAO = "ArenaMonteiro2024";
@@ -250,11 +248,11 @@ public class EsqueceuSenha extends javax.swing.JFrame {
                     this.dispose();
                     login.setVisible(true);
                 } else {
-                    JOptionPane.showMessageDialog(this, "O endereço de e-mail ou a data de nascimento inseridos estão incorretos", "Aviso - Recuperação", JOptionPane.INFORMATION_MESSAGE);
+                    mensagens.TipoMensagemEsqueceuSenha(1);
                 }
             }
-        } catch (HeadlessException | MessagingException erro) {
-            JOptionPane.showMessageDialog(this, "Ocorreu um erro ao tentar recuperar a senha:\n" + erro.getMessage(), "Erro - Recuperação #7", JOptionPane.ERROR_MESSAGE);
+        } catch (MessagingException erro) {
+            mensagens.TipoMensagemEsqueceuSenha(2);
         }
     }
 

@@ -1,25 +1,27 @@
 package view;
 
+import controller.BytesAdmin;
 import modeldao.AtletaDao;
 import model.Atleta;
 import java.awt.Color;
 import java.awt.HeadlessException;
 import javax.swing.JComponent;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
- *
  * @author Kauã Rodrigo
  * @since 19/08/2023
  * @version 0.1
  */
 public class CriarAtleta extends javax.swing.JFrame {
 
-    // Objeto da classe ListaAtleta e atletaDao
-    private ListaAtletas listaAtleta;
-    private AtletaDao atletaDao = new AtletaDao();
+    // Objeto de classes
+     ListaAtletas listaAtleta;
+     AtletaDao atletaDao = new AtletaDao();
+     BytesAdmin bytesAdmin = new BytesAdmin();
+     MensagensAdmin mensagens = new MensagensAdmin();
+    
 
     // construtor
     public CriarAtleta(ListaAtletas listaAtleta) {
@@ -27,7 +29,7 @@ public class CriarAtleta extends javax.swing.JFrame {
 
         this.listaAtleta = listaAtleta;
 
-        textIdAdmin.setText(listaAtleta.getTransporteId());  // id que veio do admin
+        bytesAdmin.lerBytes(textIdAdmin);
 
         mudarCoresSpinner(); // inicilizando a mudança de cores
     }
@@ -341,19 +343,16 @@ public class CriarAtleta extends javax.swing.JFrame {
 
                 if (atletaDao.cadastrarAdmin(atleta)) {
                     limparCampos();
-                    atleta.infoContaCriada();
+                    mensagens.TipoMensagemCriarContas(3);
                     listaAtleta.tabelaAtletas();
                     listaAtleta.atualizarQuantidades();
                 }
 
             } else {
-                JOptionPane.showMessageDialog(this,
-                        "<html><strong>Por favor, verifique se todos os campos foram preenchidos corretamente!</strong></html>",
-                        "Aviso - Preencha todos os campos",
-                        JOptionPane.INFORMATION_MESSAGE);
+                mensagens.TipoMensagemCriarContas(1);
             }
         } catch (HeadlessException erro) {
-            JOptionPane.showMessageDialog(this, "Ocorreu um erro inesperado durante a criação do atleta", "Erro - Criar Atleta", JOptionPane.ERROR_MESSAGE);
+            mensagens.TipoMensagemCriarContas(2);
         }
     }
 

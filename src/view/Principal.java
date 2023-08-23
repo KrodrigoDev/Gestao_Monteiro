@@ -9,9 +9,6 @@ import javax.swing.JPanel;
  * @version 0.1
  */
 public class Principal extends javax.swing.JFrame {
-
-    // atributo que vai armazenar o id do admin (gambiarra que devo arrumar depois)
-    private String id;
     
     // construtor
     public Principal() {
@@ -579,15 +576,6 @@ public class Principal extends javax.swing.JFrame {
     // método para recuperar a idade do admin
     public void setIdadeAdmin(int idadeAdmin) {
         textNumIdade.setText(Integer.toString(idadeAdmin));
-    }
-    
-    // método para mostrar o id
-    public String getIdAdmin(){
-        return id;
-    }
-    // método que vai guardar o id do admin
-    public void setIdAdmin(int id){
-        this.id = String.valueOf(id);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

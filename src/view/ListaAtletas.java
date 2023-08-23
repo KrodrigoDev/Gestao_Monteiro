@@ -15,8 +15,8 @@ import model.Atleta;
 public class ListaAtletas extends javax.swing.JFrame {
 
     // Objeto da classe principal e do atletaDao
-    private Principal principal;
-    private AtletaDao atletaDao = new AtletaDao();
+    Principal principal;
+    AtletaDao atletaDao = new AtletaDao();
 
     // construtor
     public ListaAtletas(Principal principal) {
@@ -655,11 +655,6 @@ public class ListaAtletas extends javax.swing.JFrame {
         campoTexto.requestFocus();
         campoTexto.setText(null);
         campoTexto.setForeground(Color.BLACK);
-    }
-
-    // levando o id entre as telas ( arrumar isso por meio de uma variável global )
-    public String getTransporteId() {
-        return principal.getIdAdmin();
     }
 
     // Método que vai alimentar a tabela com itens do banco de dados

@@ -9,7 +9,6 @@ import java.sql.SQLException;
  * @since 30/07/2023
  * @author Kauã Rodrigo
  * @version 0.1
- * @erro #2 Pode ser algo no drive da conexão ou algum atributo da classe
  */
 public class Conexao {
 

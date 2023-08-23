@@ -7,16 +7,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JOptionPane;
+import view.MensagensAdmin;
 
 /**
  * @since 20/08/2023
  * @author Kauã Rodrigo
  * @version 0.1
- * @erro #3 tem relação com o erro #2 ! pode ser algo na conexão do banco ou até
- * um dado errado no momento da inserção, alteração ou algo na query sql
  */
 public class AtletaDao {
+    
+    // objeto de classe
+    MensagensAdmin mensagens = new MensagensAdmin();
 
     // atributo para lidar com a inserção e consultas
     PreparedStatement ps = null;
@@ -52,17 +53,10 @@ public class AtletaDao {
 
         } catch (SQLException erro) {
             if (erro.getErrorCode() == 1062) { // Código de erro para duplicidade na chave primária ou única
-                JOptionPane.showMessageDialog(null,
-                        "<html><strong>O contato já existe na nossa base de dados!</strong><br>"
-                        + "Por favor, cadastre um número diferente para evitar duplicidade</html>",
-                        "Aviso - Cadastrar Atleta", JOptionPane.INFORMATION_MESSAGE);
+                mensagens.TipoMensagemAtletaDao(1);
             } else {
                 // Em caso de outros erros SQL
-                JOptionPane.showMessageDialog(null,
-                        "<html><strong>Ocorreu um erro inesperado durante o cadastro!</strong><br>"
-                        + "Detalhes: " + erro.getMessage() + "<br>"
-                        + "Informe o código de erro #3</html>",
-                        "Erro #3", JOptionPane.ERROR_MESSAGE);
+                mensagens.TipoMensagemAtletaDao(2);
             }
             return false;
         }
@@ -98,7 +92,7 @@ public class AtletaDao {
             ps.close();
 
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, erro);
+            mensagens.TipoMensagemAtletaDao(2);
         }
 
         return atletas;
@@ -120,7 +114,7 @@ public class AtletaDao {
 
             ps.close();
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, erro);
+            mensagens.TipoMensagemAtletaDao(2);
         }
 
         return 0;
@@ -141,7 +135,7 @@ public class AtletaDao {
 
             ps.close();
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null, erro);
+            mensagens.TipoMensagemAtletaDao(2);
         }
 
         return 0;

@@ -5,26 +5,27 @@ import model.Admin;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
+import view.MensagensAdmin;
 
 /**
  * @since 06/08/2023
  * @author Kauã Rodrigo
  * @version 0.1
- * @erro #3 tem relação com o erro #2 ! pode ser algo na conexão do banco ou até
- * um dado errado no momento da inserção, alteração ou algo na query sql
  */
 public class AdminDao {
 
     // atributo para lidar com a inserção e consultas
     PreparedStatement ps = null;
 
+    // objeto da classe
+    MensagensAdmin mensagens = new MensagensAdmin();
+
     // método para realizar o cadastro do administrador
     public boolean cadastrarAdmin(Admin admin) {
 
         // Query SQL para inserir os dados na tabela "ADMIN".
         String sql = "INSERT INTO ADMIN (NOME,SOBRENOME,SENHA,NASCIMENTO,EMAIL) VALUES (?,?,?,?,?)";
-
+        
         try {
 
             // Obtém a conexão com o banco e insere os registros
@@ -39,28 +40,21 @@ public class AdminDao {
 
             // Executa a atualização no banco de dados.
             ps.executeUpdate();
-
+            
             ps.close(); // vai encerrar a conexão
 
             return true;
-
+            
         } catch (SQLException erro) {
             if (erro.getErrorCode() == 1062) { // Código de erro para duplicidade na chave primária ou única
-                JOptionPane.showMessageDialog(null,
-                        "<html><strong>O e-mail já existe na nossa base de dados!</strong><br>"
-                        + "Por favor, cadastre um e-mail diferente para evitar duplicidade</html>",
-                        "Aviso - Cadastrar Admin", JOptionPane.INFORMATION_MESSAGE);
+                mensagens.TipoMensagemAdminDao(1);
             } else {
                 // Em caso de outros erros SQL
-                JOptionPane.showMessageDialog(null,
-                        "<html><strong>Ocorreu um erro inesperado durante o cadastro!</strong><br>"
-                        + "Detalhes: " + erro.getMessage() + "<br>"
-                        + "Informe o código de erro #3</html>",
-                        "Erro #3", JOptionPane.ERROR_MESSAGE);
+                mensagens.TipoMensagemAdminDao(2);
             }
             return false;
         }
-
+        
     }
 
     // método para fazer login
@@ -68,9 +62,9 @@ public class AdminDao {
 
         // Query SQL para resgatar os dados na tabela "ADMIN".
         String sql = "SELECT ID,NOME, SOBRENOME,NASCIMENTO,EMAIL,SENHA FROM ADMIN WHERE EMAIL = ? AND SENHA = ? ";
-
+        
         try {
-
+            
             ps = Conexao.getConexao().prepareStatement(sql);
 
             // preenchendo os valores
@@ -79,51 +73,42 @@ public class AdminDao {
 
             // executando a query no banco de dados
             ResultSet resultadoConsulta = ps.executeQuery();
-
+            
             return resultadoConsulta;
-
+            
         } catch (SQLException erro) {
             // Em caso de outros erros SQL
-            JOptionPane.showMessageDialog(null,
-                    "<html><strong>Ocorreu um erro inesperado durante o login!</strong><br>"
-                    + "Detalhes: " + erro.getMessage() + "<br>"
-                    + "Informe o código de erro #3</html>",
-                    "Erro #3", JOptionPane.ERROR_MESSAGE);
+            mensagens.TipoMensagemAdminDao(2);
             return null;
         }
-
+        
     }
 
     // método para atualizar a senha do administrador
     public boolean atualizarSenha(Admin admin) {
         String sql = "UPDATE ADMIN SET SENHA = ? WHERE EMAIL = ? AND NASCIMENTO = ?";
-
+        
         try {
-
+            
             if (admin.getNascimento() == null) {
                 return false;
             }
-
+            
             ps = Conexao.getConexao().prepareStatement(sql);
-
+            
             ps.setString(1, admin.getSenha());
             ps.setString(2, admin.getEmail());
-
+            
             ps.setString(3, admin.getNascimento().toString());
-
+            
             int linhaAfetada = ps.executeUpdate();
-
+            
             return linhaAfetada > 0;
-
+            
         } catch (SQLException erro) {
-
-            JOptionPane.showMessageDialog(null,
-                    "<html><strong>Ocorreu um erro inesperado ao atualizar a senha!</strong><br>"
-                    + "Detalhes: " + erro.getMessage() + "<br>"
-                    + "Informe o código de erro #3</html>",
-                    "Erro #3", JOptionPane.ERROR_MESSAGE);
+            mensagens.TipoMensagemAdminDao(2);
             return false;
         }
     }
-
+    
 }

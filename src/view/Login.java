@@ -1,26 +1,25 @@
 package view;
 
+import controller.BytesAdmin;
 import modeldao.AdminDao;
 import model.Admin;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  * @author Kauã Rodrigo
  * @version 0.1
  * @since 30/07/2023
- * @erro #3 tem relação com o erro #2 ! pode ser algo na conexão do banco ou até
- * um dado errado no momento da inserção. ( Verificar o AdminDao e o banco de
- * dados
  */
 public class Login extends javax.swing.JFrame {
 
-    // Objetos da classes AdminDao
+    // Objetos de classes 
     AdminDao adminDao = new AdminDao();
+    BytesAdmin bytesAdmin = new BytesAdmin();
+    MensagensAdmin mensagens = new MensagensAdmin();
 
     // construtor
     public Login() {
@@ -308,27 +307,23 @@ public class Login extends javax.swing.JFrame {
                 String sobrenomeAdmin = rs.getString("sobrenome");
                 LocalDate nascimentoAdmin = rs.getDate("nascimento").toLocalDate(); // toLocalDate faz a formatação da data que vem do banco de dados
                 int id = rs.getInt("id");
-                
+
+                // Armazenar o ID em um arquivo de texto
+                bytesAdmin.pegarIdPorByte(Integer.toString(id)); // Converte o ID para String
+
                 Principal principal = new Principal();
                 principal.setNomeAdmin(nomeAdmin + " " + sobrenomeAdmin);
                 principal.setIdadeAdmin(admin.calcularIdade(nascimentoAdmin));
-                principal.setIdAdmin(id);
-                
+
                 principal.setVisible(true);
                 this.dispose();
 
             } else {
-                JOptionPane.showMessageDialog(null,
-                        "Verififique o e-mail ou senha informados e tente novamente.",
-                        "Aviso - Login", JOptionPane.ERROR_MESSAGE);
+                mensagens.TipoMensagemLogin(1);
             }
 
         } catch (SQLException erro) {
-            JOptionPane.showMessageDialog(null,
-                    "<html><strong>Ocorreu um erro inesperado durante o login!</strong><br>"
-                    + "Detalhes: " + erro.getMessage() + "<br>"
-                    + "Informe o código de erro #3</html>",
-                    "Erro #3", JOptionPane.ERROR_MESSAGE);
+            mensagens.TipoMensagemLogin(2);
         }
     }
 

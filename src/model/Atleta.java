@@ -27,13 +27,6 @@ public class Atleta extends Pessoa {
         
     }
 
-    // método para informar que o usuário foi criado com sucesso
-    public void infoContaCriada() {
-        JOptionPane.showMessageDialog(null,
-                "<html><strong>Atleta criado com sucesso!</strong>",
-                "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-    }
-
     // gets e sets
     public String getCategoria() {
         return categoria;

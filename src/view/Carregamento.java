@@ -1,7 +1,6 @@
 package view;
 
 import connection.Conexao;
-import javax.swing.JOptionPane;
 import java.sql.Connection;
 
 /**
@@ -9,7 +8,6 @@ import java.sql.Connection;
  * @author Kauã Rodrigo
  * @version 0.1
  * @since 01/08/2023
- * @erro #5 algo está de errado ao tentar criar a tela de carregamento
  *
  */
 public class Carregamento extends javax.swing.JFrame {
@@ -95,7 +93,7 @@ public class Carregamento extends javax.swing.JFrame {
 
     // código padrão do java
     public static void main(String args[]) {
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Metal".equals(info.getName())) {
@@ -106,7 +104,7 @@ public class Carregamento extends javax.swing.JFrame {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Carregamento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-       
+
         // chamando o método gerenciamentoCarregamento
         gerenciamentoCarregamento();
 
@@ -128,21 +126,20 @@ public class Carregamento extends javax.swing.JFrame {
                 carregamento.nPorcentagem.setText(Integer.toString(contador) + "%"); // colocando o valor da progresso no nPorcentagem
             }
 
+            // Fechando a janela após o loop ser concluído
+            carregamento.dispose();
+
+            // Verificar a conexão com o banco de dados
+            Connection conexao = Conexao.getConexao();
+            if (conexao != null) {
+                // A conexão foi bem-sucedida e a próxima janela tela vai ser aberta
+                Login login = new Login();
+                login.setVisible(true);
+            }
+
         } catch (Exception erro) {
-            JOptionPane.showMessageDialog(carregamento, "<html><strong>Ocorreu um erro durante o carregamento ! </strong> <br> Informe o código de erro #5</html>" + erro.getMessage(), "Erro  #5", JOptionPane.ERROR_MESSAGE);
+           
         }
-
-        // Fechando a janela após o loop ser concluído
-        carregamento.dispose();
-
-        // Verificar a conexão com o banco de dados
-        Connection conexao = Conexao.getConexao();
-        if (conexao != null) {
-            // A conexão foi bem-sucedida e a próxima janela tela vai ser aberta
-            Login login = new Login();
-            login.setVisible(true);
-        }
-
     }
 
 

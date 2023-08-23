@@ -37,13 +37,6 @@ public class Admin extends Pessoa {
         setSenha(senha);
     }
 
-    // método para informar que o usuário foi criado com sucesso
-    public void infoContaCriada() {
-        JOptionPane.showMessageDialog(null,
-                "<html><strong>Conta criada com sucesso!</strong>",
-                "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-    }
-
     // Método para validar a senha
     public boolean validarSenha(String senha, String confirmarSenha) {
         if (senha.isEmpty() || confirmarSenha.isEmpty() || !senha.equals(confirmarSenha)) {
