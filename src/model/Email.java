@@ -19,7 +19,8 @@ import javax.swing.JOptionPane;
  */
 public class Email {
 
-
+    private final String EMAIL_REMETENTE = "gestaomonteiro2023@gmail.com";
+    private final String SENHA_EMAIL = "qohadzqzhqdhapft";
     private String emailDestinatario;
     private final String assunto = "Gestão Monteiro";
     private final String mensagem = "<html>Olá Administrador<br><br>"
