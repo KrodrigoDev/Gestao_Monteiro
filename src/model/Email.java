@@ -11,13 +11,16 @@ import javax.mail.Session;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.swing.JOptionPane;
+import view.Mensagens;
 
 /**
  *
  * @author Kauã Rodrigo
  */
 public class Email {
+
+    // objeto da classe Mensagens
+    Mensagens mensagens = new Mensagens();
 
     private final String EMAIL_REMETENTE = "gestaomonteiro2023@gmail.com";
     private final String SENHA_EMAIL = "qohadzqzhqdhapft";
@@ -71,9 +74,7 @@ public class Email {
             mTransport.sendMessage(mCorreio, mCorreio.getRecipients(Message.RecipientType.TO));
             mTransport.close();
 
-            String mensagem = "<html><strong>Verifique seu email para visualizar a senha atualizada</strong></html>";
-
-            JOptionPane.showMessageDialog(null, mensagem, "Aviso de Senha Alterada", JOptionPane.INFORMATION_MESSAGE);
+            mensagens.tipoMensagemEmail();
 
         } catch (NoSuchProviderException ex) {
             Logger.getLogger(Email.class.getName()).log(Level.SEVERE, null, ex);

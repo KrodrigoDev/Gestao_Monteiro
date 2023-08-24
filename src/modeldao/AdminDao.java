@@ -5,7 +5,7 @@ import model.Admin;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import view.MensagensAdmin;
+import view.Mensagens;
 
 /**
  * @since 06/08/2023
@@ -18,7 +18,7 @@ public class AdminDao {
     PreparedStatement ps = null;
 
     // objeto da classe
-    MensagensAdmin mensagens = new MensagensAdmin();
+    Mensagens mensagens = new Mensagens();
 
     // método para realizar o cadastro do administrador
     public boolean cadastrarAdmin(Admin admin) {
@@ -47,10 +47,10 @@ public class AdminDao {
             
         } catch (SQLException erro) {
             if (erro.getErrorCode() == 1062) { // Código de erro para duplicidade na chave primária ou única
-                mensagens.TipoMensagemAdminDao(1);
+                mensagens.tipoMensagemAdminDao(1);
             } else {
                 // Em caso de outros erros SQL
-                mensagens.TipoMensagemAdminDao(2);
+                mensagens.tipoMensagemAdminDao(2);
             }
             return false;
         }
@@ -78,7 +78,7 @@ public class AdminDao {
             
         } catch (SQLException erro) {
             // Em caso de outros erros SQL
-            mensagens.TipoMensagemAdminDao(2);
+            mensagens.tipoMensagemAdminDao(2);
             return null;
         }
         
@@ -106,7 +106,7 @@ public class AdminDao {
             return linhaAfetada > 0;
             
         } catch (SQLException erro) {
-            mensagens.TipoMensagemAdminDao(2);
+            mensagens.tipoMensagemAdminDao(2);
             return false;
         }
     }

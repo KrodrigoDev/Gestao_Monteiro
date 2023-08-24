@@ -19,7 +19,7 @@ public class Login extends javax.swing.JFrame {
     // Objetos de classes 
     AdminDao adminDao = new AdminDao();
     BytesAdmin bytesAdmin = new BytesAdmin();
-    MensagensAdmin mensagens = new MensagensAdmin();
+    Mensagens mensagens = new Mensagens();
 
     // construtor
     public Login() {
@@ -319,11 +319,11 @@ public class Login extends javax.swing.JFrame {
                 this.dispose();
 
             } else {
-                mensagens.TipoMensagemLogin(1);
+                mensagens.tipoMensagemLogin(1);
             }
 
         } catch (SQLException erro) {
-            mensagens.TipoMensagemLogin(2);
+            mensagens.tipoMensagemLogin(2);
         }
     }
 

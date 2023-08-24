@@ -14,7 +14,7 @@ public class EsqueceuSenha extends javax.swing.JFrame {
 
     // Objetos de classes
     AdminDao adminDao = new AdminDao();
-    MensagensAdmin mensagens = new MensagensAdmin();
+    Mensagens mensagens = new Mensagens();
 
     // constante que vai definir a minha senha padrão
     private final String SENHA_PADRAO = "ArenaMonteiro2024";
@@ -248,11 +248,11 @@ public class EsqueceuSenha extends javax.swing.JFrame {
                     this.dispose();
                     login.setVisible(true);
                 } else {
-                    mensagens.TipoMensagemEsqueceuSenha(1);
+                    mensagens.tipoMensagemEsqueceuSenha(1);
                 }
             }
         } catch (MessagingException erro) {
-            mensagens.TipoMensagemEsqueceuSenha(2);
+            mensagens.tipoMensagemEsqueceuSenha(2);
         }
     }
 

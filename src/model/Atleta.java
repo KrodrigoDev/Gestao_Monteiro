@@ -1,7 +1,5 @@
 package model;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Kauã Rodrigo
@@ -53,7 +51,6 @@ public class Atleta extends Pessoa {
             this.contato = contato;
         } else {
             this.contato = null;
-            JOptionPane.showMessageDialog(null, "<html>Certifique-se que o número de telefone tenha 9 digitos<br>Exemplo : <strong>991305810</strong></html>");
         }
     }
 

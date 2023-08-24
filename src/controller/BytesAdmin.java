@@ -5,16 +5,18 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
+import view.Mensagens;
 
 /**
  * @since 22/08/2023
  * @author Kauã Rodrigo
  * @version 0.1
  */
-public class BytesAdmin {
+public class BytesAdmin { // system. info path
+    
+    // Objeto da classe Mensagens
+    Mensagens mensagens = new Mensagens();
 
     // atributos
     private final Path arquivo = Paths.get("C:/Users/Kauã Rodrigo/Documents/NetBeansProjects/Gestao_Monteiro/infoAdminAtual.txt");
@@ -25,7 +27,7 @@ public class BytesAdmin {
             byte[] bytesID = id.getBytes(); // Converte a string para bytes
             Files.write(arquivo, bytesID); // Escreve os bytes no arquivo
         } catch (IOException e) {
-            // implementar a classes de mensagens aqui
+            mensagens.tipoMensagemBytesAdmin();
         }
     }
 
@@ -39,7 +41,7 @@ public class BytesAdmin {
             }
             
         } catch (IOException ex) {
-            Logger.getLogger(BytesAdmin.class.getName()).log(Level.SEVERE, null, ex);
+            mensagens.tipoMensagemBytesAdmin();
         }
     }
     

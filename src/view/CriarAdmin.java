@@ -18,11 +18,11 @@ public class CriarAdmin extends javax.swing.JFrame {
 
     // Objetos de classes 
     AdminDao adminDao = new AdminDao();
-    MensagensAdmin mensagens = new MensagensAdmin();
+    Mensagens mensagens = new Mensagens();
 
     // Objeto da classe login ( vai ser usado para deixar a tela anterior vísivel )
     private Login login;
-    
+
     // Construtor
     public CriarAdmin(Login login) {
         initComponents();
@@ -336,25 +336,28 @@ public class CriarAdmin extends javax.swing.JFrame {
 
             Admin admin = new Admin(nome, sobrenome, email, nascimento, senha, confirmarSenha);
 
-            // Validações, criação e envio de email para o admin 
-            if (admin.validarCamposPreenchidosString(nome, sobrenome, email)) {
-                if (admin.validarSenha(senha, confirmarSenha)) {
-                    if (adminDao.cadastrarAdmin(admin)) {
-                        limparCampos();
+            // Validações dos campos
+            if (!admin.validarCamposPreenchidosString(nome, sobrenome, email)) {
+                mensagens.tipoMensagemCriarContas(1);
+                return;
+            }
 
-                        mensagens.TipoMensagemCriarContas(3);
-
-                        this.dispose();
-
-                        login.setVisible(true);
-                    }
-                }
-            } else {
-                mensagens.TipoMensagemCriarContas(1);
+            // Validações da senha
+            if (!admin.validarSenha(senha, confirmarSenha)) {
+                mensagens.tipoMensagemCriarContas(4);
+                return;
+            }
+            
+            // Se tudo deu certo vai criar o admin
+            if (adminDao.cadastrarAdmin(admin)) {
+                limparCampos();
+                mensagens.tipoMensagemCriarContas(3);
+                this.dispose();
+                login.setVisible(true);
             }
 
         } catch (HeadlessException erro) {
-            mensagens.TipoMensagemCriarContas(2);
+            mensagens.tipoMensagemCriarContas(2);
         }
 
     }

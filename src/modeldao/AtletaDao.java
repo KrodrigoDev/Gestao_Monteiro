@@ -7,7 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import view.MensagensAdmin;
+import view.Mensagens;
 
 /**
  * @since 20/08/2023
@@ -17,7 +17,7 @@ import view.MensagensAdmin;
 public class AtletaDao {
     
     // objeto de classe
-    MensagensAdmin mensagens = new MensagensAdmin();
+    Mensagens mensagens = new Mensagens();
 
     // atributo para lidar com a inserção e consultas
     PreparedStatement ps = null;
@@ -53,10 +53,10 @@ public class AtletaDao {
 
         } catch (SQLException erro) {
             if (erro.getErrorCode() == 1062) { // Código de erro para duplicidade na chave primária ou única
-                mensagens.TipoMensagemAtletaDao(1);
+                mensagens.tipoMensagemAtletaDao(1);
             } else {
                 // Em caso de outros erros SQL
-                mensagens.TipoMensagemAtletaDao(2);
+                mensagens.tipoMensagemAtletaDao(2);
             }
             return false;
         }
@@ -92,7 +92,7 @@ public class AtletaDao {
             ps.close();
 
         } catch (SQLException erro) {
-            mensagens.TipoMensagemAtletaDao(2);
+            mensagens.tipoMensagemAtletaDao(2);
         }
 
         return atletas;
@@ -114,7 +114,7 @@ public class AtletaDao {
 
             ps.close();
         } catch (SQLException erro) {
-            mensagens.TipoMensagemAtletaDao(2);
+            mensagens.tipoMensagemAtletaDao(2);
         }
 
         return 0;
@@ -135,7 +135,7 @@ public class AtletaDao {
 
             ps.close();
         } catch (SQLException erro) {
-            mensagens.TipoMensagemAtletaDao(2);
+            mensagens.tipoMensagemAtletaDao(2);
         }
 
         return 0;

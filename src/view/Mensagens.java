@@ -18,11 +18,14 @@ import javax.swing.JOptionPane;
  *
  * @erro #5 algo está de errado ao tentar criar a tela de carregamento
  *
+ * @erro #6 o arquivo que guarda os bytes não foi encontrado ou algum erro
+ * relacionado a ele
  */
-public class MensagensAdmin {
+public class Mensagens {
 
+    // falta adicionar a classe de conexão
     // Mensagens para janela de login
-    public void TipoMensagemLogin(int numeroSituacao) {
+    public void tipoMensagemLogin(int numeroSituacao) {
 
         switch (numeroSituacao) {
 
@@ -42,7 +45,7 @@ public class MensagensAdmin {
     }
 
     // Mensagens para janela Esqueceu Senha
-    public void TipoMensagemEsqueceuSenha(int numeroSituacao) {
+    public void tipoMensagemEsqueceuSenha(int numeroSituacao) {
 
         switch (numeroSituacao) {
 
@@ -62,7 +65,7 @@ public class MensagensAdmin {
     }
 
     // Mensagens para janela Criar Admin e Janela de Criar Atleta
-    public void TipoMensagemCriarContas(int numeroSituacao) {
+    public void tipoMensagemCriarContas(int numeroSituacao) {
 
         switch (numeroSituacao) {
 
@@ -79,23 +82,27 @@ public class MensagensAdmin {
                         "Erro - Janela Esqueceu Senha #4", JOptionPane.ERROR_MESSAGE);
                 break;
             case 3: // mensagem de sucesso
-                JOptionPane.showMessageDialog(null, 
+                JOptionPane.showMessageDialog(null,
                         "<html><strong>Criado com sucesso!</strong>",
                         "Sucesso", JOptionPane.INFORMATION_MESSAGE);
                 break;
-
+            case 4:
+                JOptionPane.showMessageDialog(null,
+                        "<html><strong>As senhas não são iguais!</strong></html>",
+                        "Aviso - Janela Criar Conta", JOptionPane.INFORMATION_MESSAGE);
+                break;
         }
     }
 
     // Mensagens para janela de Carregamento
-    public void TipoMensagemCarregamento() {
+    public void tipoMensagemCarregamento() {
         JOptionPane.showMessageDialog(null,
                 "<html><strong>Ocorreu um erro durante o carregamento ! </strong> <br> Informe o código de erro #5</html>",
-                 "Erro - Janela Carregamento #5", JOptionPane.ERROR_MESSAGE);
+                "Erro - Janela Carregamento #5", JOptionPane.ERROR_MESSAGE);
     }
 
     // Mensagens para a entidade AtletaDao
-    public void TipoMensagemAtletaDao(int numeroSituacao) {
+    public void tipoMensagemAtletaDao(int numeroSituacao) {
 
         switch (numeroSituacao) {
 
@@ -114,9 +121,9 @@ public class MensagensAdmin {
 
         }
     }
-    
+
     // mensagens para o admin dao 
-     public void TipoMensagemAdminDao(int numeroSituacao) {
+    public void tipoMensagemAdminDao(int numeroSituacao) {
 
         switch (numeroSituacao) {
 
@@ -135,4 +142,25 @@ public class MensagensAdmin {
 
         }
     }
+
+    // Mensagens para BytesAdmin
+    public void tipoMensagemBytesAdmin() {
+        JOptionPane.showMessageDialog(null, // em caso de erro no try catch
+                "<html><strong>Ocorreu um erro inesperado</strong><br>"
+                + "Informe o código de erro #6</html>",
+                "Erro - Bytes Admin #6", JOptionPane.ERROR_MESSAGE);
+    }
+
+    // Mensagens para classe Email
+    public void tipoMensagemEmail() {
+        JOptionPane.showMessageDialog(null,
+                "<html><strong>Verifique seu email para visualizar a senha atualizada</strong></html>",
+                "Aviso - Email Enviado", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    // Mensagens para classe abstrata Pessoa
+    public void tipoMensagemPessoa(){
+        // implemetar ou mudar o setnascimento da classe abstrata pessoa
+    }
+
 }

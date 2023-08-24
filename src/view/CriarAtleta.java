@@ -17,11 +17,10 @@ import javax.swing.JTextField;
 public class CriarAtleta extends javax.swing.JFrame {
 
     // Objeto de classes
-     ListaAtletas listaAtleta;
-     AtletaDao atletaDao = new AtletaDao();
-     BytesAdmin bytesAdmin = new BytesAdmin();
-     MensagensAdmin mensagens = new MensagensAdmin();
-    
+    ListaAtletas listaAtleta;
+    AtletaDao atletaDao = new AtletaDao();
+    BytesAdmin bytesAdmin = new BytesAdmin();
+    Mensagens mensagens = new Mensagens();
 
     // construtor
     public CriarAtleta(ListaAtletas listaAtleta) {
@@ -327,7 +326,7 @@ public class CriarAtleta extends javax.swing.JFrame {
     }
 
     // método para cadastrar atleta
-    public void cadastrarAtleta() {
+    public void cadastrarAtleta() { // implementar a mensagem de numero
         try {
 
             String nome = campoNome.getText().trim();
@@ -338,21 +337,20 @@ public class CriarAtleta extends javax.swing.JFrame {
 
             Atleta atleta = new Atleta(nome, sobrenome, categoria, contato, idAdmin);
 
-            // Validações, criação e envio de email para o admin 
-            if (atleta.validarCamposPreenchidosString(nome, sobrenome, categoria, contato)) {
-
-                if (atletaDao.cadastrarAdmin(atleta)) {
-                    limparCampos();
-                    mensagens.TipoMensagemCriarContas(3);
-                    listaAtleta.tabelaAtletas();
-                    listaAtleta.atualizarQuantidades();
-                }
-
-            } else {
-                mensagens.TipoMensagemCriarContas(1);
+            if (!atleta.validarCamposPreenchidosString(nome, sobrenome, categoria, contato, idAdmin)) {
+                mensagens.tipoMensagemCriarContas(1);
+                return;
             }
+            
+            if (atletaDao.cadastrarAdmin(atleta)) {
+                limparCampos();
+                mensagens.tipoMensagemCriarContas(3);
+                listaAtleta.tabelaAtletas();
+                listaAtleta.atualizarQuantidades();
+            }
+
         } catch (HeadlessException erro) {
-            mensagens.TipoMensagemCriarContas(2);
+            mensagens.tipoMensagemCriarContas(2);
         }
     }
 

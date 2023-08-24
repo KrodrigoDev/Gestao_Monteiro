@@ -5,7 +5,6 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  * @author Kauã Rodrigo
@@ -39,11 +38,8 @@ public class Admin extends Pessoa {
 
     // Método para validar a senha
     public boolean validarSenha(String senha, String confirmarSenha) {
-        if (senha.isEmpty() || confirmarSenha.isEmpty() || !senha.equals(confirmarSenha)) {
-            JOptionPane.showMessageDialog(null, "<html><strong>As senhas não são iguais!</strong></html>", "Aviso", JOptionPane.INFORMATION_MESSAGE);
-            return false;
-        }
-        return true;
+        boolean validacao = !senha.isEmpty() && senha.equals(confirmarSenha);
+        return validacao;
     }
 
     // gets e sets

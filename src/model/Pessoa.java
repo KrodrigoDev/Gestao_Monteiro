@@ -5,6 +5,7 @@ import java.time.Month;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
+import view.Mensagens;
 
 /**
  *
@@ -17,6 +18,9 @@ import javax.swing.JOptionPane;
  *
  */
 public abstract class Pessoa {
+    
+    // objeto da classe mensagens 
+    Mensagens mensagens = new Mensagens();
 
     // atributos
     private String nome, sobrenome;
@@ -110,9 +114,6 @@ public abstract class Pessoa {
 
         } catch (DateTimeParseException erro) {
             this.nascimento = null;
-            JOptionPane.showMessageDialog(null,
-                    "<html>Prencha a data no formato <strong>dd/MM/yyyy</strong></html>",
-                    "Aviso - Data Inválida", JOptionPane.INFORMATION_MESSAGE);
             return false;
         }
     }
