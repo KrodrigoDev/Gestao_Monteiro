@@ -19,7 +19,8 @@ public class BytesAdmin { // system. info path
     Mensagens mensagens = new Mensagens();
 
     // atributos
-    private final Path arquivo = Paths.get("C:/Users/Kauã Rodrigo/Documents/NetBeansProjects/Gestao_Monteiro/infoAdminAtual.txt");
+    private final String arquivoPath = "infoAdminAtual.txt"; // Caminho relativo ao arquivo
+    private final Path arquivo = Paths.get(System.getProperty("user.dir"), arquivoPath); // retorna o diretorio de trabalho atual
 
     // método para pegar os bytes do id
     public void pegarIdPorByte(String id) {

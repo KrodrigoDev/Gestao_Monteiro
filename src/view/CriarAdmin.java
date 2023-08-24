@@ -302,7 +302,7 @@ public class CriarAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_painelBntFecharMouseClicked
 
     private void painelBntFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseEntered
-        mudarCor(painelBntFechar, new Color(21, 80, 36));
+        mudarCor(painelBntFechar, new Color(196, 43, 28));
     }//GEN-LAST:event_painelBntFecharMouseEntered
 
     private void painelBntFecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseExited
@@ -341,7 +341,7 @@ public class CriarAdmin extends javax.swing.JFrame {
                 mensagens.tipoMensagemCriarContas(1);
                 return;
             }
-
+            
             // Validações da senha
             if (!admin.validarSenha(senha, confirmarSenha)) {
                 mensagens.tipoMensagemCriarContas(4);

@@ -511,7 +511,7 @@ public class Principal extends javax.swing.JFrame {
 
     // ao passar o mouse por cima do campo a cor será alterada
     private void iconFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconFecharMouseEntered
-        mudarCor(painelBntFechar, new Color(21, 80, 36));
+        mudarCor(painelBntFechar, new Color(196, 43, 28));
     }//GEN-LAST:event_iconFecharMouseEntered
 
     // quando o mouse sair de cima a cor vai voltar ao normal

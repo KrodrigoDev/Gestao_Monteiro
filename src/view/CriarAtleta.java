@@ -61,7 +61,7 @@ public class CriarAtleta extends javax.swing.JFrame {
         painelBranco = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         painelBntFechar = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
+        textX = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -232,10 +232,10 @@ public class CriarAtleta extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(31, 115, 52));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("X");
+        textX.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        textX.setForeground(new java.awt.Color(31, 115, 52));
+        textX.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textX.setText("X");
 
         javax.swing.GroupLayout painelBntFecharLayout = new javax.swing.GroupLayout(painelBntFechar);
         painelBntFechar.setLayout(painelBntFecharLayout);
@@ -243,12 +243,12 @@ public class CriarAtleta extends javax.swing.JFrame {
             painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBntFecharLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(textX, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         painelBntFecharLayout.setVerticalGroup(
             painelBntFecharLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelBntFecharLayout.createSequentialGroup()
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(textX, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -291,12 +291,14 @@ public class CriarAtleta extends javax.swing.JFrame {
 
     // quando o mouse entrar vai fazer com que o campo mude de cor
     private void painelBntFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseEntered
-        mudarCor(painelBntFechar, new Color(0, 146, 120));
+        mudarCor(painelBntFechar, new Color(196, 43, 28));
+        textX.setForeground(Color.WHITE);
     }//GEN-LAST:event_painelBntFecharMouseEntered
 
     // quando o mouse sair do campo ele vai retornar a cor branca
     private void painelBntFecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseExited
         mudarCor(painelBntFechar, Color.WHITE);
+        textX.setForeground(new Color(31,115,52));
     }//GEN-LAST:event_painelBntFecharMouseExited
 
     // método que vai fechar a tela atual e voltar para anterior
@@ -375,7 +377,6 @@ public class CriarAtleta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel painelBntFechar;
     private javax.swing.JPanel painelBranco;
     private javax.swing.JPanel painelVerde;
@@ -386,5 +387,6 @@ public class CriarAtleta extends javax.swing.JFrame {
     private javax.swing.JSeparator separadorText5;
     private javax.swing.JSpinner spinnerCategoria;
     private javax.swing.JLabel textIdAdmin;
+    private javax.swing.JLabel textX;
     // End of variables declaration//GEN-END:variables
 }

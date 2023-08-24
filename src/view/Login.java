@@ -265,7 +265,7 @@ public class Login extends javax.swing.JFrame {
 
     // ao passar o mouse por cima do campo a cor será alterada
     private void painelBntFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseEntered
-        mudarCor(painelBntFechar, new Color(21, 80, 36));
+        mudarCor(painelBntFechar, new Color(196, 43, 28));
     }//GEN-LAST:event_painelBntFecharMouseEntered
 
     // quando o mouse sair de cima a cor vai voltar ao normal
