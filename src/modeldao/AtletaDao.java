@@ -15,7 +15,7 @@ import view.Mensagens;
  * @version 0.1
  */
 public class AtletaDao {
-    
+
     // objeto de classe
     Mensagens mensagens = new Mensagens();
 
@@ -32,8 +32,8 @@ public class AtletaDao {
 
             // Obtém a conexão com o banco e insere os registros
             ps = Conexao.getConexao().prepareStatement(sql);
-            
-            if(atleta.getContato() == null){
+
+            if (atleta.getContato() == null) {
                 return false;
             }
 
@@ -42,7 +42,7 @@ public class AtletaDao {
             ps.setString(2, atleta.getSobrenome());
             ps.setString(3, atleta.getCategoria());
             ps.setString(4, atleta.getContato());
-            ps.setInt(5, atleta.getIdAdmin()); 
+            ps.setInt(5, atleta.getIdAdmin());
 
             // Executa a atualização no banco de dados.
             ps.executeUpdate();
@@ -67,7 +67,7 @@ public class AtletaDao {
     public List<Atleta> listaAtletas() {
 
         // Query SQL para resgatar os dados na tabela "ATLETAS".
-        String sql = "SELECT NOME,SOBRENOME, CATEGORIA, STATUS, CONTATO FROM ATLETAS";
+        String sql = "SELECT ID,NOME,SOBRENOME, CATEGORIA, STATUS, CONTATO FROM ATLETAS";
 
         List<Atleta> atletas = new ArrayList<>(); // lista com todos os atletas
 
@@ -79,7 +79,7 @@ public class AtletaDao {
             while (resultadoConsulta.next()) { // vai repetir até o limite 
 
                 Atleta atleta = new Atleta();
-
+                atleta.setId(resultadoConsulta.getInt("id"));
                 atleta.setNome(resultadoConsulta.getString("nome"));
                 atleta.setSobrenome(resultadoConsulta.getString("sobrenome"));
                 atleta.setCategoria(resultadoConsulta.getString("categoria"));
@@ -139,6 +139,93 @@ public class AtletaDao {
         }
 
         return 0;
+    }
+
+    // método que vai me retornar uma lista por meio do que o admin vai digita(usando o like)
+    public List<Atleta> listaAtletasPorNome(String nome) {
+
+        // Query SQL para resgatar os dados na tabela "ATLETAS".
+        String sql = "SELECT ID, NOME,SOBRENOME, CATEGORIA, STATUS, CONTATO FROM ATLETAS WHERE NOME LIKE ? OR SOBRENOME LIKE ?";
+
+        List<Atleta> atletas = new ArrayList<>(); // lista com todos os atletas
+
+        try {
+            ps = Conexao.getConexao().prepareStatement(sql);
+
+            ps.setString(1, '%' + nome + '%');
+            ps.setString(2, '%' + nome + '%');
+
+            ResultSet resultadoConsulta = ps.executeQuery(); // vai receber as consultas
+
+            while (resultadoConsulta.next()) { // vai repetir até o limite 
+
+                Atleta atleta = new Atleta();
+                atleta.setId(resultadoConsulta.getInt("id"));
+                atleta.setNome(resultadoConsulta.getString("nome"));
+                atleta.setSobrenome(resultadoConsulta.getString("sobrenome"));
+                atleta.setCategoria(resultadoConsulta.getString("categoria"));
+                atleta.setStatus(resultadoConsulta.getString("status"));
+                atleta.setContato(resultadoConsulta.getString("Contato")); // possivel problema
+
+                atletas.add(atleta);
+            }
+
+            ps.close();
+
+        } catch (SQLException erro) {
+            mensagens.tipoMensagemAtletaDao(2);
+        }
+
+        return atletas;
+    }
+
+    // Método de exluir um atleta
+    public void excluirAtleta(Atleta atleta) {
+        String sql = "DELETE FROM ATLETAS WHERE ID = ?";
+
+        try {
+            // Obtém a conexão com o banco e insere os registros
+            ps = Conexao.getConexao().prepareStatement(sql);
+
+            ps.setInt(1, atleta.getId());
+
+            ps.executeUpdate();
+
+            mensagens.tipoMensagemAtletaDao(3);
+
+            ps.close();
+
+        } catch (SQLException erro) {
+            mensagens.tipoMensagemAtletaDao(2);
+        }
+    }
+
+    // Método de Atualizar dados do atleta
+    public boolean atualizarDadosAtleta(Atleta atleta) {
+        String sql = "UPDATE ATLETAS SET NOME = ?, SOBRENOME = ?, CONTATO = ?, CATEGORIA = ?, STATUS = ? WHERE ID = ?";
+
+        try {
+            // Obtém a conexão com o banco e atualiza os registros
+            ps = Conexao.getConexao().prepareStatement(sql);
+
+            ps.setString(1, atleta.getNome());
+            ps.setString(2, atleta.getSobrenome());
+            ps.setString(3, atleta.getContato());
+            ps.setString(4, atleta.getCategoria());
+            ps.setString(5, atleta.getStatus());
+            ps.setInt(6, atleta.getId());
+
+            int linhasAfetadas = ps.executeUpdate();
+
+            mensagens.tipoMensagemAtletaDao(linhasAfetadas > 0 ? 5 : 6);
+
+
+            return true;
+
+        } catch (SQLException erro) {
+            mensagens.tipoMensagemAtletaDao(2);
+            return false;
+        }
     }
 
 }

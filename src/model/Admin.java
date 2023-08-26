@@ -47,6 +47,7 @@ public class Admin extends Pessoa {
         return senha;
     }
 
+    // a senha passada na string vai se transformar em hash
     public void setSenha(String senha) {
         try {
             // Aplica a função de hash SHA-256 para criar um hash seguro da senha

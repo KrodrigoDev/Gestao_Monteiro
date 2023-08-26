@@ -101,7 +101,7 @@ public class Mensagens {
                 "Erro - Janela Carregamento #5", JOptionPane.ERROR_MESSAGE);
     }
 
-    // Mensagens para a entidade AtletaDao
+    // Mensagens para a entidade AtletaDao e lista atleta
     public void tipoMensagemAtletaDao(int numeroSituacao) {
 
         switch (numeroSituacao) {
@@ -118,7 +118,31 @@ public class Mensagens {
                         + "Informe o código de erro #2</html>",
                         "Erro - Atleta Dao #2", JOptionPane.ERROR_MESSAGE);
                 break;
-
+            case 3:
+                JOptionPane.showMessageDialog(null,
+                        "<html><strong>Atleta excluido com com sucesso !</strong></html>",
+                        "Aviso - Lista Atleta", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case 4:
+                JOptionPane.showMessageDialog(null,
+                        "<html><strong>Selecione uma linha para exluir!</strong></html>",
+                        "Aviso - Lista Atleta", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case 5:
+                JOptionPane.showMessageDialog(null,
+                        "<html><strong>Regristro atualizado com sucesso</strong></html>",
+                        "Aviso - Lista Atleta", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case 6:
+                JOptionPane.showMessageDialog(null,
+                        "<html>Não foram feitas alterações no registro do atleta</html>",
+                        "Aviso - Lista Atleta", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case 7:
+                JOptionPane.showMessageDialog(null,
+                        "<html><strong>Selecione uma linha para atualizar!</strong></html>",
+                        "Aviso - Lista Atleta", JOptionPane.INFORMATION_MESSAGE);
+                break;
         }
     }
 
@@ -151,15 +175,8 @@ public class Mensagens {
                 "Erro - Bytes Admin #6", JOptionPane.ERROR_MESSAGE);
     }
 
-    // Mensagens para classe Email
-    public void tipoMensagemEmail() {
-        JOptionPane.showMessageDialog(null,
-                "<html><strong>Verifique seu email para visualizar a senha atualizada</strong></html>",
-                "Aviso - Email Enviado", JOptionPane.INFORMATION_MESSAGE);
-    }
-    
     // Mensagens para classe abstrata Pessoa
-    public void tipoMensagemPessoa(){
+    public void tipoMensagemPessoa() {
         // implemetar ou mudar o setnascimento da classe abstrata pessoa
     }
 

@@ -39,7 +39,7 @@ public class Email {
     }
 
     // Cria o objeto MimeMessage para enviar o email
-    public void criarEmail(String email) throws MessagingException {
+    public void passarEmail(String email) throws MessagingException {
         emailDestinatario = email;
 
         // Configurações do servidor SMTP do Gmail
@@ -73,8 +73,6 @@ public class Email {
             mTransport.connect(EMAIL_REMETENTE, SENHA_EMAIL);
             mTransport.sendMessage(mCorreio, mCorreio.getRecipients(Message.RecipientType.TO));
             mTransport.close();
-
-            mensagens.tipoMensagemEmail();
 
         } catch (NoSuchProviderException ex) {
             Logger.getLogger(Email.class.getName()).log(Level.SEVERE, null, ex);

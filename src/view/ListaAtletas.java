@@ -2,6 +2,7 @@ package view;
 
 import modeldao.AtletaDao;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -14,9 +15,10 @@ import model.Atleta;
  */
 public class ListaAtletas extends javax.swing.JFrame {
 
-    // Objeto da classe principal e do atletaDao
+    // Objeto de classes
     Principal principal;
     AtletaDao atletaDao = new AtletaDao();
+    Mensagens mensagens = new Mensagens();
 
     // construtor
     public ListaAtletas(Principal principal) {
@@ -24,10 +26,20 @@ public class ListaAtletas extends javax.swing.JFrame {
 
         this.principal = principal;
 
-        tabelaAtletas.rolamentoDaTabela(rolamentoTabela);
+        tabelaAtletas.rolamentoDaTabela(rolamentoTabela); // Scrooll personalizada
 
-        tabelaAtletas();
-        atualizarQuantidades();
+        tabelaAtletas(); // carregar os dados da tabela ao entrar na tela
+        atualizarQuantidades(); //carregar a quantidade de atletas ativos e inativos
+
+        //  método para adicionar uma função na tecla enter para o campo de pesquisa
+        campoBuscarNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    realizarBuscaPorNome();
+                }
+            }
+        });
+        
     }
 
     // código padrão do java
@@ -362,11 +374,11 @@ public class ListaAtletas extends javax.swing.JFrame {
 
             },
             new String [] {
-                "NOME", "CATEGORIA", "STATUS", "CONTATO"
+                "ID", "NOME", "CATEGORIA", "STATUS", "CONTATO"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -375,6 +387,10 @@ public class ListaAtletas extends javax.swing.JFrame {
         });
         tabelaAtletas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         rolamentoTabela.setViewportView(tabelaAtletas);
+        if (tabelaAtletas.getColumnModel().getColumnCount() > 0) {
+            tabelaAtletas.getColumnModel().getColumn(0).setResizable(false);
+            tabelaAtletas.getColumnModel().getColumn(0).setPreferredWidth(10);
+        }
 
         painelBranco.add(rolamentoTabela, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 318, 714, 334));
 
@@ -447,8 +463,8 @@ public class ListaAtletas extends javax.swing.JFrame {
         bntAtualizar.setBorderColor(new java.awt.Color(255, 255, 255));
         bntAtualizar.setBorderPainted(false);
         bntAtualizar.setColor(new java.awt.Color(0, 146, 120));
-        bntAtualizar.setColorClick(new java.awt.Color(21, 80, 36));
-        bntAtualizar.setColorOver(new java.awt.Color(0, 146, 120));
+        bntAtualizar.setColorClick(new java.awt.Color(48, 144, 216));
+        bntAtualizar.setColorOver(new java.awt.Color(48, 144, 216));
         bntAtualizar.setFocusPainted(false);
         bntAtualizar.setFocusable(false);
         bntAtualizar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -600,13 +616,16 @@ public class ListaAtletas extends javax.swing.JFrame {
     private void campoBuscarNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscarNomeFocusLost
         if (campoBuscarNome.getText().length() == 0) {
             campoBuscarNome.setText("Buscar Por Nome");
-            addCampoPlaceholder(campoBuscarNome);
+            campoBuscarNome.setForeground(new Color(140, 140, 140));
+
+            // Recarregar a tabela com todos os atletas
+            tabelaAtletas();
         }
     }//GEN-LAST:event_campoBuscarNomeFocusLost
 
-
+    // método para excluir uma linha da tabela
     private void bntDeletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntDeletarMouseClicked
-
+        excluirAtleta();
     }//GEN-LAST:event_bntDeletarMouseClicked
 
     // método para abrir a janela de criação 
@@ -616,18 +635,24 @@ public class ListaAtletas extends javax.swing.JFrame {
         janelaCriarAtleta.setVisible(true);
     }//GEN-LAST:event_bntCriarAtletaMouseClicked
 
+    // método que vai levar o admin para janela de atualizar dados
     private void bntAtualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntAtualizarMouseClicked
-        // TODO add your handling code here:
+        int selectedRowIndex = tabelaAtletas.getSelectedRow();
+
+        if (selectedRowIndex != -1) {
+            Atleta atletaSelecionado = obterAtletaDaLinhaSelecionada(); // Obter o objeto Atleta da linha selecionada
+
+            this.setVisible(false);
+            AtualizarDadosAtleta atualizarDadosAtleta = new AtualizarDadosAtleta(this, atletaSelecionado); // Passar o objeto Atleta selecionado como parâmetro
+            atualizarDadosAtleta.setVisible(true);
+        } else {
+            mensagens.tipoMensagemAtletaDao(7);
+        }
     }//GEN-LAST:event_bntAtualizarMouseClicked
 
     // método para alternar as cores dos campos
     public void mudarCor(JPanel campo, Color cor) {
         campo.setBackground(cor);
-    }
-
-    // método que vai alterar a cor do texto para dar a impressão de placeholder
-    public void addCampoPlaceholder(JTextField campoTexto) {
-        campoTexto.setForeground(new Color(140, 140, 140));
     }
 
     // esse método vai remover o texto nos campos que o método acima adicionou
@@ -644,11 +669,42 @@ public class ListaAtletas extends javax.swing.JFrame {
         for (Atleta atleta : atletaDao.listaAtletas()) { // forEach para percorrer a listaDao
 
             modelo.addRow(new Object[]{ // adicionando linha 
+                atleta.getId(),
                 atleta.getNome() + " " + atleta.getSobrenome(),
                 atleta.getCategoria(),
-                atleta.getStatus(),
+                atleta.getStatus().toUpperCase(),
                 atleta.getContato()
             });
+        }
+    }
+
+    // Método que vai alimentar a tabela com itens do banco de dados
+    public void tabelaAtletasPorNome(String nome) {
+        DefaultTableModel modelo = (DefaultTableModel) tabelaAtletas.getModel(); // lembrar de pagar
+        modelo.setNumRows(0);
+        
+        for (Atleta atleta : atletaDao.listaAtletasPorNome(nome)) { // forEach para percorrer a lista pelo nome
+
+            modelo.addRow(new Object[]{ // adicionando linha 
+                atleta.getId(),
+                atleta.getNome() + " " + atleta.getSobrenome(),
+                atleta.getCategoria(),
+                atleta.getStatus().toUpperCase(),
+                atleta.getContato()
+            });
+        }
+        
+    }
+
+    // método que vai usar a tabelaAtletasPorNome
+    private void realizarBuscaPorNome() {
+        String nome = campoBuscarNome.getText().trim();
+
+        if (!nome.isEmpty()) {
+            tabelaAtletasPorNome(nome);
+        } else {
+            // Se o campo estiver vazio, recarregar a tabela com todos os atletas
+            tabelaAtletas();
         }
     }
 
@@ -661,6 +717,58 @@ public class ListaAtletas extends javax.swing.JFrame {
         quantidadeAtletasAtivos.setText(String.valueOf(quantidadeAtivos));
         quantidadeAtletasInativos.setText(String.valueOf(quantidadeInativos));
         quantidadeTotalAtletas.setText(String.valueOf(quantidadeTotal));
+    }
+
+    // método para exluir um atleta
+    public void excluirAtleta() {
+        int selectedRowIndex = tabelaAtletas.getSelectedRow();
+
+        if (selectedRowIndex != -1) {
+            String[] options = {"Sim", "Não"};
+            
+            int option = JOptionPane.showOptionDialog(this, "Tem certeza que deseja excluir o atleta selecionado?",
+                    "Aviso - Confirmar Exclusão", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+
+            if (option == JOptionPane.YES_OPTION) {
+                Atleta atleta = new Atleta();
+                atleta.setId((int) tabelaAtletas.getValueAt(selectedRowIndex, 0));
+
+                atletaDao.excluirAtleta(atleta);
+
+                atualizarQuantidades();
+                tabelaAtletas();
+            }
+        } else {
+            mensagens.tipoMensagemAtletaDao(4);
+        }
+    }
+
+    // método para obter os dados da linha selecionada (usada oara atualizar os dados)
+    private Atleta obterAtletaDaLinhaSelecionada() {
+        int selectedRowIndex = tabelaAtletas.getSelectedRow();
+
+        Atleta atleta = new Atleta();
+        
+        atleta.setId((int) tabelaAtletas.getValueAt(selectedRowIndex, 0));
+        
+        String nomeCompleto = (String) tabelaAtletas.getValueAt(selectedRowIndex, 1);
+        String[] partesNomeSobrenome = nomeCompleto.split(" "); // Separar nome e sobrenome usando espaço
+       
+        if (partesNomeSobrenome.length >= 2) {
+            atleta.setNome(partesNomeSobrenome[0]); // Primeira parte é o nome
+            atleta.setSobrenome(partesNomeSobrenome[1]); // Segunda parte é o sobrenome
+        } else {
+            // Tratar caso em que não há espaço para separar nome e sobrenome
+            atleta.setNome(nomeCompleto);
+            atleta.setSobrenome("");
+        }
+
+        atleta.setCategoria((String) tabelaAtletas.getValueAt(selectedRowIndex, 2));
+        atleta.setStatus((String) tabelaAtletas.getValueAt(selectedRowIndex, 3));
+        atleta.setContato((String) tabelaAtletas.getValueAt(selectedRowIndex, 4));
+
+        return atleta;
     }
 
 

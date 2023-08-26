@@ -15,6 +15,7 @@ public class EsqueceuSenha extends javax.swing.JFrame {
     // Objetos de classes
     AdminDao adminDao = new AdminDao();
     Mensagens mensagens = new Mensagens();
+    Progresso progressoEmail = new Progresso();
 
     // constante que vai definir a minha senha padrão
     private final String SENHA_PADRAO = "ArenaMonteiro2024";
@@ -41,9 +42,9 @@ public class EsqueceuSenha extends javax.swing.JFrame {
         bntRecuperarSenha = new view.BotaoPersonalizado();
         jLabel4 = new javax.swing.JLabel();
         campoEmail = new javax.swing.JTextField();
-        campoDataNascimento = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        campoDataNascimento = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setName("Recuperar Senha"); // NOI18N
@@ -73,24 +74,23 @@ public class EsqueceuSenha extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(31, 115, 52));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Lembrou a Senha ?");
+        jLabel5.setText("Finalizou o processo ?");
 
         javax.swing.GroupLayout painelBrancoLayout = new javax.swing.GroupLayout(painelBranco);
         painelBranco.setLayout(painelBrancoLayout);
         painelBrancoLayout.setHorizontalGroup(
             painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(painelBrancoLayout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addComponent(bntVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
-            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(bntVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         painelBrancoLayout.setVerticalGroup(
             painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelBrancoLayout.createSequentialGroup()
-                .addGap(123, 123, 123)
+                .addGap(118, 118, 118)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addComponent(bntVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -140,19 +140,7 @@ public class EsqueceuSenha extends javax.swing.JFrame {
         campoEmail.setForeground(new java.awt.Color(255, 255, 255));
         campoEmail.setBorder(null);
         campoEmail.setCaretColor(new java.awt.Color(255, 255, 255));
-        painelVerde.add(campoEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 84, 190, 28));
-
-        campoDataNascimento.setBackground(new java.awt.Color(31, 115, 52));
-        campoDataNascimento.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        campoDataNascimento.setForeground(new java.awt.Color(255, 255, 255));
-        campoDataNascimento.setBorder(null);
-        campoDataNascimento.setCaretColor(new java.awt.Color(255, 255, 255));
-        campoDataNascimento.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                campoDataNascimentoKeyTyped(evt);
-            }
-        });
-        painelVerde.add(campoDataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 160, 190, 28));
+        painelVerde.add(campoEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 84, 210, 28));
 
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("___________________________________________");
@@ -161,6 +149,18 @@ public class EsqueceuSenha extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("____________________________________________");
         painelVerde.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, 230, -1));
+
+        campoDataNascimento.setBackground(new java.awt.Color(31, 115, 52));
+        campoDataNascimento.setBorder(null);
+        campoDataNascimento.setForeground(new java.awt.Color(255, 255, 255));
+        try {
+            campoDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        campoDataNascimento.setCaretColor(new java.awt.Color(255, 255, 255));
+        campoDataNascimento.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        painelVerde.add(campoDataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 160, 200, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,17 +174,12 @@ public class EsqueceuSenha extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(painelBranco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(painelVerde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(painelVerde, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
         );
 
         setSize(new java.awt.Dimension(540, 306));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    // chamando o método que vai formatar o e-mail enquanto o usuário digita
-    private void campoDataNascimentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoDataNascimentoKeyTyped
-        formatarCampoNascimento(campoDataNascimento);
-    }//GEN-LAST:event_campoDataNascimentoKeyTyped
 
     // ao ser clicado vai chamar o método para recuperar a conta
     private void bntRecuperarSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntRecuperarSenhaMouseClicked
@@ -197,29 +192,6 @@ public class EsqueceuSenha extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_bntVoltarMouseClicked
 
-    // Método para formatar a data enquanto o usuário digita
-    private void formatarCampoNascimento(javax.swing.JTextField campo) {
-        String dadosAtuais = campo.getText();
-        int tamanho = dadosAtuais.length();
-
-        if (tamanho > 0) {
-            // Verifica se o caractere digitado pelo usuário é um dígito numérico (0 a 9)
-            if (Character.isDigit(dadosAtuais.charAt(tamanho - 1))) {
-                // Se o tamanho atual for 2 ou 5 (posições onde precisamos adicionar "/")
-                if (tamanho == 2 || tamanho == 5) {
-                    campo.setText(dadosAtuais + '/');
-                }
-            } else {
-                // Se o caractere digitado pelo usuário não for um dígito numérico (0 a 9)
-                // Verifica se o tamanho atual é 3 ou 6 (posições onde a barra "/" precisa ser removida)
-                if (tamanho == 3 || tamanho == 6) {
-                    // Remove o último caractere (a barra "/") dos dados atuais digitados no campo de nascimento
-                    campo.setText(dadosAtuais.substring(0, tamanho - 1));
-                }
-            }
-        }
-    }
-
     // método para atualizar a senha e envia-la no email
     public void recuperarSenha() {
         try {
@@ -228,29 +200,41 @@ public class EsqueceuSenha extends javax.swing.JFrame {
 
             Admin admin = new Admin(email, nascimento, SENHA_PADRAO);
 
-            if (admin.validarCamposPreenchidosString(email)) {
-                if (adminDao.atualizarSenha(admin)) {
-                    // Cria um novo objeto Email
-                    Email emailNovaConta = new Email();
-
-                    // Define os detalhes do email
-                    String destinatario = campoEmail.getText().trim();
-
-                    // Chama o método para criar o email
-                    emailNovaConta.criarEmail(destinatario);
-
-                    // fazendo a limpa 
-                    limparCampos();
-
-                    // Chama o método para enviar o email 
-                    emailNovaConta.enviarEmail();
-
-                    this.dispose();
-                    login.setVisible(true);
-                } else {
-                    mensagens.tipoMensagemEsqueceuSenha(1);
-                }
+            if (!admin.validarCamposPreenchidosString(email)) {
+                mensagens.tipoMensagemCriarContas(1);
+                return;
             }
+
+            if (adminDao.atualizarSenha(admin)) {
+                // Cria um novo objeto Email
+                Email emailDestinatario = new Email();
+
+                // Chama o método para passar o email
+                emailDestinatario.passarEmail(campoEmail.getText().trim());
+
+                // fazendo a limpa 
+                limparCampos();
+
+                progressoEmail.setVisible(true);
+
+                // Inicia a thread que envia o email
+                Thread emailThread = new Thread(() -> {
+                    emailDestinatario.enviarEmail();
+
+                    // Fecha a janela de progresso após o envio do email
+                    progressoEmail.dispose();
+                });
+
+                // Inicie outra thread para atualizar a barra de progresso na janela de progresso
+                Thread progressoThread = new Thread(progressoEmail::gerenciamentoCarregamentoEmail);
+
+                emailThread.start();
+                progressoThread.start();
+
+            } else {
+                mensagens.tipoMensagemEsqueceuSenha(1);
+            }
+
         } catch (MessagingException erro) {
             mensagens.tipoMensagemEsqueceuSenha(2);
         }
@@ -265,7 +249,7 @@ public class EsqueceuSenha extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private view.BotaoPersonalizado bntRecuperarSenha;
     private view.BotaoPersonalizado bntVoltar;
-    private javax.swing.JTextField campoDataNascimento;
+    private javax.swing.JFormattedTextField campoDataNascimento;
     private javax.swing.JTextField campoEmail;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

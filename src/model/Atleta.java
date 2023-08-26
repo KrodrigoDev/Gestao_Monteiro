@@ -8,9 +8,9 @@ package model;
  */
 public class Atleta extends Pessoa {
 
-    // atriibutos
+    // atributos
     private String categoria, status, contato;
-    private int idAdmin ;
+    private int idAdmin , id;
 
     // construtor
     public Atleta(String nome, String sobrenome, String categoria, String contato, String idAdmin) {
@@ -20,9 +20,17 @@ public class Atleta extends Pessoa {
         setIdAdmin(idAdmin);
     }
     
+    // construtor com sobrecarga para atualizar dados cadastrados
+    public Atleta(int id, String nome, String sobrenome, String categoria, String contato, String status) {
+        super(nome, sobrenome);
+        setCategoria(categoria);
+        setContato(contato);
+        setId(id);
+        setStatus(status);
+    }
+    
     // construtor com sobracarga 
     public Atleta(){
-        
     }
 
     // gets e sets
@@ -62,4 +70,11 @@ public class Atleta extends Pessoa {
         this.idAdmin = Integer.parseInt(idAdmin);
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }
