@@ -36,6 +36,17 @@ admin_id int not null,
 Foreign key(admin_id) references admin(id)
 );
 ```
+```sql da tabela jogos
+create table jogos(
+id int primary key auto_increment,
+status enum("Finalizado", "Agendado","Cancelado") default "Agendado",
+datahora DateTime not null unique,
+time1 varchar(20) not null,
+time2 varchar(20) not null,
+admin_id int not null,
+Foreign key(admin_id) references admin(id)
+);
+```
 
 ## Projeto Lógico
 <p align="center">
