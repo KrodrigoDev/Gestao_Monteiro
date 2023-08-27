@@ -1,7 +1,6 @@
 package view;
 
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 
 /**
  * @since 20/08/2023
@@ -223,5 +222,12 @@ public class Mensagens {
                 JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
 
         return option == JOptionPane.YES_OPTION;
+    }
+
+    // Mensagem para o usuário que esqueceu a senha na janela de progresso
+    public void novaSenhaEnviada() {
+        JOptionPane.showMessageDialog(null,
+                "<html><strong>Uma senha provisória foi enviada para o endereço de e-mail cadastrado</strong></html>",
+                "Aviso - E-mail Enviado", JOptionPane.INFORMATION_MESSAGE);
     }
 }

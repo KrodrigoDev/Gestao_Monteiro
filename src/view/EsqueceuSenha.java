@@ -190,6 +190,7 @@ public class EsqueceuSenha extends javax.swing.JFrame {
     private void bntVoltarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntVoltarMouseClicked
         login.setVisible(true);
         this.dispose();
+        progressoEmail.dispose();
     }//GEN-LAST:event_bntVoltarMouseClicked
 
     // método para atualizar a senha e envia-la no email

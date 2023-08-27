@@ -70,7 +70,7 @@ public class CriarAdmin extends javax.swing.JFrame {
 
         painelBranco.setBackground(new java.awt.Color(255, 255, 255));
 
-        imgEscudo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logoEscudo03.png"))); // NOI18N
+        imgEscudo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logoOFicialArena.png"))); // NOI18N
 
         javax.swing.GroupLayout painelBrancoLayout = new javax.swing.GroupLayout(painelBranco);
         painelBranco.setLayout(painelBrancoLayout);

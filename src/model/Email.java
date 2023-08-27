@@ -74,6 +74,7 @@ public class Email {
             mTransport.sendMessage(mCorreio, mCorreio.getRecipients(Message.RecipientType.TO));
             mTransport.close();
 
+            mensagens.novaSenhaEnviada();
         } catch (NoSuchProviderException ex) {
             Logger.getLogger(Email.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MessagingException ex) {
