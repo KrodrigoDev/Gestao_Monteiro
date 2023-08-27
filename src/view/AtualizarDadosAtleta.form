@@ -70,7 +70,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/imagens/iconMenuJogadores.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Atualizar dados cadastrados"/>
+            <Property name="text" type="java.lang.String" value="Atualizar Registro"/>
             <Property name="horizontalTextPosition" type="int" value="2"/>
           </Properties>
           <Constraints>
@@ -90,7 +90,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Boletim de cadastro"/>
+            <Property name="text" type="java.lang.String" value="Boletim do Atleta"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -468,8 +468,8 @@
             </Property>
             <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
               <SpinnerModel type="list">
-                <ListItem value="ATIVO"/>
                 <ListItem value="INATIVO"/>
+                <ListItem value="ATIVO"/>
               </SpinnerModel>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value=""/>

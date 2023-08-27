@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  * @since 20/08/2023
@@ -175,9 +176,52 @@ public class Mensagens {
                 "Erro - Bytes Admin #6", JOptionPane.ERROR_MESSAGE);
     }
 
-    // Mensagens para classe abstrata Pessoa
-    public void tipoMensagemPessoa() {
-        // implemetar ou mudar o setnascimento da classe abstrata pessoa
+    // Mensagens para janelas da lista jogos e jogos dao
+    public void tipoMensagemJogosDao(int numeroSituacao) {
+        switch (numeroSituacao) {
+            case 1:
+                JOptionPane.showMessageDialog(null,
+                        "<html><strong>Já existe um jogo marcado para esse dia e horário!</strong><br>"
+                        + "Por favor, entre em contato com o solicitante e veja outro horário</html>",
+                        "Aviso - Cadastrar Jogo", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case 2:
+                JOptionPane.showMessageDialog(null, // em caso de erro no try catch
+                        "<html><strong>Ocorreu um erro inesperado</strong><br>"
+                        + "Informe o código de erro #2</html>",
+                        "Erro - Jogos Dao #2", JOptionPane.ERROR_MESSAGE);
+                break;
+            case 3:
+                JOptionPane.showMessageDialog(null,
+                        "<html><strong>Jogo excluido com com sucesso !</strong></html>",
+                        "Aviso - Lista Jogos", JOptionPane.INFORMATION_MESSAGE); // verificar na lista jogos
+                break;
+            case 4:
+                JOptionPane.showMessageDialog(null,
+                        "<html><strong>Regristro atualizado com sucesso</strong></html>",
+                        "Aviso - Lista Jogos", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case 5:
+                JOptionPane.showMessageDialog(null,
+                        "<html>Não foram feitas alterações no registro do jogo</html>",
+                        "Aviso - Lista Jogos", JOptionPane.INFORMATION_MESSAGE);
+                break;
+            case 6:
+                JOptionPane.showMessageDialog(null,
+                        "<html><strong>Selecione uma linha para exluir!</strong></html>",
+                        "Aviso - Lista Jogos", JOptionPane.INFORMATION_MESSAGE);
+                break;
+        }
     }
 
+    // Mensagem que vai pergutar se o usuário realmente quer exluir
+    public boolean confirmarExclusao() {
+        String[] options = {"Sim", "Não"};
+
+        int option = JOptionPane.showOptionDialog(null, "Tem certeza que deseja excluir a linha selecionada?",
+                "Aviso - Confirmar Exclusão", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+
+        return option == JOptionPane.YES_OPTION;
+    }
 }

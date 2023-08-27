@@ -2,7 +2,6 @@ package view;
 
 import modeldao.AtletaDao;
 import java.awt.Color;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -33,13 +32,14 @@ public class ListaAtletas extends javax.swing.JFrame {
 
         //  método para adicionar uma função na tecla enter para o campo de pesquisa
         campoBuscarNome.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
                     realizarBuscaPorNome();
                 }
             }
         });
-        
+
     }
 
     // código padrão do java
@@ -175,6 +175,9 @@ public class ListaAtletas extends javax.swing.JFrame {
 
         campoMenuJogos.setBackground(new java.awt.Color(31, 115, 52));
         campoMenuJogos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                campoMenuJogosMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 campoMenuJogosMouseEntered(evt);
             }
@@ -389,7 +392,7 @@ public class ListaAtletas extends javax.swing.JFrame {
         rolamentoTabela.setViewportView(tabelaAtletas);
         if (tabelaAtletas.getColumnModel().getColumnCount() > 0) {
             tabelaAtletas.getColumnModel().getColumn(0).setResizable(false);
-            tabelaAtletas.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tabelaAtletas.getColumnModel().getColumn(0).setPreferredWidth(5);
         }
 
         painelBranco.add(rolamentoTabela, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 318, 714, 334));
@@ -596,6 +599,8 @@ public class ListaAtletas extends javax.swing.JFrame {
     // ao ser clicado vai voltar para a tela inicial e vai fechar a tela atual
     private void campoMenuPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuPrincipalMouseClicked
         principal.setVisible(true);
+        principal.quantidadesTotalAtletas();
+        principal.quantidadeTotalJogos();
         this.dispose();
     }//GEN-LAST:event_campoMenuPrincipalMouseClicked
 
@@ -650,6 +655,13 @@ public class ListaAtletas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_bntAtualizarMouseClicked
 
+    // método para navegar para tela de janela de jogos
+    private void campoMenuJogosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuJogosMouseClicked
+        ListaJogos janelaJogos = new ListaJogos(principal);
+        this.dispose();
+        janelaJogos.setVisible(true);
+    }//GEN-LAST:event_campoMenuJogosMouseClicked
+
     // método para alternar as cores dos campos
     public void mudarCor(JPanel campo, Color cor) {
         campo.setBackground(cor);
@@ -682,7 +694,7 @@ public class ListaAtletas extends javax.swing.JFrame {
     public void tabelaAtletasPorNome(String nome) {
         DefaultTableModel modelo = (DefaultTableModel) tabelaAtletas.getModel(); // lembrar de pagar
         modelo.setNumRows(0);
-        
+
         for (Atleta atleta : atletaDao.listaAtletasPorNome(nome)) { // forEach para percorrer a lista pelo nome
 
             modelo.addRow(new Object[]{ // adicionando linha 
@@ -693,7 +705,7 @@ public class ListaAtletas extends javax.swing.JFrame {
                 atleta.getContato()
             });
         }
-        
+
     }
 
     // método que vai usar a tabelaAtletasPorNome
@@ -724,13 +736,7 @@ public class ListaAtletas extends javax.swing.JFrame {
         int selectedRowIndex = tabelaAtletas.getSelectedRow();
 
         if (selectedRowIndex != -1) {
-            String[] options = {"Sim", "Não"};
-            
-            int option = JOptionPane.showOptionDialog(this, "Tem certeza que deseja excluir o atleta selecionado?",
-                    "Aviso - Confirmar Exclusão", JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
-
-            if (option == JOptionPane.YES_OPTION) {
+            if (mensagens.confirmarExclusao()) {
                 Atleta atleta = new Atleta();
                 atleta.setId((int) tabelaAtletas.getValueAt(selectedRowIndex, 0));
 
@@ -749,12 +755,12 @@ public class ListaAtletas extends javax.swing.JFrame {
         int selectedRowIndex = tabelaAtletas.getSelectedRow();
 
         Atleta atleta = new Atleta();
-        
+
         atleta.setId((int) tabelaAtletas.getValueAt(selectedRowIndex, 0));
-        
+
         String nomeCompleto = (String) tabelaAtletas.getValueAt(selectedRowIndex, 1);
         String[] partesNomeSobrenome = nomeCompleto.split(" "); // Separar nome e sobrenome usando espaço
-       
+
         if (partesNomeSobrenome.length >= 2) {
             atleta.setNome(partesNomeSobrenome[0]); // Primeira parte é o nome
             atleta.setSobrenome(partesNomeSobrenome[1]); // Segunda parte é o sobrenome

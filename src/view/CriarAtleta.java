@@ -90,7 +90,7 @@ public class CriarAtleta extends javax.swing.JFrame {
         separadorText.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         separadorText.setEnabled(false);
         separadorText.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        painelVerde.add(separadorText, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 58, 610, 12));
+        painelVerde.add(separadorText, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 58, 600, 12));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -114,7 +114,7 @@ public class CriarAtleta extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(240, 240, 240));
         jLabel7.setText("Id do admin logado : ");
-        painelVerde.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(465, 38, -1, -1));
+        painelVerde.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(463, 38, 120, -1));
 
         bntCadastrar.setForeground(new java.awt.Color(31, 115, 52));
         bntCadastrar.setText("CADASTRAR ATLETA");
@@ -145,7 +145,7 @@ public class CriarAtleta extends javax.swing.JFrame {
         textIdAdmin.setForeground(new java.awt.Color(240, 240, 240));
         textIdAdmin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textIdAdmin.setText("10");
-        painelVerde.add(textIdAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(583, 38, 27, -1));
+        painelVerde.add(textIdAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 38, 20, -1));
 
         separadorText1.setBackground(new java.awt.Color(31, 115, 52));
         separadorText1.setForeground(new java.awt.Color(255, 255, 255));
@@ -217,7 +217,7 @@ public class CriarAtleta extends javax.swing.JFrame {
 
         painelBranco.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logoEscudo03.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logoOFicialArena.png"))); // NOI18N
 
         painelBntFechar.setBackground(new java.awt.Color(255, 255, 255));
         painelBntFechar.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -256,10 +256,10 @@ public class CriarAtleta extends javax.swing.JFrame {
         painelBranco.setLayout(painelBrancoLayout);
         painelBrancoLayout.setHorizontalGroup(
             painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 282, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBrancoLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(painelBntFechar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 288, Short.MAX_VALUE)
         );
         painelBrancoLayout.setVerticalGroup(
             painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,9 +275,10 @@ public class CriarAtleta extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(painelVerde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(painelVerde, javax.swing.GroupLayout.PREFERRED_SIZE, 612, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(painelBranco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(painelBranco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

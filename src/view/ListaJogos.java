@@ -2,22 +2,45 @@ package view;
 
 import java.awt.Color;
 import javax.swing.JPanel;
-import modeldao.AtletaDao;
+import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
+import model.Jogos;
 import modeldao.JogosDao;
 
 /**
  * @author Kauã Rodrigo
- * @since 11/08/2023
+ * @since 12/08/2023
  * @version 0.1
  */
-public class Principal extends javax.swing.JFrame {
+public class ListaJogos extends javax.swing.JFrame {
+
+    // Objeto de classes
+    Principal principal;
+    JogosDao jogosDao = new JogosDao();
+    Mensagens mensagens = new Mensagens();
 
     // construtor
-    public Principal() {
+    public ListaJogos(Principal principal) {
         initComponents();
-        
-        quantidadesTotalAtletas();
-        quantidadeTotalJogos();
+
+        // gambiarra para navegar entre o menu
+        this.principal = principal;
+
+        tabelaJogos.rolamentoDaTabela(rolamentoTabela); // Scrooll personalizada
+
+        tabelaJogos(); // carregar os dados da tabela ao entrar na tela
+        atualizarQuantidades(); //carregar a quantidade de atletas ativos e inativos
+
+        //  método para adicionar uma função na tecla enter para o campo de pesquisa
+        campoBuscarStatus.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+                    realizarBuscaPorStatus();
+                }
+            }
+        });
+
     }
 
     // código padrão do java
@@ -42,27 +65,28 @@ public class Principal extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         painelBranco = new javax.swing.JPanel();
-        painelAdminInfo = new javax.swing.JPanel();
-        textNomeAdmin = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        textNumIdade = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        painelLogoClube = new javax.swing.JPanel();
-        jLabel24 = new javax.swing.JLabel();
-        painelJogos = new javax.swing.JPanel();
-        quantidadeJogos = new javax.swing.JLabel();
+        painelAtletasInativos = new javax.swing.JPanel();
+        quantidadeJogosCancelados = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
         painelAtletas = new javax.swing.JPanel();
-        quantidadeAtletas = new javax.swing.JLabel();
+        quantidadeJogosFinalizados = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        iconPesquisar = new javax.swing.JLabel();
+        painelAtletasAtivos = new javax.swing.JPanel();
+        quantidadeJogosAgendados = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        rolamentoTabela = new javax.swing.JScrollPane();
+        tabelaJogos = new view.TabelaPersonalizada();
+        jSeparator3 = new javax.swing.JSeparator();
+        bntDeletar = new view.BotaoPersonalizado();
+        jSeparator5 = new javax.swing.JSeparator();
+        campoBuscarStatus = new javax.swing.JTextField();
+        bntCriarAtleta = new view.BotaoPersonalizado();
+        bntAtualizar = new view.BotaoPersonalizado();
         painelVerdeCurto = new javax.swing.JPanel();
         painelBntFechar = new javax.swing.JPanel();
         iconFechar = new javax.swing.JLabel();
@@ -70,11 +94,21 @@ public class Principal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
+        addWindowFocusListener(new java.awt.event.WindowFocusListener() {
+            public void windowGainedFocus(java.awt.event.WindowEvent evt) {
+                formWindowGainedFocus(evt);
+            }
+            public void windowLostFocus(java.awt.event.WindowEvent evt) {
+            }
+        });
 
         painelMenuVerde.setBackground(new java.awt.Color(31, 115, 52));
 
         campoMenuPrincipal.setBackground(new java.awt.Color(31, 115, 52));
         campoMenuPrincipal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                campoMenuPrincipalMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 campoMenuPrincipalMouseEntered(evt);
             }
@@ -145,9 +179,6 @@ public class Principal extends javax.swing.JFrame {
 
         campoMenuJogos.setBackground(new java.awt.Color(31, 115, 52));
         campoMenuJogos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                campoMenuJogosMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 campoMenuJogosMouseEntered(evt);
             }
@@ -261,134 +292,45 @@ public class Principal extends javax.swing.JFrame {
         );
 
         painelBranco.setBackground(new java.awt.Color(255, 255, 255));
+        painelBranco.setForeground(new java.awt.Color(255, 255, 255));
+        painelBranco.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        painelAdminInfo.setBackground(new java.awt.Color(0, 0, 0));
+        painelAtletasInativos.setBackground(new java.awt.Color(255, 255, 255));
+        painelAtletasInativos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        textNomeAdmin.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        textNomeAdmin.setForeground(new java.awt.Color(255, 255, 255));
-        textNomeAdmin.setText("Adenilson Monteiro");
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("Administador");
-
-        textNumIdade.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        textNumIdade.setForeground(new java.awt.Color(31, 115, 52));
-        textNumIdade.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        textNumIdade.setText("56");
-
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("anos");
-
-        javax.swing.GroupLayout painelAdminInfoLayout = new javax.swing.GroupLayout(painelAdminInfo);
-        painelAdminInfo.setLayout(painelAdminInfoLayout);
-        painelAdminInfoLayout.setHorizontalGroup(
-            painelAdminInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelAdminInfoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(painelAdminInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel16)
-                    .addComponent(textNomeAdmin))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 429, Short.MAX_VALUE)
-                .addGroup(painelAdminInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(textNumIdade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18))
-        );
-        painelAdminInfoLayout.setVerticalGroup(
-            painelAdminInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelAdminInfoLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addGroup(painelAdminInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textNomeAdmin)
-                    .addComponent(textNumIdade))
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(painelAdminInfoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
-
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setText("Usuário Atual");
-
-        painelLogoClube.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel24.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imgHolofotes.png"))); // NOI18N
-        jLabel24.setToolTipText("");
-
-        javax.swing.GroupLayout painelLogoClubeLayout = new javax.swing.GroupLayout(painelLogoClube);
-        painelLogoClube.setLayout(painelLogoClubeLayout);
-        painelLogoClubeLayout.setHorizontalGroup(
-            painelLogoClubeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        painelLogoClubeLayout.setVerticalGroup(
-            painelLogoClubeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        painelJogos.setBackground(new java.awt.Color(255, 255, 255));
-        painelJogos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        quantidadeJogos.setFont(new java.awt.Font("Segoe UI", 1, 45)); // NOI18N
-        quantidadeJogos.setForeground(new java.awt.Color(255, 255, 255));
-        quantidadeJogos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        quantidadeJogos.setText("50");
-        painelJogos.add(quantidadeJogos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, 50));
+        quantidadeJogosCancelados.setFont(new java.awt.Font("Segoe UI", 1, 45)); // NOI18N
+        quantidadeJogosCancelados.setForeground(new java.awt.Color(255, 255, 255));
+        quantidadeJogosCancelados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        quantidadeJogosCancelados.setText("50");
+        painelAtletasInativos.add(quantidadeJogosCancelados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, 50));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("Jogos");
-        painelJogos.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, 40));
+        jLabel12.setText("Cancelados");
+        painelAtletasInativos.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, 40));
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imgPreta.png"))); // NOI18N
-        painelJogos.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        painelAtletasInativos.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel19.setText("História do Clube");
-
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(143, 143, 143));
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel20.setText("<html>A Arena Monteiro ganha vida, como símbolo de determinação e persistência.<br>   Onde antes encontrávamos apenas promessas entre amigos em um campinho de terra, hoje ergue-se em um espaço para a paixão do futebol.<br>     Aqui é onde os sonhos se tornam reais, onde histórias são escritas e onde a emoção do jogo pulsa intensamente. Essa é a Arena Monteiro, onde o sonho ganha vida! </html> ");
-        jLabel20.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconFundacao.png"))); // NOI18N
-
-        jLabel22.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel22.setText("Fundação");
-
-        jLabel23.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setText("2023");
+        painelBranco.add(painelAtletasInativos, new org.netbeans.lib.awtextra.AbsoluteConstraints(527, 85, -1, 130));
 
         painelAtletas.setBackground(new java.awt.Color(255, 255, 255));
         painelAtletas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        quantidadeAtletas.setFont(new java.awt.Font("Segoe UI", 1, 45)); // NOI18N
-        quantidadeAtletas.setForeground(new java.awt.Color(255, 255, 255));
-        quantidadeAtletas.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        quantidadeAtletas.setText("50");
-        painelAtletas.add(quantidadeAtletas, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, 50));
+        quantidadeJogosFinalizados.setFont(new java.awt.Font("Segoe UI", 1, 45)); // NOI18N
+        quantidadeJogosFinalizados.setForeground(new java.awt.Color(255, 255, 255));
+        quantidadeJogosFinalizados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        quantidadeJogosFinalizados.setText("50");
+        painelAtletas.add(quantidadeJogosFinalizados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, 50));
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel27.setText("Atletas");
+        jLabel27.setText("Finalizados");
         painelAtletas.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, 40));
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -397,56 +339,146 @@ public class Principal extends javax.swing.JFrame {
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imgPreta.png"))); // NOI18N
         painelAtletas.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        javax.swing.GroupLayout painelBrancoLayout = new javax.swing.GroupLayout(painelBranco);
-        painelBranco.setLayout(painelBrancoLayout);
-        painelBrancoLayout.setHorizontalGroup(
-            painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelBrancoLayout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(painelAtletas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(painelLogoClube, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(painelJogos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 33, Short.MAX_VALUE))
-            .addGroup(painelBrancoLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addGroup(painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel19)
-                    .addComponent(jLabel14)
-                    .addComponent(painelAdminInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        painelBrancoLayout.setVerticalGroup(
-            painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelBrancoLayout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addGroup(painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelBrancoLayout.createSequentialGroup()
-                        .addGroup(painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(painelJogos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(painelLogoClube, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel14)
-                        .addGap(0, 0, 0)
-                        .addComponent(painelAdminInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel19)
-                        .addGap(8, 8, 8)
-                        .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))
-                    .addComponent(painelAtletas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel21)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel22)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel23)
-                .addContainerGap())
-        );
+        painelBranco.add(painelAtletas, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 85, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("LISTA DE JOGOS");
+        painelBranco.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 23, -1, 22));
+
+        iconPesquisar.setBackground(new java.awt.Color(255, 255, 255));
+        iconPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconLupa.png"))); // NOI18N
+        painelBranco.add(iconPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, -1, -1));
+
+        painelAtletasAtivos.setBackground(new java.awt.Color(255, 255, 255));
+        painelAtletasAtivos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        quantidadeJogosAgendados.setFont(new java.awt.Font("Segoe UI", 1, 45)); // NOI18N
+        quantidadeJogosAgendados.setForeground(new java.awt.Color(255, 255, 255));
+        quantidadeJogosAgendados.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        quantidadeJogosAgendados.setText("50");
+        painelAtletasAtivos.add(quantidadeJogosAgendados, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 220, 50));
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Agendados");
+        painelAtletasAtivos.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 200, 40));
+
+        jLabel16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imgPreta.png"))); // NOI18N
+        painelAtletasAtivos.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        painelBranco.add(painelAtletasAtivos, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 85, -1, -1));
+
+        tabelaJogos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "STATUS", "TIME 1", "TIME 2", "DATA"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabelaJogos.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        rolamentoTabela.setViewportView(tabelaJogos);
+        if (tabelaJogos.getColumnModel().getColumnCount() > 0) {
+            tabelaJogos.getColumnModel().getColumn(0).setResizable(false);
+            tabelaJogos.getColumnModel().getColumn(0).setPreferredWidth(5);
+        }
+
+        painelBranco.add(rolamentoTabela, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 318, 714, 334));
+
+        jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
+        painelBranco.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(92, 290, 240, 10));
+
+        bntDeletar.setBackground(new java.awt.Color(0, 146, 120));
+        bntDeletar.setForeground(new java.awt.Color(255, 255, 255));
+        bntDeletar.setText("Deletar");
+        bntDeletar.setBorderColor(new java.awt.Color(255, 255, 255));
+        bntDeletar.setBorderPainted(false);
+        bntDeletar.setColor(new java.awt.Color(0, 146, 120));
+        bntDeletar.setColorClick(new java.awt.Color(196, 43, 28));
+        bntDeletar.setColorOver(new java.awt.Color(196, 43, 28));
+        bntDeletar.setFocusPainted(false);
+        bntDeletar.setFocusable(false);
+        bntDeletar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        bntDeletar.setRadius(50);
+        bntDeletar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bntDeletarMouseClicked(evt);
+            }
+        });
+        painelBranco.add(bntDeletar, new org.netbeans.lib.awtextra.AbsoluteConstraints(497, 255, 120, 45));
+
+        jSeparator5.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
+        painelBranco.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 51, 714, 16));
+
+        campoBuscarStatus.setBackground(new java.awt.Color(255, 255, 255));
+        campoBuscarStatus.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        campoBuscarStatus.setForeground(new java.awt.Color(143, 143, 143));
+        campoBuscarStatus.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        campoBuscarStatus.setText("Buscar Por Status");
+        campoBuscarStatus.setBorder(null);
+        campoBuscarStatus.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        campoBuscarStatus.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                campoBuscarStatusFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoBuscarStatusFocusLost(evt);
+            }
+        });
+        painelBranco.add(campoBuscarStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 240, 30));
+
+        bntCriarAtleta.setBackground(new java.awt.Color(0, 146, 120));
+        bntCriarAtleta.setForeground(new java.awt.Color(255, 255, 255));
+        bntCriarAtleta.setText("Adicionar");
+        bntCriarAtleta.setBorderColor(new java.awt.Color(255, 255, 255));
+        bntCriarAtleta.setBorderPainted(false);
+        bntCriarAtleta.setColor(new java.awt.Color(0, 146, 120));
+        bntCriarAtleta.setColorClick(new java.awt.Color(21, 80, 36));
+        bntCriarAtleta.setColorOver(new java.awt.Color(21, 80, 36));
+        bntCriarAtleta.setFocusPainted(false);
+        bntCriarAtleta.setFocusable(false);
+        bntCriarAtleta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        bntCriarAtleta.setRadius(50);
+        bntCriarAtleta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bntCriarAtletaMouseClicked(evt);
+            }
+        });
+        painelBranco.add(bntCriarAtleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(627, 255, 120, 45));
+
+        bntAtualizar.setBackground(new java.awt.Color(0, 146, 120));
+        bntAtualizar.setForeground(new java.awt.Color(255, 255, 255));
+        bntAtualizar.setText("Atualizar");
+        bntAtualizar.setBorderColor(new java.awt.Color(255, 255, 255));
+        bntAtualizar.setBorderPainted(false);
+        bntAtualizar.setColor(new java.awt.Color(0, 146, 120));
+        bntAtualizar.setColorClick(new java.awt.Color(48, 144, 216));
+        bntAtualizar.setColorOver(new java.awt.Color(48, 144, 216));
+        bntAtualizar.setFocusPainted(false);
+        bntAtualizar.setFocusable(false);
+        bntAtualizar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        bntAtualizar.setRadius(50);
+        bntAtualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bntAtualizarMouseClicked(evt);
+            }
+        });
+        painelBranco.add(bntAtualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(367, 255, 120, 45));
 
         painelVerdeCurto.setBackground(new java.awt.Color(31, 115, 52));
 
@@ -485,7 +517,7 @@ public class Principal extends javax.swing.JFrame {
         painelVerdeCurtoLayout.setHorizontalGroup(
             painelVerdeCurtoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelVerdeCurtoLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 744, Short.MAX_VALUE)
                 .addComponent(painelBntFechar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         painelVerdeCurtoLayout.setVerticalGroup(
@@ -501,19 +533,20 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(painelMenuVerde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(painelVerdeCurto, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(painelVerdeCurto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(painelBranco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(painelVerdeCurto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(painelBranco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(painelBranco, javax.swing.GroupLayout.PREFERRED_SIZE, 665, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addComponent(painelMenuVerde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(999, 670));
+        setSize(new java.awt.Dimension(1000, 696));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -527,9 +560,9 @@ public class Principal extends javax.swing.JFrame {
         mudarCor(painelBntFechar, new Color(31, 115, 52));
     }//GEN-LAST:event_iconFecharMouseExited
 
-    // ao ser clicado via fechar a janela e encerrar o programa
+    // ao ser clicado vai fechar a janela e encerrar o programa (Até as janelas ocultas)
     private void iconFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_iconFecharMouseClicked
-        this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_iconFecharMouseClicked
 
     private void campoMenuPrincipalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuPrincipalMouseEntered
@@ -564,68 +597,196 @@ public class Principal extends javax.swing.JFrame {
         mudarCor(campoMenuAjustes, new Color(31, 115, 52));
     }//GEN-LAST:event_campoMenuAjustesMouseExited
 
-    // ao ser clicado vai redirecionar o usuário para a tela com uma lista de atletas
-    private void campoMenuAtletasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuAtletasMouseClicked
-        ListaAtletas listaAtletas = new ListaAtletas(this);
-        listaAtletas.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_campoMenuAtletasMouseClicked
+    // ao ser clicado vai voltar para a tela inicial e vai fechar a tela atual
+    private void campoMenuPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuPrincipalMouseClicked
+        principal.setVisible(true);
+        principal.quantidadesTotalAtletas(); 
+        principal.quantidadeTotalJogos();
+        this.dispose();
+    }//GEN-LAST:event_campoMenuPrincipalMouseClicked
 
-    private void campoMenuJogosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuJogosMouseClicked
-        ListaJogos listaJogos = new ListaJogos(this);
-        listaJogos.setVisible(true);
+    // gambiarra que vai me ajudar a usar os métodos addCampoPlaceholder e removerCampoPlaceholder
+    // ele basicamente vai tirar o foco dos campos de texto ao inicializar a janela
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        this.requestFocusInWindow();
+    }//GEN-LAST:event_formWindowGainedFocus
+
+    // ao ganhar o foco vai chamar o método removerCampoPlaceholder
+    private void campoBuscarStatusFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscarStatusFocusGained
+        if (campoBuscarStatus.getText().equals("Buscar Por Status")) {
+            removerCampoPlaceholder(campoBuscarStatus);
+        }
+    }//GEN-LAST:event_campoBuscarStatusFocusGained
+
+    // ao perder o foco vai verificar se tem algo no campo, caso não tenha, vai chamar voltar ao estado antigo
+    private void campoBuscarStatusFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscarStatusFocusLost
+        if (campoBuscarStatus.getText().length() == 0) {
+            campoBuscarStatus.setText("Buscar Por Status");
+            campoBuscarStatus.setForeground(new Color(140, 140, 140));
+
+            // Recarregar a tabela com todos os atletas
+            tabelaJogos();
+        }
+    }//GEN-LAST:event_campoBuscarStatusFocusLost
+
+    // método para excluir uma linha da tabela
+    private void bntDeletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntDeletarMouseClicked
+        excluirJogo();
+    }//GEN-LAST:event_bntDeletarMouseClicked
+
+    // método para abrir a janela de criação 
+    private void bntCriarAtletaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntCriarAtletaMouseClicked
         this.setVisible(false);
-    }//GEN-LAST:event_campoMenuJogosMouseClicked
+        CriarJogo janelaCriarJogo = new CriarJogo(this);
+        janelaCriarJogo.setVisible(true);
+    }//GEN-LAST:event_bntCriarAtletaMouseClicked
+
+    // método que vai levar o admin para janela de atualizar dados
+    private void bntAtualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntAtualizarMouseClicked
+        int selectedRowIndex = tabelaJogos.getSelectedRow();
+
+        if (selectedRowIndex != -1) {
+            Jogos jogoSelecionado = obterAtletaDaLinhaSelecionada(); // Obter o objeto Atleta da linha selecionada
+
+            this.setVisible(false);
+            AtualizarDadosJogos AtualizarDadosJogos = new AtualizarDadosJogos(this, jogoSelecionado); // Passar o objeto Atleta selecionado como parâmetro
+            AtualizarDadosJogos.setVisible(true);
+        } else {
+            mensagens.tipoMensagemAtletaDao(7);
+        }
+    }//GEN-LAST:event_bntAtualizarMouseClicked
+
+    // método que vai abrir a janela da lista com atletas
+    private void campoMenuAtletasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuAtletasMouseClicked
+        ListaAtletas janelaAtleta = new ListaAtletas(principal);
+        this.dispose();
+        janelaAtleta.setVisible(true);
+    }//GEN-LAST:event_campoMenuAtletasMouseClicked
 
     // método para alternar as cores dos campos
     public void mudarCor(JPanel campo, Color cor) {
         campo.setBackground(cor);
     }
 
-    // método Set para recuperar o nome junto com o sobrenome do admin
-    public void setNomeAdmin(String nomeSobrenome) {
-        textNomeAdmin.setText(nomeSobrenome);
+    // esse método vai remover o texto nos campos que o método acima adicionou
+    public void removerCampoPlaceholder(JTextField campoTexto) {
+        campoTexto.requestFocus();
+        campoTexto.setText(null);
+        campoTexto.setForeground(Color.BLACK);
     }
 
-    // método para recuperar a idade do admin
-    public void setIdadeAdmin(int idadeAdmin) {
-        textNumIdade.setText(Integer.toString(idadeAdmin));
+    // Método que vai alimentar a tabela com itens do banco de dados
+    public void tabelaJogos() {
+        DefaultTableModel modelo = (DefaultTableModel) tabelaJogos.getModel(); // lembrar de pagar
+        modelo.setNumRows(0);
+        for (Jogos jogos : jogosDao.listaJogos()) { // forEach para percorrer a listaDao
+
+            modelo.addRow(new Object[]{ // adicionando linha 
+                jogos.getIdJogo(),
+                jogos.getStatus().toUpperCase(),
+                jogos.getTime1(),
+                jogos.getTime2(),
+                jogos.getDataHoraJogo() // talvez eu precise transformar em sring na classe jogos
+            });
+        }
     }
 
-    // método com todas as quantidades de atletas cadastrados 
-    public void quantidadesTotalAtletas() {
-    AtletaDao atletaDao = new AtletaDao();
-        int quantidadeTotal = atletaDao.contarTotalAtletas();
-        quantidadeAtletas.setText(String.valueOf(quantidadeTotal));
+    // Método que vai alimentar a tabela com itens do banco de dados
+    public void tabelaJogosPorStatus(String status) {
+        DefaultTableModel modelo = (DefaultTableModel) tabelaJogos.getModel();
+        modelo.setNumRows(0);
+
+        for (Jogos jogos : jogosDao.listaJogosPorStatus(status)) { // forEach para percorrer a lista pelo nome
+
+            modelo.addRow(new Object[]{ // adicionando linha 
+                jogos.getIdJogo(),
+                jogos.getStatus().toUpperCase(),
+                jogos.getTime1(),
+                jogos.getTime2(),
+                jogos.getDataHoraJogo() // talvez eu precise transformar em sring na classe jogos
+            });
+        }
+
     }
-    
-    // método com todas as qantidades de jogos cadastrados
-    public void quantidadeTotalJogos(){
-        JogosDao jogosDao = new JogosDao();
-        int quantidadeTotal = jogosDao.contarTotalJogos();
-        quantidadeJogos.setText(String.valueOf(quantidadeTotal));
+
+    // método que vai usar a tabelaAtletasPorNome
+    private void realizarBuscaPorStatus() {
+        String status = campoBuscarStatus.getText().trim();
+
+        if (!status.isEmpty()) {
+            tabelaJogosPorStatus(status);
+        } else {
+            // Se o campo estiver vazio, recarregar a tabela com todos os status
+            tabelaJogos();
+        }
     }
+
+    // método com todas as quantidades de atletas cadastrados  //mexer nisso depois
+    public void atualizarQuantidades() {
+        int quantidadeAgendados = jogosDao.contarJogosPorStatus("Agendado");
+        int quantidadeCancelados = jogosDao.contarJogosPorStatus("Cancelado");
+        int quantidadeFinzalizados = jogosDao.contarJogosPorStatus("Finalizado"); // mudar isso 
+
+        quantidadeJogosAgendados.setText(String.valueOf(quantidadeAgendados));
+        quantidadeJogosCancelados.setText(String.valueOf(quantidadeCancelados));
+        quantidadeJogosFinalizados.setText(String.valueOf(quantidadeFinzalizados));
+    }
+
+    // método para exluir um atleta
+    public void excluirJogo() {
+      int selectedRowIndex = tabelaJogos.getSelectedRow();
+
+        if (selectedRowIndex != -1) {
+            if (mensagens.confirmarExclusao()) {
+                Jogos jogo = new Jogos();
+                jogo.setIdJogo((int) tabelaJogos.getValueAt(selectedRowIndex, 0));
+
+                jogosDao.excluirJogo(jogo);
+
+                atualizarQuantidades();
+                tabelaJogos();
+            }
+        } else {
+            mensagens.tipoMensagemJogosDao(6);
+        }
+    }
+
+    // método para obter os dados da linha selecionada (usada oara atualizar os dados)
+    private Jogos obterAtletaDaLinhaSelecionada() {
+        int selectedRowIndex = tabelaJogos.getSelectedRow();
+        
+        Jogos jogos = new Jogos();
+        
+        jogos.setIdJogo((int) tabelaJogos.getValueAt(selectedRowIndex, 0));
+        jogos.setStatus((String) tabelaJogos.getValueAt(selectedRowIndex, 1));
+        jogos.setTime1((String) tabelaJogos.getValueAt(selectedRowIndex, 2));
+        jogos.setTime2((String) tabelaJogos.getValueAt(selectedRowIndex, 3));
+        jogos.setDataHoraJogo((String) tabelaJogos.getValueAt(selectedRowIndex, 4));
+        
+        return jogos;
+    }
+
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private view.BotaoPersonalizado bntAtualizar;
+    private view.BotaoPersonalizado bntCriarAtleta;
+    private view.BotaoPersonalizado bntDeletar;
+    private javax.swing.JTextField campoBuscarStatus;
     private javax.swing.JPanel campoMenuAjustes;
     private javax.swing.JPanel campoMenuAtletas;
     private javax.swing.JPanel campoMenuJogos;
     private javax.swing.JPanel campoMenuPrincipal;
     private javax.swing.JLabel iconFechar;
+    private javax.swing.JLabel iconPesquisar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
@@ -636,17 +797,19 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JPanel painelAdminInfo;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator5;
     private javax.swing.JPanel painelAtletas;
+    private javax.swing.JPanel painelAtletasAtivos;
+    private javax.swing.JPanel painelAtletasInativos;
     private javax.swing.JPanel painelBntFechar;
     private javax.swing.JPanel painelBranco;
-    private javax.swing.JPanel painelJogos;
-    private javax.swing.JPanel painelLogoClube;
     private javax.swing.JPanel painelMenuVerde;
     private javax.swing.JPanel painelVerdeCurto;
-    private javax.swing.JLabel quantidadeAtletas;
-    private javax.swing.JLabel quantidadeJogos;
-    private javax.swing.JLabel textNomeAdmin;
-    private javax.swing.JLabel textNumIdade;
+    private javax.swing.JLabel quantidadeJogosAgendados;
+    private javax.swing.JLabel quantidadeJogosCancelados;
+    private javax.swing.JLabel quantidadeJogosFinalizados;
+    private javax.swing.JScrollPane rolamentoTabela;
+    private view.TabelaPersonalizada tabelaJogos;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,46 +1,44 @@
 package view;
 
-import modeldao.AtletaDao;
-import model.Atleta;
 import java.awt.Color;
 import java.awt.HeadlessException;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import model.Jogos;
+import modeldao.JogosDao;
 
 /**
  * @author Kauã Rodrigo
  * @since 19/08/2023
  * @version 0.1
  */
-public class AtualizarDadosAtleta extends javax.swing.JFrame {
+public class AtualizarDadosJogos extends javax.swing.JFrame {
 
     // atleta selecioando na tabela
-    private Atleta atletaSelecionado;
+    private Jogos jogoSelecionado;
 
     // Objeto de classes
-    ListaAtletas listaAtleta;
-    AtletaDao atletaDao = new AtletaDao();
+    ListaJogos listaJogos;
+    JogosDao jogosDao = new JogosDao();
     Mensagens mensagens = new Mensagens();
 
     // construtor
-    public AtualizarDadosAtleta(ListaAtletas listaAtleta, Atleta atletaSelecionado) {
+    public AtualizarDadosJogos(ListaJogos listaJogos, Jogos jogoSelecionado) {
         initComponents();
 
-        this.atletaSelecionado = atletaSelecionado; // Armazenar o objeto Atleta
-        this.listaAtleta = listaAtleta;
+        this.jogoSelecionado = jogoSelecionado; // Armazenar o objeto Atleta
+        this.listaJogos = listaJogos;
 
         // passando os campos com os dados que o atleta já possue 
-        campoNome.setText(atletaSelecionado.getNome());
-        campoSobrenome.setText(atletaSelecionado.getSobrenome());
-        campoTelefone.setText(atletaSelecionado.getContato());
-        spinnerCategoria.setValue(atletaSelecionado.getCategoria());
-        spinnerStatus.setValue(atletaSelecionado.getStatus());
-        textIdAtleta.setText(Integer.toString(atletaSelecionado.getId())); // gambiarra
+        campoTime1.setText(jogoSelecionado.getTime1());
+        campoTime2.setText(jogoSelecionado.getTime2());
+        campoDataHora.setText(jogoSelecionado.getDataHoraJogo());
+        spinnerStatus.setValue(jogoSelecionado.getStatus());
+        textIdJogo.setText(Integer.toString(jogoSelecionado.getIdJogo())); // gambiarra
 
         // inicilizando a mudança de cores
-        mudarCoresSpinner(spinnerCategoria);
         mudarCoresSpinner(spinnerStatus);
     }
 
@@ -58,19 +56,16 @@ public class AtualizarDadosAtleta extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         bntCadastrar = new view.BotaoPersonalizado();
-        campoSobrenome = new javax.swing.JTextField();
-        textIdAtleta = new javax.swing.JLabel();
+        campoTime2 = new javax.swing.JTextField();
+        textIdJogo = new javax.swing.JLabel();
         separadorText1 = new javax.swing.JSeparator();
         separadorText2 = new javax.swing.JSeparator();
         separadorText4 = new javax.swing.JSeparator();
-        spinnerCategoria = new javax.swing.JSpinner();
-        campoNome = new javax.swing.JTextField();
+        spinnerStatus = new javax.swing.JSpinner();
+        campoTime1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         separadorText5 = new javax.swing.JSeparator();
-        campoTelefone = new javax.swing.JFormattedTextField();
-        spinnerStatus = new javax.swing.JSpinner();
-        separadorText6 = new javax.swing.JSeparator();
-        jLabel9 = new javax.swing.JLabel();
+        campoDataHora = new javax.swing.JFormattedTextField();
         painelBranco = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         painelBntFechar = new javax.swing.JPanel();
@@ -108,26 +103,26 @@ public class AtualizarDadosAtleta extends javax.swing.JFrame {
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Sobrenome");
+        jLabel3.setText("Time 2");
         painelVerde.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(353, 142, 100, -1));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Nome");
+        jLabel4.setText("Time 1");
         painelVerde.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 142, 60, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Categoria");
+        jLabel6.setText("Status");
         painelVerde.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 255, 90, 30));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(240, 240, 240));
-        jLabel7.setText("Id do atleta : ");
-        painelVerde.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(505, 38, 80, -1));
+        jLabel7.setText("Id do jogo : ");
+        painelVerde.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(515, 38, 70, -1));
 
         bntCadastrar.setForeground(new java.awt.Color(31, 115, 52));
         bntCadastrar.setText("ATUALIZAR DADOS");
@@ -144,21 +139,21 @@ public class AtualizarDadosAtleta extends javax.swing.JFrame {
                 bntCadastrarActionPerformed(evt);
             }
         });
-        painelVerde.add(bntCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 480, 270, 36));
+        painelVerde.add(bntCadastrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, 270, 36));
 
-        campoSobrenome.setBackground(new java.awt.Color(31, 115, 52));
-        campoSobrenome.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        campoSobrenome.setForeground(new java.awt.Color(255, 255, 255));
-        campoSobrenome.setBorder(null);
-        campoSobrenome.setCaretColor(new java.awt.Color(255, 255, 255));
-        painelVerde.add(campoSobrenome, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 172, 210, 30));
+        campoTime2.setBackground(new java.awt.Color(31, 115, 52));
+        campoTime2.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        campoTime2.setForeground(new java.awt.Color(255, 255, 255));
+        campoTime2.setBorder(null);
+        campoTime2.setCaretColor(new java.awt.Color(255, 255, 255));
+        painelVerde.add(campoTime2, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 172, 210, 30));
 
-        textIdAtleta.setBackground(new java.awt.Color(255, 255, 255));
-        textIdAtleta.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        textIdAtleta.setForeground(new java.awt.Color(240, 240, 240));
-        textIdAtleta.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        textIdAtleta.setText("10");
-        painelVerde.add(textIdAtleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(583, 38, 27, -1));
+        textIdJogo.setBackground(new java.awt.Color(255, 255, 255));
+        textIdJogo.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        textIdJogo.setForeground(new java.awt.Color(240, 240, 240));
+        textIdJogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textIdJogo.setText("10");
+        painelVerde.add(textIdJogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 38, 30, -1));
 
         separadorText1.setBackground(new java.awt.Color(31, 115, 52));
         separadorText1.setForeground(new java.awt.Color(255, 255, 255));
@@ -181,27 +176,27 @@ public class AtualizarDadosAtleta extends javax.swing.JFrame {
         separadorText4.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         painelVerde.add(separadorText4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 320, 210, 12));
 
-        spinnerCategoria.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        spinnerCategoria.setModel(new javax.swing.SpinnerListModel(new String[] {"SUB-13", "SUB-15", "SUB-17", "SUB-20"}));
-        spinnerCategoria.setBorder(null);
-        spinnerCategoria.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        spinnerCategoria.setEditor(new javax.swing.JSpinner.ListEditor(spinnerCategoria));
-        spinnerCategoria.setFocusable(false);
-        spinnerCategoria.setRequestFocusEnabled(false);
-        painelVerde.add(spinnerCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, 210, 30));
+        spinnerStatus.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        spinnerStatus.setModel(new javax.swing.SpinnerListModel(new String[] {"AGENDADO", "FINALIZADO", "CANCELADO"}));
+        spinnerStatus.setBorder(null);
+        spinnerStatus.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        spinnerStatus.setEditor(new javax.swing.JSpinner.ListEditor(spinnerStatus));
+        spinnerStatus.setFocusable(false);
+        spinnerStatus.setRequestFocusEnabled(false);
+        painelVerde.add(spinnerStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 290, 210, 30));
 
-        campoNome.setBackground(new java.awt.Color(31, 115, 52));
-        campoNome.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        campoNome.setForeground(new java.awt.Color(255, 255, 255));
-        campoNome.setBorder(null);
-        campoNome.setCaretColor(new java.awt.Color(255, 255, 255));
-        painelVerde.add(campoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 210, 30));
+        campoTime1.setBackground(new java.awt.Color(31, 115, 52));
+        campoTime1.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        campoTime1.setForeground(new java.awt.Color(255, 255, 255));
+        campoTime1.setBorder(null);
+        campoTime1.setCaretColor(new java.awt.Color(255, 255, 255));
+        painelVerde.add(campoTime1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 210, 30));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Telefone");
-        painelVerde.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 80, -1));
+        jLabel5.setText("Data e Hora");
+        painelVerde.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 110, -1));
 
         separadorText5.setBackground(new java.awt.Color(31, 115, 52));
         separadorText5.setForeground(new java.awt.Color(255, 255, 255));
@@ -210,40 +205,17 @@ public class AtualizarDadosAtleta extends javax.swing.JFrame {
         separadorText5.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         painelVerde.add(separadorText5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 215, 12));
 
-        campoTelefone.setBackground(new java.awt.Color(31, 115, 52));
-        campoTelefone.setBorder(null);
-        campoTelefone.setForeground(new java.awt.Color(255, 255, 255));
+        campoDataHora.setBackground(new java.awt.Color(31, 115, 52));
+        campoDataHora.setBorder(null);
+        campoDataHora.setForeground(new java.awt.Color(255, 255, 255));
         try {
-            campoTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)#####-####")));
+            campoDataHora.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/#### ##:##")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        campoTelefone.setCaretColor(new java.awt.Color(255, 255, 255));
-        campoTelefone.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        painelVerde.add(campoTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 210, 30));
-
-        spinnerStatus.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
-        spinnerStatus.setModel(new javax.swing.SpinnerListModel(new String[] {"INATIVO", "ATIVO"}));
-        spinnerStatus.setToolTipText("");
-        spinnerStatus.setBorder(null);
-        spinnerStatus.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        spinnerStatus.setEditor(new javax.swing.JSpinner.ListEditor(spinnerStatus));
-        spinnerStatus.setFocusable(false);
-        spinnerStatus.setRequestFocusEnabled(false);
-        painelVerde.add(spinnerStatus, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 220, 30));
-
-        separadorText6.setBackground(new java.awt.Color(31, 115, 52));
-        separadorText6.setForeground(new java.awt.Color(255, 255, 255));
-        separadorText6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        separadorText6.setEnabled(false);
-        separadorText6.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        painelVerde.add(separadorText6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 220, 12));
-
-        jLabel9.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Status");
-        painelVerde.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 80, 30));
+        campoDataHora.setCaretColor(new java.awt.Color(255, 255, 255));
+        campoDataHora.setFont(new java.awt.Font("Segoe UI", 0, 15)); // NOI18N
+        painelVerde.add(campoDataHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 210, 30));
 
         painelBranco.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -334,7 +306,7 @@ public class AtualizarDadosAtleta extends javax.swing.JFrame {
     // método que vai fechar a tela atual e voltar para anterior
     private void painelBntFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseClicked
         this.dispose();
-        listaAtleta.setVisible(true);
+        listaJogos.setVisible(true);
     }//GEN-LAST:event_painelBntFecharMouseClicked
 
     // bnt que vai chamar o método de cadastrar o atleta
@@ -361,26 +333,25 @@ public class AtualizarDadosAtleta extends javax.swing.JFrame {
     public void atualizarDados() { // implementar a mensagem de numero
         try {
 
-            String nome = campoNome.getText().trim();
-            String sobrenome = campoSobrenome.getText().trim();
-            String contato = campoTelefone.getText().trim();
-            String categoria = spinnerCategoria.getValue().toString();
-            int idAtleta = Integer.parseInt(textIdAtleta.getText());
+            String time1 = campoTime1.getText().trim();
+            String time2 = campoTime2.getText().trim();
+            String dataHora = campoDataHora.getText().trim();
             String status = spinnerStatus.getValue().toString();
+            int idJogo = Integer.parseInt(textIdJogo.getText());
 
-            Atleta atleta = new Atleta(idAtleta, nome, sobrenome, categoria, contato, status);
+            Jogos jogos = new Jogos(idJogo, time1, time2, dataHora, status);
 
-            if (!atleta.validarCamposPreenchidosString(nome, sobrenome, categoria, contato, status)) {
+            if (!jogos.validarCamposPreenchidosString( time1, time2,status, dataHora)) {
                 mensagens.tipoMensagemCriarContas(1);
                 return;
             }
 
-            if (atletaDao.atualizarDadosAtleta(atleta)) {
+            if (jogosDao.atualizarDadosJogo(jogos)) {
                 limparCampos();
-                listaAtleta.atualizarQuantidades();
-                listaAtleta.tabelaAtletas();
+                listaJogos.atualizarQuantidades();
+                listaJogos.tabelaJogos();
                 this.dispose();
-                listaAtleta.setVisible(true);
+                listaJogos.setVisible(true);
             }
 
         } catch (HeadlessException erro) {
@@ -390,17 +361,17 @@ public class AtualizarDadosAtleta extends javax.swing.JFrame {
 
     // método para limpar os campos
     public void limparCampos() {
-        campoNome.setText("");
-        campoSobrenome.setText("");
-        campoTelefone.setText("");
-        campoNome.requestFocus();
+        campoTime1.setText("");
+        campoTime2.setText("");
+        campoDataHora.setText("");
+        campoTime1.requestFocus();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private view.BotaoPersonalizado bntCadastrar;
-    private javax.swing.JTextField campoNome;
-    private javax.swing.JTextField campoSobrenome;
-    private javax.swing.JFormattedTextField campoTelefone;
+    private javax.swing.JFormattedTextField campoDataHora;
+    private javax.swing.JTextField campoTime1;
+    private javax.swing.JTextField campoTime2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -409,7 +380,6 @@ public class AtualizarDadosAtleta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel painelBntFechar;
     private javax.swing.JPanel painelBranco;
     private javax.swing.JPanel painelVerde;
@@ -418,10 +388,8 @@ public class AtualizarDadosAtleta extends javax.swing.JFrame {
     private javax.swing.JSeparator separadorText2;
     private javax.swing.JSeparator separadorText4;
     private javax.swing.JSeparator separadorText5;
-    private javax.swing.JSeparator separadorText6;
-    private javax.swing.JSpinner spinnerCategoria;
     private javax.swing.JSpinner spinnerStatus;
-    private javax.swing.JLabel textIdAtleta;
+    private javax.swing.JLabel textIdJogo;
     private javax.swing.JLabel textX;
     // End of variables declaration//GEN-END:variables
 }
