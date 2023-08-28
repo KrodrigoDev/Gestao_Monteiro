@@ -11,10 +11,10 @@ import java.util.List;
 import view.Mensagens;
 
 public class JogosDao {
-    
+
     // objeto da classe mensagem 
     Mensagens mensagens = new Mensagens();
-    
+
     private PreparedStatement ps = null;
 
     public boolean cadastrarJogo(Jogos jogo) {
@@ -28,16 +28,22 @@ public class JogosDao {
             ps.setString(3, jogo.getTime2());
             ps.setInt(4, jogo.getIdAdmin());
 
+            if (jogo.getDataHoraJogo() == null) {  // mudar isso depois
+                mensagens.tipoMensagemJogosDao(7);  
+                return false;
+            }
+
             ps.executeUpdate();
             ps.close();
 
             return true;
         } catch (SQLException erro) {
-             if (erro.getErrorCode() == 1062) { // Código de erro para duplicidade na chave primária ou única
+            if (erro.getErrorCode() == 1062) { // Código de erro para duplicidade na chave primária ou única
                 mensagens.tipoMensagemJogosDao(1);
             } else {
                 // Em caso de outros erros SQL
                 mensagens.tipoMensagemJogosDao(2);
+                System.out.println(erro);
             }
             return false;
         }
@@ -66,7 +72,7 @@ public class JogosDao {
 
             ps.close();
         } catch (SQLException erro) {
-           mensagens.tipoMensagemJogosDao(2);
+            mensagens.tipoMensagemJogosDao(2);
         }
 
         return jogos;
@@ -81,7 +87,7 @@ public class JogosDao {
 
             ResultSet resultadoConsulta = ps.executeQuery();
 
-            if (resultadoConsulta.next()) {
+            if (resultadoConsulta.next()) {  // mudar isso depois
                 return resultadoConsulta.getInt("total");
             }
 
@@ -120,7 +126,7 @@ public class JogosDao {
 
         try {
             ps = Conexao.getConexao().prepareStatement(sql);
-            ps.setString(1, '%'+status+'%');
+            ps.setString(1, '%' + status + '%');
 
             ResultSet resultadoConsulta = ps.executeQuery();
 
@@ -170,11 +176,16 @@ public class JogosDao {
             ps.setString(4, jogo.getTime2());
             ps.setInt(5, jogo.getIdJogo());
 
+            if (jogo.getDataHoraJogo() == null) {
+                mensagens.tipoMensagemJogosDao(7);
+                return false;
+            }
+
             int linhasAfetadas = ps.executeUpdate();
             ps.close();
 
-            mensagens.tipoMensagemJogosDao(linhasAfetadas > 0? 4:5);
-            
+            mensagens.tipoMensagemJogosDao(linhasAfetadas > 0 ? 4 : 5);
+
             return linhasAfetadas > 0;
         } catch (SQLException erro) {
             mensagens.tipoMensagemJogosDao(2);

@@ -1,8 +1,6 @@
 package model;
 
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.sql.Timestamp;
 
 /**
  * @since 23/08/2023
@@ -12,7 +10,7 @@ import java.sql.Timestamp;
 public class Jogos {
 
     // atributos
-    private String status, time1, time2, dataHoraJogo;
+    private String status, time1, time2, dataHoraJogo; // data e hora precisam ter exatos 16 caracteres
     private int idJogo, idAdmin;
 
     // formato da hora e data
@@ -42,7 +40,7 @@ public class Jogos {
     // Método para verificar se os campos foram preenchidos corretamente
     public boolean validarCamposPreenchidosString(String... campos) {
         for (String campo : campos) {
-            if (campo.isEmpty() || campo == null || campo.length() < 2) {
+            if ( campo == null ||campo.isEmpty() || campo.length() < 2) {
                 return false; // impede a criação
             }
         }
@@ -94,8 +92,12 @@ public class Jogos {
         return dataHoraJogo;
     }
 
-    public void setDataHoraJogo(String dataHoraJogo) {
-        this.dataHoraJogo = dataHoraJogo;
+    public String setDataHoraJogo(String dataHoraJogo) {
+        if (dataHoraJogo.length() == 16) {
+            return this.dataHoraJogo = dataHoraJogo;
+        } else {
+            return null;
+        }
     }
 
 }

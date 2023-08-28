@@ -6,9 +6,6 @@ import java.awt.HeadlessException;
 import javax.swing.JPanel;
 import model.Jogos;
 import modeldao.JogosDao;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.sql.Timestamp;
 
 /**
  * @author Kauã Rodrigo
@@ -297,9 +294,8 @@ public class CriarJogo extends javax.swing.JFrame {
         try {
             String time1 = campoTime1.getText().trim();
             String time2 = campoTime2.getText().trim();
-            String dataHora =campoDataHora.getText().trim();
+            String dataHora = campoDataHora.getText().trim();
             int idAdmin = Integer.parseInt(textIdAdmin.getText());
-
 
             Jogos jogos = new Jogos(time1, time2, dataHora, idAdmin);
 
@@ -313,6 +309,8 @@ public class CriarJogo extends javax.swing.JFrame {
                 mensagens.tipoMensagemCriarContas(3); // outra adptação
                 listajogos.tabelaJogos();
                 listajogos.atualizarQuantidades();
+                this.dispose();
+                listajogos.setVisible(true);
             }
 
         } catch (HeadlessException erro) {

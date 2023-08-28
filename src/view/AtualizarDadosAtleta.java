@@ -72,9 +72,9 @@ public class AtualizarDadosAtleta extends javax.swing.JFrame {
         separadorText6 = new javax.swing.JSeparator();
         jLabel9 = new javax.swing.JLabel();
         painelBranco = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
         painelBntFechar = new javax.swing.JPanel();
         textX = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -247,8 +247,6 @@ public class AtualizarDadosAtleta extends javax.swing.JFrame {
 
         painelBranco.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logoEscudo03.png"))); // NOI18N
-
         painelBntFechar.setBackground(new java.awt.Color(255, 255, 255));
         painelBntFechar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -282,21 +280,23 @@ public class AtualizarDadosAtleta extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logoOFicialArena.png"))); // NOI18N
+
         javax.swing.GroupLayout painelBrancoLayout = new javax.swing.GroupLayout(painelBranco);
         painelBranco.setLayout(painelBrancoLayout);
         painelBrancoLayout.setHorizontalGroup(
             painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 282, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelBrancoLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(painelBntFechar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         painelBrancoLayout.setVerticalGroup(
             painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelBrancoLayout.createSequentialGroup()
                 .addComponent(painelBntFechar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
-                .addComponent(jLabel8)
+                .addGap(67, 67, 67)
+                .addComponent(jLabel10)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -315,15 +315,14 @@ public class AtualizarDadosAtleta extends javax.swing.JFrame {
             .addComponent(painelBranco, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(898, 599));
+        setSize(new java.awt.Dimension(906, 599));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    // quando o mouse entrar vai fazer com que o campo mude de cor
-    private void painelBntFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseEntered
-        mudarCor(painelBntFechar, new Color(196, 43, 28));
-        textX.setForeground(Color.WHITE);
-    }//GEN-LAST:event_painelBntFecharMouseEntered
+    // bnt que vai chamar o método de cadastrar o atleta
+    private void bntCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastrarActionPerformed
+        atualizarDados();
+    }//GEN-LAST:event_bntCadastrarActionPerformed
 
     // quando o mouse sair do campo ele vai retornar a cor branca
     private void painelBntFecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseExited
@@ -331,16 +330,17 @@ public class AtualizarDadosAtleta extends javax.swing.JFrame {
         textX.setForeground(new Color(31, 115, 52));
     }//GEN-LAST:event_painelBntFecharMouseExited
 
+    // quando o mouse entrar vai fazer com que o campo mude de cor
+    private void painelBntFecharMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseEntered
+        mudarCor(painelBntFechar, new Color(196, 43, 28));
+        textX.setForeground(Color.WHITE);
+    }//GEN-LAST:event_painelBntFecharMouseEntered
+
     // método que vai fechar a tela atual e voltar para anterior
     private void painelBntFecharMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseClicked
         this.dispose();
         listaAtleta.setVisible(true);
     }//GEN-LAST:event_painelBntFecharMouseClicked
-
-    // bnt que vai chamar o método de cadastrar o atleta
-    private void bntCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bntCadastrarActionPerformed
-        atualizarDados();
-    }//GEN-LAST:event_bntCadastrarActionPerformed
 
     // método para  alaterar as cores do spinner 
     public void mudarCoresSpinner(JSpinner spinner) {
@@ -402,13 +402,13 @@ public class AtualizarDadosAtleta extends javax.swing.JFrame {
     private javax.swing.JTextField campoSobrenome;
     private javax.swing.JFormattedTextField campoTelefone;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel painelBntFechar;
     private javax.swing.JPanel painelBranco;

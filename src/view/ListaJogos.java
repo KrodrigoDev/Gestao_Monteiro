@@ -58,7 +58,7 @@ public class ListaJogos extends javax.swing.JFrame {
         campoMenuJogos = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        campoMenuAjustes = new javax.swing.JPanel();
+        campoMenuSair = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -211,36 +211,39 @@ public class ListaJogos extends javax.swing.JFrame {
             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        campoMenuAjustes.setBackground(new java.awt.Color(31, 115, 52));
-        campoMenuAjustes.addMouseListener(new java.awt.event.MouseAdapter() {
+        campoMenuSair.setBackground(new java.awt.Color(31, 115, 52));
+        campoMenuSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                campoMenuSairMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                campoMenuAjustesMouseEntered(evt);
+                campoMenuSairMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                campoMenuAjustesMouseExited(evt);
+                campoMenuSairMouseExited(evt);
             }
         });
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconMenuEngrenagem.png"))); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/iconMenuSair.png"))); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Ajustes");
+        jLabel10.setText("Sair");
 
-        javax.swing.GroupLayout campoMenuAjustesLayout = new javax.swing.GroupLayout(campoMenuAjustes);
-        campoMenuAjustes.setLayout(campoMenuAjustesLayout);
-        campoMenuAjustesLayout.setHorizontalGroup(
-            campoMenuAjustesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(campoMenuAjustesLayout.createSequentialGroup()
+        javax.swing.GroupLayout campoMenuSairLayout = new javax.swing.GroupLayout(campoMenuSair);
+        campoMenuSair.setLayout(campoMenuSairLayout);
+        campoMenuSairLayout.setHorizontalGroup(
+            campoMenuSairLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(campoMenuSairLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        campoMenuAjustesLayout.setVerticalGroup(
-            campoMenuAjustesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        campoMenuSairLayout.setVerticalGroup(
+            campoMenuSairLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -263,7 +266,7 @@ public class ListaJogos extends javax.swing.JFrame {
             .addComponent(campoMenuPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(campoMenuAtletas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(campoMenuJogos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(campoMenuAjustes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(campoMenuSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelMenuVerdeLayout.createSequentialGroup()
@@ -287,7 +290,7 @@ public class ListaJogos extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(campoMenuJogos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(campoMenuAjustes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(campoMenuSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -589,18 +592,18 @@ public class ListaJogos extends javax.swing.JFrame {
         mudarCor(campoMenuJogos, new Color(31, 115, 52));
     }//GEN-LAST:event_campoMenuJogosMouseExited
 
-    private void campoMenuAjustesMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuAjustesMouseEntered
-        mudarCor(campoMenuAjustes, new Color(21, 80, 36));
-    }//GEN-LAST:event_campoMenuAjustesMouseEntered
+    private void campoMenuSairMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuSairMouseEntered
+        mudarCor(campoMenuSair, new Color(21, 80, 36));
+    }//GEN-LAST:event_campoMenuSairMouseEntered
 
-    private void campoMenuAjustesMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuAjustesMouseExited
-        mudarCor(campoMenuAjustes, new Color(31, 115, 52));
-    }//GEN-LAST:event_campoMenuAjustesMouseExited
+    private void campoMenuSairMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuSairMouseExited
+        mudarCor(campoMenuSair, new Color(31, 115, 52));
+    }//GEN-LAST:event_campoMenuSairMouseExited
 
     // ao ser clicado vai voltar para a tela inicial e vai fechar a tela atual
     private void campoMenuPrincipalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuPrincipalMouseClicked
         principal.setVisible(true);
-        principal.quantidadesTotalAtletas(); 
+        principal.quantidadesTotalAtletas();
         principal.quantidadeTotalJogos();
         this.dispose();
     }//GEN-LAST:event_campoMenuPrincipalMouseClicked
@@ -659,9 +662,18 @@ public class ListaJogos extends javax.swing.JFrame {
     // método que vai abrir a janela da lista com atletas
     private void campoMenuAtletasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuAtletasMouseClicked
         ListaAtletas janelaAtleta = new ListaAtletas(principal);
-        this.dispose();
         janelaAtleta.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_campoMenuAtletasMouseClicked
+
+    // método para fazer o usuário retornar a tela de login
+    private void campoMenuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuSairMouseClicked
+        if (mensagens.confirmarSaida()) {
+            Login telaLogin = new Login(); // Substitua "TelaLogin" pelo nome da classe da tela de login
+            telaLogin.setVisible(true);
+            this.dispose(); // Fecha a tela atual
+        }
+    }//GEN-LAST:event_campoMenuSairMouseClicked
 
     // método para alternar as cores dos campos
     public void mudarCor(JPanel campo, Color cor) {
@@ -684,8 +696,8 @@ public class ListaJogos extends javax.swing.JFrame {
             modelo.addRow(new Object[]{ // adicionando linha 
                 jogos.getIdJogo(),
                 jogos.getStatus().toUpperCase(),
-                jogos.getTime1(),
-                jogos.getTime2(),
+                jogos.getTime1().toUpperCase(),
+                jogos.getTime2().toUpperCase(),
                 jogos.getDataHoraJogo() // talvez eu precise transformar em sring na classe jogos
             });
         }
@@ -701,8 +713,8 @@ public class ListaJogos extends javax.swing.JFrame {
             modelo.addRow(new Object[]{ // adicionando linha 
                 jogos.getIdJogo(),
                 jogos.getStatus().toUpperCase(),
-                jogos.getTime1(),
-                jogos.getTime2(),
+                jogos.getTime1().toUpperCase(),
+                jogos.getTime2().toUpperCase(),
                 jogos.getDataHoraJogo() // talvez eu precise transformar em sring na classe jogos
             });
         }
@@ -734,7 +746,7 @@ public class ListaJogos extends javax.swing.JFrame {
 
     // método para exluir um atleta
     public void excluirJogo() {
-      int selectedRowIndex = tabelaJogos.getSelectedRow();
+        int selectedRowIndex = tabelaJogos.getSelectedRow();
 
         if (selectedRowIndex != -1) {
             if (mensagens.confirmarExclusao()) {
@@ -754,18 +766,17 @@ public class ListaJogos extends javax.swing.JFrame {
     // método para obter os dados da linha selecionada (usada oara atualizar os dados)
     private Jogos obterAtletaDaLinhaSelecionada() {
         int selectedRowIndex = tabelaJogos.getSelectedRow();
-        
+
         Jogos jogos = new Jogos();
-        
+
         jogos.setIdJogo((int) tabelaJogos.getValueAt(selectedRowIndex, 0));
         jogos.setStatus((String) tabelaJogos.getValueAt(selectedRowIndex, 1));
         jogos.setTime1((String) tabelaJogos.getValueAt(selectedRowIndex, 2));
         jogos.setTime2((String) tabelaJogos.getValueAt(selectedRowIndex, 3));
         jogos.setDataHoraJogo((String) tabelaJogos.getValueAt(selectedRowIndex, 4));
-        
+
         return jogos;
     }
-
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -773,10 +784,10 @@ public class ListaJogos extends javax.swing.JFrame {
     private view.BotaoPersonalizado bntCriarAtleta;
     private view.BotaoPersonalizado bntDeletar;
     private javax.swing.JTextField campoBuscarStatus;
-    private javax.swing.JPanel campoMenuAjustes;
     private javax.swing.JPanel campoMenuAtletas;
     private javax.swing.JPanel campoMenuJogos;
     private javax.swing.JPanel campoMenuPrincipal;
+    private javax.swing.JPanel campoMenuSair;
     private javax.swing.JLabel iconFechar;
     private javax.swing.JLabel iconPesquisar;
     private javax.swing.JLabel jLabel1;

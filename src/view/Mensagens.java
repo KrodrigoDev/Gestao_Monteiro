@@ -210,6 +210,12 @@ public class Mensagens {
                         "<html><strong>Selecione uma linha para exluir!</strong></html>",
                         "Aviso - Lista Jogos", JOptionPane.INFORMATION_MESSAGE);
                 break;
+            case 7:
+                JOptionPane.showMessageDialog(null,
+                        "<html><strong>Por favor, verifique se a data e hora estão no formato correto: dd/MM/yyyy HH:mm</strong></html>",
+                        "Aviso - Formato de Data e Hora Inválido", JOptionPane.INFORMATION_MESSAGE);
+
+                break;
         }
     }
 
@@ -229,5 +235,16 @@ public class Mensagens {
         JOptionPane.showMessageDialog(null,
                 "<html><strong>Uma senha provisória foi enviada para o endereço de e-mail cadastrado</strong></html>",
                 "Aviso - E-mail Enviado", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    // Mensagem para saber se o admin realmente deseja sair e voltar para tela de login
+    public boolean confirmarSaida() {
+        String[] options = {"Sim", "Não"};
+
+        int option = JOptionPane.showOptionDialog(null, "Tem certeza que deseja sair e voltar para tela de login?",
+                "Aviso - Confirmar Saída", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE, null, options, options[1]);
+
+        return option == JOptionPane.YES_OPTION;
     }
 }

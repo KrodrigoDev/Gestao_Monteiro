@@ -65,7 +65,7 @@ public abstract class Pessoa {
     // Método para verificar se os campos foram preenchidos corretamente
     public boolean validarCamposPreenchidosString(String... campos) {
         for (String campo : campos) {
-            if (campo.isEmpty() || campo == null || campo.length() < 2) {
+            if ( campo == null ||campo.isEmpty() || campo.length() < 2) {
                 return false; // impede a criação
             }
         }
