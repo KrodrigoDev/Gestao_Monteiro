@@ -31,11 +31,11 @@ public class ListaAtletas extends javax.swing.JFrame {
         atualizarQuantidades(); //carregar a quantidade de atletas ativos e inativos
 
         //  método para adicionar uma função na tecla enter para o campo de pesquisa
-        campoBuscarNome.addKeyListener(new java.awt.event.KeyAdapter() {
+        campoBuscarPorFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             @Override
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
-                    realizarBuscaPorNome();
+                    realizarBuscaPorFiltro();
                 }
             }
         });
@@ -83,7 +83,7 @@ public class ListaAtletas extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JSeparator();
         bntDeletar = new view.BotaoPersonalizado();
         jSeparator5 = new javax.swing.JSeparator();
-        campoBuscarNome = new javax.swing.JTextField();
+        campoBuscarPorFiltro = new javax.swing.JTextField();
         bntCriarAtleta = new view.BotaoPersonalizado();
         bntAtualizar = new view.BotaoPersonalizado();
         painelVerdeCurto = new javax.swing.JPanel();
@@ -427,22 +427,22 @@ public class ListaAtletas extends javax.swing.JFrame {
         jSeparator5.setForeground(new java.awt.Color(0, 0, 0));
         painelBranco.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 51, 714, 16));
 
-        campoBuscarNome.setBackground(new java.awt.Color(255, 255, 255));
-        campoBuscarNome.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        campoBuscarNome.setForeground(new java.awt.Color(143, 143, 143));
-        campoBuscarNome.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        campoBuscarNome.setText("Buscar Por Nome");
-        campoBuscarNome.setBorder(null);
-        campoBuscarNome.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        campoBuscarNome.addFocusListener(new java.awt.event.FocusAdapter() {
+        campoBuscarPorFiltro.setBackground(new java.awt.Color(255, 255, 255));
+        campoBuscarPorFiltro.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        campoBuscarPorFiltro.setForeground(new java.awt.Color(143, 143, 143));
+        campoBuscarPorFiltro.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        campoBuscarPorFiltro.setText("Buscar por nome ou telefone");
+        campoBuscarPorFiltro.setBorder(null);
+        campoBuscarPorFiltro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        campoBuscarPorFiltro.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-                campoBuscarNomeFocusGained(evt);
+                campoBuscarPorFiltroFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-                campoBuscarNomeFocusLost(evt);
+                campoBuscarPorFiltroFocusLost(evt);
             }
         });
-        painelBranco.add(campoBuscarNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 240, 30));
+        painelBranco.add(campoBuscarPorFiltro, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, 240, 30));
 
         bntCriarAtleta.setBackground(new java.awt.Color(0, 146, 120));
         bntCriarAtleta.setForeground(new java.awt.Color(255, 255, 255));
@@ -614,22 +614,22 @@ public class ListaAtletas extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowGainedFocus
 
     // ao ganhar o foco vai chamar o método removerCampoPlaceholder
-    private void campoBuscarNomeFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscarNomeFocusGained
-        if (campoBuscarNome.getText().equals("Buscar Por Nome")) {
-            removerCampoPlaceholder(campoBuscarNome);
+    private void campoBuscarPorFiltroFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscarPorFiltroFocusGained
+        if (campoBuscarPorFiltro.getText().equals("Buscar por nome ou telefone")) {
+            removerCampoPlaceholder(campoBuscarPorFiltro);
         }
-    }//GEN-LAST:event_campoBuscarNomeFocusGained
+    }//GEN-LAST:event_campoBuscarPorFiltroFocusGained
 
     // ao perder o foco vai verificar se tem algo no campo, caso não tenha, vai chamar voltar ao estado antigo
-    private void campoBuscarNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscarNomeFocusLost
-        if (campoBuscarNome.getText().length() == 0) {
-            campoBuscarNome.setText("Buscar Por Nome");
-            campoBuscarNome.setForeground(new Color(140, 140, 140));
+    private void campoBuscarPorFiltroFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscarPorFiltroFocusLost
+        if (campoBuscarPorFiltro.getText().length() == 0) {
+            campoBuscarPorFiltro.setText("Buscar por nome ou telefone");
+            campoBuscarPorFiltro.setForeground(new Color(140, 140, 140));
 
             // Recarregar a tabela com todos os atletas
             tabelaAtletas();
         }
-    }//GEN-LAST:event_campoBuscarNomeFocusLost
+    }//GEN-LAST:event_campoBuscarPorFiltroFocusLost
 
     // método para excluir uma linha da tabela
     private void bntDeletarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bntDeletarMouseClicked
@@ -703,11 +703,11 @@ public class ListaAtletas extends javax.swing.JFrame {
     }
 
     // Método que vai alimentar a tabela com itens do banco de dados
-    public void tabelaAtletasPorNome(String nome) {
+    public void tabelaAtletasPorFiltro(String filtro) {
         DefaultTableModel modelo = (DefaultTableModel) tabelaAtletas.getModel(); // lembrar de pagar
         modelo.setNumRows(0);
 
-        for (Atleta atleta : atletaDao.listaAtletasPorNome(nome)) { // forEach para percorrer a lista pelo nome
+        for (Atleta atleta : atletaDao.listaAtletasFiltro(filtro)) { // forEach para percorrer a lista pelo nome
 
             modelo.addRow(new Object[]{ // adicionando linha 
                 atleta.getId(),
@@ -721,11 +721,11 @@ public class ListaAtletas extends javax.swing.JFrame {
     }
 
     // método que vai usar a tabelaAtletasPorNome
-    private void realizarBuscaPorNome() {
-        String nome = campoBuscarNome.getText().trim();
+    private void realizarBuscaPorFiltro() {
+        String filtro = campoBuscarPorFiltro.getText().trim();
 
-        if (!nome.isEmpty()) {
-            tabelaAtletasPorNome(nome);
+        if (!filtro.isEmpty()) {
+            tabelaAtletasPorFiltro(filtro);
         } else {
             // Se o campo estiver vazio, recarregar a tabela com todos os atletas
             tabelaAtletas();
@@ -789,12 +789,16 @@ public class ListaAtletas extends javax.swing.JFrame {
         return atleta;
     }
 
+    // get do id (Gambiarra)
+    public String getTransAdmin() {
+        return principal.getIdAdmin();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private view.BotaoPersonalizado bntAtualizar;
     private view.BotaoPersonalizado bntCriarAtleta;
     private view.BotaoPersonalizado bntDeletar;
-    private javax.swing.JTextField campoBuscarNome;
+    private javax.swing.JTextField campoBuscarPorFiltro;
     private javax.swing.JPanel campoMenuAtletas;
     private javax.swing.JPanel campoMenuJogos;
     private javax.swing.JPanel campoMenuPrincipal;

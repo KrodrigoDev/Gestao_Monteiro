@@ -1,6 +1,5 @@
 package view;
 
-import controller.BytesAdmin;
 import modeldao.AtletaDao;
 import model.Atleta;
 import java.awt.Color;
@@ -19,7 +18,6 @@ public class CriarAtleta extends javax.swing.JFrame {
     // Objeto de classes
     ListaAtletas listaAtleta;
     AtletaDao atletaDao = new AtletaDao();
-    BytesAdmin bytesAdmin = new BytesAdmin();
     Mensagens mensagens = new Mensagens();
 
     // construtor
@@ -28,7 +26,7 @@ public class CriarAtleta extends javax.swing.JFrame {
 
         this.listaAtleta = listaAtleta;
 
-        bytesAdmin.lerBytes(textIdAdmin);
+        textIdAdmin.setText(listaAtleta.getTransAdmin());
 
         mudarCoresSpinner(); // inicilizando a mudança de cores
     }
@@ -299,7 +297,7 @@ public class CriarAtleta extends javax.swing.JFrame {
     // quando o mouse sair do campo ele vai retornar a cor branca
     private void painelBntFecharMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painelBntFecharMouseExited
         mudarCor(painelBntFechar, Color.WHITE);
-        textX.setForeground(new Color(31,115,52));
+        textX.setForeground(new Color(31, 115, 52));
     }//GEN-LAST:event_painelBntFecharMouseExited
 
     // método que vai fechar a tela atual e voltar para anterior
@@ -344,7 +342,7 @@ public class CriarAtleta extends javax.swing.JFrame {
                 mensagens.tipoMensagemCriarContas(1);
                 return;
             }
-            
+
             if (atletaDao.cadastrarAdmin(atleta)) {
                 limparCampos();
                 mensagens.tipoMensagemCriarContas(3);

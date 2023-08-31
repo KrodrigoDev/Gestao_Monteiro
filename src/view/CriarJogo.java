@@ -1,6 +1,5 @@
 package view;
 
-import controller.BytesAdmin;
 import java.awt.Color;
 import java.awt.HeadlessException;
 import javax.swing.JPanel;
@@ -17,7 +16,6 @@ public class CriarJogo extends javax.swing.JFrame {
     // Objeto de classes
     ListaJogos listajogos;
     JogosDao jogosDao = new JogosDao();
-    BytesAdmin bytesAdmin = new BytesAdmin();
     Mensagens mensagens = new Mensagens();
 
     // construtor
@@ -26,7 +24,7 @@ public class CriarJogo extends javax.swing.JFrame {
 
         this.listajogos = listajogos;
 
-        bytesAdmin.lerBytes(textIdAdmin);
+        textIdAdmin.setText(listajogos.getTransAdmin());
     }
 
     // código padrão do java 

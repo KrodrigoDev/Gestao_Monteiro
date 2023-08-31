@@ -1,6 +1,5 @@
 package view;
 
-import controller.BytesAdmin;
 import modeldao.AdminDao;
 import model.Admin;
 import java.awt.Color;
@@ -18,7 +17,6 @@ public class Login extends javax.swing.JFrame {
 
     // Objetos de classes 
     AdminDao adminDao = new AdminDao();
-    BytesAdmin bytesAdmin = new BytesAdmin();
     Mensagens mensagens = new Mensagens();
 
     // construtor
@@ -306,16 +304,18 @@ public class Login extends javax.swing.JFrame {
                 String nomeAdmin = rs.getString("nome");
                 String sobrenomeAdmin = rs.getString("sobrenome");
                 LocalDate nascimentoAdmin = rs.getDate("nascimento").toLocalDate(); // toLocalDate faz a formatação da data que vem do banco de dados
-                int id = rs.getInt("id");
+                int id = rs.getInt("id"); // ver isso depois
 
-                // Armazenar o ID em um arquivo de texto
-                bytesAdmin.pegarIdPorByte(Integer.toString(id)); // Converte o ID para String
+                //Armazenar o ID em um arquivo de texto
+                String idAdmin = Integer.toString(id); // Converte o ID para String
 
                 Principal principal = new Principal();
                 principal.setNomeAdmin(nomeAdmin + " " + sobrenomeAdmin);
                 principal.setIdadeAdmin(admin.calcularIdade(nascimentoAdmin));
+                principal.setIdAdmin(idAdmin); // fazendo a janela guardar o id do admin
 
                 principal.setVisible(true);
+
                 this.dispose();
 
             } else {

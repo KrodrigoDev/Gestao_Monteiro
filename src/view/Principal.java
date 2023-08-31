@@ -15,6 +15,9 @@ public class Principal extends javax.swing.JFrame {
     // objeto da classe mensagem
     Mensagens mensagens = new Mensagens();
 
+    // atributo para guardar o id do admin atual
+    private String idAdmin;
+
     // construtor
     public Principal() {
         initComponents();
@@ -52,7 +55,7 @@ public class Principal extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         painelLogoClube = new javax.swing.JPanel();
-        jLabel24 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         painelJogos = new javax.swing.JPanel();
         quantidadeJogos = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -323,19 +326,19 @@ public class Principal extends javax.swing.JFrame {
 
         painelLogoClube.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel24.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imgHolofotes.png"))); // NOI18N
-        jLabel24.setToolTipText("");
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Escudo (2).png"))); // NOI18N
+        jLabel11.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout painelLogoClubeLayout = new javax.swing.GroupLayout(painelLogoClube);
         painelLogoClube.setLayout(painelLogoClubeLayout);
         painelLogoClubeLayout.setHorizontalGroup(
             painelLogoClubeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
         );
         painelLogoClubeLayout.setVerticalGroup(
             painelLogoClubeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         painelJogos.setBackground(new java.awt.Color(255, 255, 255));
@@ -414,7 +417,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(painelLogoClube, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addComponent(painelJogos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 33, Short.MAX_VALUE))
+                .addGap(33, 33, 33))
             .addGroup(painelBrancoLayout.createSequentialGroup()
                 .addGap(78, 78, 78)
                 .addGroup(painelBrancoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -422,7 +425,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel14)
                     .addComponent(painelAdminInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 0, 0))
             .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel23, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -577,12 +580,14 @@ public class Principal extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_campoMenuAtletasMouseClicked
 
+    // ao ser clicado vai para lista de jogos
     private void campoMenuJogosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuJogosMouseClicked
         ListaJogos listaJogos = new ListaJogos(this);
         listaJogos.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_campoMenuJogosMouseClicked
 
+    // ao ser clicado vai voltar para tela de login
     private void campoMenuSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoMenuSairMouseClicked
         if (mensagens.confirmarSaida()) {
             Login telaLogin = new Login(); // Substitua "TelaLogin" pelo nome da classe da tela de login
@@ -594,16 +599,6 @@ public class Principal extends javax.swing.JFrame {
     // método para alternar as cores dos campos
     public void mudarCor(JPanel campo, Color cor) {
         campo.setBackground(cor);
-    }
-
-    // método Set para recuperar o nome junto com o sobrenome do admin
-    public void setNomeAdmin(String nomeSobrenome) {
-        textNomeAdmin.setText(nomeSobrenome);
-    }
-
-    // método para recuperar a idade do admin
-    public void setIdadeAdmin(int idadeAdmin) {
-        textNumIdade.setText(Integer.toString(idadeAdmin));
     }
 
     // método com todas as quantidades de atletas cadastrados 
@@ -620,6 +615,25 @@ public class Principal extends javax.swing.JFrame {
         quantidadeJogos.setText(String.valueOf(quantidadeTotal));
     }
 
+    //gets e sets (Gambiarra)
+    public String getIdAdmin() {
+        return idAdmin;
+    }
+
+    public void setIdAdmin(String idAdmin) {
+        this.idAdmin = idAdmin;
+    }
+
+    // método Set para recuperar o nome junto com o sobrenome do admin
+    public void setNomeAdmin(String nomeSobrenome) {
+        textNomeAdmin.setText(nomeSobrenome);
+    }
+
+    // método para recuperar a idade do admin
+    public void setIdadeAdmin(int idadeAdmin) {
+        textNumIdade.setText(Integer.toString(idadeAdmin));
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel campoMenuAtletas;
     private javax.swing.JPanel campoMenuJogos;
@@ -628,6 +642,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel iconFechar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -639,7 +654,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;

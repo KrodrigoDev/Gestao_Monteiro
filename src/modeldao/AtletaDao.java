@@ -47,18 +47,21 @@ public class AtletaDao {
             // Executa a atualização no banco de dados.
             ps.executeUpdate();
 
-            ps.close(); // vai encerrar a conexão
-
             return true;
 
         } catch (SQLException erro) {
             if (erro.getErrorCode() == 1062) { // Código de erro para duplicidade na chave primária ou única
                 mensagens.tipoMensagemAtletaDao(1);
             } else {
-                // Em caso de outros erros SQL
                 mensagens.tipoMensagemAtletaDao(2);
             }
             return false;
+        } finally {
+            try {
+                ps.close();
+            } catch (SQLException ex) {
+                mensagens.tipoMensagemAdminDao(2);
+            }
         }
 
     }
@@ -88,13 +91,12 @@ public class AtletaDao {
 
                 atletas.add(atleta);
             }
-
             ps.close();
 
         } catch (SQLException erro) {
             mensagens.tipoMensagemAtletaDao(2);
+            return null;
         }
-
         return atletas;
     }
 
@@ -142,37 +144,35 @@ public class AtletaDao {
     }
 
     // método que vai me retornar uma lista por meio do que o admin vai digita(usando o like)
-    public List<Atleta> listaAtletasPorNome(String nome) {
+    public List<Atleta> listaAtletasFiltro(String filtroAtleta) {
+        String sql = "SELECT ID, NOME, SOBRENOME, CATEGORIA, STATUS, CONTATO FROM ATLETAS WHERE NOME LIKE ? OR SOBRENOME LIKE ? OR TRIM(CONTATO) LIKE ?";
 
-        // Query SQL para resgatar os dados na tabela "ATLETAS".
-        String sql = "SELECT ID, NOME,SOBRENOME, CATEGORIA, STATUS, CONTATO FROM ATLETAS WHERE NOME LIKE ? OR SOBRENOME LIKE ?";
-
-        List<Atleta> atletas = new ArrayList<>(); // lista com todos os atletas
+        List<Atleta> atletas = new ArrayList<>();
 
         try {
             ps = Conexao.getConexao().prepareStatement(sql);
 
-            ps.setString(1, '%' + nome + '%');
-            ps.setString(2, '%' + nome + '%');
+            String likeFilter = '%' + filtroAtleta + '%';
+            ps.setString(1, likeFilter);
+            ps.setString(2, likeFilter);
+            ps.setString(3, likeFilter);
 
-            ResultSet resultadoConsulta = ps.executeQuery(); // vai receber as consultas
+            ResultSet resultadoConsulta = ps.executeQuery();
 
-            while (resultadoConsulta.next()) { // vai repetir até o limite 
-
+            while (resultadoConsulta.next()) {
                 Atleta atleta = new Atleta();
                 atleta.setId(resultadoConsulta.getInt("id"));
                 atleta.setNome(resultadoConsulta.getString("nome"));
                 atleta.setSobrenome(resultadoConsulta.getString("sobrenome"));
                 atleta.setCategoria(resultadoConsulta.getString("categoria"));
                 atleta.setStatus(resultadoConsulta.getString("status"));
-                atleta.setContato(resultadoConsulta.getString("Contato")); // possivel problema
-
+                atleta.setContato(resultadoConsulta.getString("contato").trim());
                 atletas.add(atleta);
             }
 
             ps.close();
-
         } catch (SQLException erro) {
+            System.out.println(erro);
             mensagens.tipoMensagemAtletaDao(2);
         }
 
@@ -219,7 +219,7 @@ public class AtletaDao {
 
             mensagens.tipoMensagemAtletaDao(linhasAfetadas > 0 ? 5 : 6);
 
-
+            ps.close();
             return true;
 
         } catch (SQLException erro) {

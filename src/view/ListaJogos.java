@@ -432,7 +432,7 @@ public class ListaJogos extends javax.swing.JFrame {
         campoBuscarStatus.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         campoBuscarStatus.setForeground(new java.awt.Color(143, 143, 143));
         campoBuscarStatus.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        campoBuscarStatus.setText("Buscar Por Status");
+        campoBuscarStatus.setText("Buscar por status");
         campoBuscarStatus.setBorder(null);
         campoBuscarStatus.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         campoBuscarStatus.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -616,7 +616,7 @@ public class ListaJogos extends javax.swing.JFrame {
 
     // ao ganhar o foco vai chamar o método removerCampoPlaceholder
     private void campoBuscarStatusFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscarStatusFocusGained
-        if (campoBuscarStatus.getText().equals("Buscar Por Status")) {
+        if (campoBuscarStatus.getText().equals("Buscar por status")) {
             removerCampoPlaceholder(campoBuscarStatus);
         }
     }//GEN-LAST:event_campoBuscarStatusFocusGained
@@ -624,7 +624,7 @@ public class ListaJogos extends javax.swing.JFrame {
     // ao perder o foco vai verificar se tem algo no campo, caso não tenha, vai chamar voltar ao estado antigo
     private void campoBuscarStatusFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoBuscarStatusFocusLost
         if (campoBuscarStatus.getText().length() == 0) {
-            campoBuscarStatus.setText("Buscar Por Status");
+            campoBuscarStatus.setText("Buscar por status");
             campoBuscarStatus.setForeground(new Color(140, 140, 140));
 
             // Recarregar a tabela com todos os atletas
@@ -776,6 +776,11 @@ public class ListaJogos extends javax.swing.JFrame {
         jogos.setDataHoraJogo((String) tabelaJogos.getValueAt(selectedRowIndex, 4));
 
         return jogos;
+    }
+    
+    // get do id (Gambiarra)
+    public String getTransAdmin() {
+        return principal.getIdAdmin();
     }
 
 
