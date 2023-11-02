@@ -1,11 +1,11 @@
 # Gestão Monteiro
 
-> Status do projeto :  desenvolvimento 🏗️
+> Status do projeto :  Finalizado ✅
 
 ## Lista de tarefas
 - [X] Conexão com mysql
 - [ ] Documentação para com as execeções e erros
-- [ ] Criar todas as janelas 
+- [X] Criar todas as janelas 
 - [ ] Diagrama UML com todas as classes
 - [X] Projeto lógico e físico
 - [X] Criar um modelo de alta fidelidade no figma
